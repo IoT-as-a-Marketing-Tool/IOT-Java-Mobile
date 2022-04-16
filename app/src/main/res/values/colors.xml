@@ -4,4 +4,6 @@
     <color name="black">#000</color>
     <color name="white">#FFF</color>
     <color name="grey">#BDBDBD</color>
+    <color name="secondary_text">#A6A6AA</color>
+
 </resources>

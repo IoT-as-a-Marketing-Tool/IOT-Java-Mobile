@@ -4,8 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/btn_custom.xml" value="0.184" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/btn_hollow_custom.xml" value="0.174" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/button_custom.xml" value="0.174" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/et_custom.xml" value="0.174" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/checkbox_remember.xml" value="0.5" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_register.xml" value="0.1" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/register_reroute.xml" value="0.17255434782608695" />
       </map>
     </option>
   </component>
