@@ -8,14 +8,27 @@
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_24" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_baseline_favorite_border_24" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/ic_baseline_arrow_back_ios_24" />
+
+
+    </LinearLayout>
 
 
 
@@ -34,23 +47,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="0dp"
         android:fontFamily="@font/roboto_regular"
-        android:text="Berry Smoothie"
+        android:text="Smooth Sundae"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textFontWeight="600"
         android:textSize="30sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Berry Smoothie"
-        android:textAlignment="center"
-        android:textColor="@color/primary_purple"
-        android:textFontWeight="600"
-        android:textSize="15sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +60,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:fontFamily="@font/roboto_regular"
-        android:text="Details"
+        android:text="Description"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textFontWeight="600"
@@ -70,23 +72,11 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="0dp"
         android:fontFamily="@font/roboto_regular"
-        android:text="Price: 30 Birr"
-        android:textAlignment="center"
+        android:text="Our ice cream simply tastes better because it’s made better. With more cream, every bite is smooth, and dreamy."
         android:textColor="@color/grey"
         android:textFontWeight="600"
         android:textSize="15sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Ingridients: Berries, Bananas, Stawberry"
-        android:textAlignment="center"
-        android:textColor="@color/grey"
-        android:textFontWeight="600"
-        android:textSize="15sp" />
+
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -104,7 +94,7 @@
         android:background="@drawable/button_custom"
         android:fontFamily="@font/roboto_regular"
         android:padding="20dp"
-        android:text="Add to favorites"
+        android:text="View Ads"
         android:textColor="@android:color/white"
         android:textFontWeight="700" />
 
