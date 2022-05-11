@@ -1,6 +1,7 @@
 package com.example.iot_java_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.helper.widget.Carousel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,116 +12,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    EditText email;
-    EditText name;
-    EditText password;
-    Button register;
-    EditText loginEmail;
-    EditText loginPassword;
-    Button login;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+    private ImageSlider imageSlider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        setupUI();
-//        setupListeners();
+        imageSlider.findViewById(R.id.carousel);
 
-//        private void setupUI() {
-//            loginEmail = findViewById(R.id.et_email_login);
-//            loginPassword = findViewById(R.id.et_password);
-//            register = findViewById(R.id.btn_register);
-//            login = findViewById(R.id.btn_login);
-//        }
-//        private void setupListeners() {
-//            login.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    checkUsername();
-//                }
-//            });
-//
-//            register.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                }
-//            });
-//        }
+        ArrayList<SlideModel> slideModels = new ArrayList<>();
+        slideModels.add( new SlideModel("https://thumbs.dreamstime.com/z/mango-juice-ads-liquid-hand-banner-grabbing-fruit-effect-blue-sky-background-d-illustration-152914246.jpg", ScaleTypes.FIT));
+        slideModels.add( new SlideModel("https://www.sunchipsethiopia.net/img/photo_2021-04-27_15-48-07.jpg", ScaleTypes.FIT));
+        slideModels.add( new SlideModel("https://www.logogenie.net/images/articles/brands-of-the-world-coca-cola.jpg", ScaleTypes.FIT));
+        slideModels.add( new SlideModel("https://world.openfoodfacts.org/images/products/878/456/290/8364/front_fr.3.full.jpg", ScaleTypes.FIT));
 
-//        void checkUsername() {
-//            boolean isValid = true;
-//            if (isEmpty(loginEmail)) {
-//                loginEmail.setError("You must enter email to login!");
-//                isValid = false;
-//            } else {
-//                if (!isEmail(loginEmail)) {
-//                    loginEmail.setError("Enter valid email!");
-//                    isValid = false;
-//                }
-//            }
-//
-//            if (isEmpty(loginPassword)) {
-//                loginPassword.setError("You must enter password to login!");
-//                isValid = false;
-//            } else {
-//                if (loginPassword.getText().toString().length() < 4) {
-//                    loginPassword.setError("Password must be at least 4 chars long!");
-//                    isValid = false;
-//                }
-//            }
-
-//            if (isValid) {
-//                String emailValue = loginEmail.getText().toString();
-//                String passwordValue = password.getText().toString();
-//                if (emailValue.equals("test@test.com") && passwordValue.equals("password1234")) {
-//                    Intent i = new Intent(LoginActivity.this, FirstActivity.class);
-//                    startActivity(i);
-//                    this.finish();
-//                } else {
-//                    Toast t = Toast.makeText(this, "Wrong email or password!", Toast.LENGTH_SHORT);
-//                    t.show();
-//                }
-//            }
-//        }
-//
-//        email = findViewById(R.id.et_email);
-//        name = findViewById(R.id.et_name);
-//        password = findViewById(R.id.et_password);
-//        register = findViewById(R.id.btn_register);
-
-
-//        register.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                checkDataEntered();
-//            }
-//        });
-//        boolean isEmail(EditText text) {
-//            CharSequence email = text.getText().toString();
-//            return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
-//        }
-//
-//        boolean isEmpty(EditText text) {
-//            CharSequence str = text.getText().toString();
-//            return TextUtils.isEmpty(str);
-//        }
-//
-//
-//
-//        void checkDataEntered() {
-//            if (isEmpty(name)) {
-//                Toast t = Toast.makeText(this, "You must enter first name to register!", Toast.LENGTH_SHORT);
-//                t.show();
-//            }
-//
-//            if (isEmail(email) == false) {
-//                email.setError("Enter valid email!");
-//            }
-//        }
-//    }
-
+        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
     }
 }

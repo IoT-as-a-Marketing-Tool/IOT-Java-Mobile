@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="@string/Welcome"
-        android:textSize="35sp"
+        android:textSize="45sp"
         android:textFontWeight="700"
         android:fontFamily="@font/roboto_regular"
         android:layout_marginStart="25dp"
@@ -40,18 +40,18 @@
         android:background="@color/grey" />
 
     <EditText
-        android:id="@+id/et_email_login"
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@id/et_password"
+        android:hint="Name"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:padding="10dp"
+        android:inputType="textEmailAddress"
         android:drawablePadding="10dp"
         android:fontFamily="@font/roboto_regular"
-        android:hint="Name"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
+        android:layout_above="@id/et_password"
         android:textSize="15sp"
 
         />
@@ -60,26 +60,26 @@
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="@color/grey"
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
-        android:drawablePadding="10dp"
-        android:fontFamily="@font/roboto_regular"
         android:hint="Password"
-        android:inputType="textPassword"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:textSize="15sp" />
-
+        android:fontFamily="@font/roboto_regular"
+        android:backgroundTint="@color/grey"
+        android:inputType="textPassword"
+        android:layout_centerInParent="true"
+        android:textSize="15sp"
+        />
     <include
         android:id="@+id/checkbox_remember"
         layout="@layout/checkbox_remember"
         android:layout_width="fill_parent"
+        android:layout_marginTop="30dp"
         android:layout_height="50dp"
-        android:layout_below="@id/et_password"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@id/et_password"/>
 
 
     <Button
@@ -102,14 +102,14 @@
         android:id="@+id/or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_login"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/roboto_regular"
         android:text="or"
+        android:layout_below="@id/btn_login"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_centerHorizontal="true"
 
-        android:textSize="16sp" />
+        android:layout_marginBottom="20dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -127,6 +127,7 @@
         layout="@layout/register_reroute"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

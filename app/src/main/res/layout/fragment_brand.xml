@@ -25,7 +25,7 @@
         android:layout_height="250dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/unsplash_8FwP6HHTHWI" />
+        app:srcCompat="@drawable/unsplash_8fwp6hhthwi" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,7 +92,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="25dp"
-        app:srcCompat="@drawable/unsplash_8FwP6HHTHWI" />
+        app:srcCompat="@drawable/unsplash_8fwp6hhthwi" />
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"

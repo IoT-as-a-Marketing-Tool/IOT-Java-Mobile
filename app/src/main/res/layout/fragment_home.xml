@@ -25,8 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
 
-        android:background="@drawable/searchForm"
-        android:hint="Brand, Product, Ad Campaingn"
+        android:background="@drawable/searchform"
+        android:hint="Brand, Product, Ad Campaign"
         android:textFontWeight="600"
         android:drawableLeft="@drawable/ic_baseline_search_24"
         android:drawablePadding="10dp"
@@ -37,12 +37,22 @@
         android:inputType="textCapCharacters"
         android:fontFamily="@font/roboto_regular"
         android:textSize="15sp" />
+    <com.denzcoskun.imageslider.ImageSlider
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        app:iss_period="1000"
+        app:iss_auto_cycle="true"
+        app:iss_delay="1000"
+        app:iss_title_background="@drawable/unsplash_8fwp6hhthwi"
+        android:id="@+id/carousel"
+        app:iss_corner_radius="10">
 
+    </com.denzcoskun.imageslider.ImageSlider>
     <ImageView
         android:layout_width="368dp"
         android:layout_height="180dp"
         android:layout_marginStart="25dp"
-        app:srcCompat="@drawable/unsplash_ldg40aCeOXo" />
+        app:srcCompat="@drawable/background" />
 
 
     <LinearLayout
@@ -84,19 +94,19 @@
             android:layout_height="100dp"
             android:layout_marginStart="25dp"
             android:foreground="@drawable/brand_circle"
-            app:srcCompat="@drawable/unsplash_4wYxcWA5MbI" />
+            app:srcCompat="@drawable/fornow" />
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="30dp"
             android:foreground="@drawable/brand_circle"
-            app:srcCompat="@drawable/unsplash_4wYxcWA5MbI" />
+            app:srcCompat="@drawable/fornow" />
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="30dp"
             android:foreground="@drawable/brand_circle"
-            app:srcCompat="@drawable/unsplash_4wYxcWA5MbI" />
+            app:srcCompat="@drawable/fornow" />
 
     </LinearLayout>
     <LinearLayout
@@ -177,23 +187,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
         <ImageView
+
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="25dp"
             android:foreground="@drawable/brand_circle"
-            app:srcCompat="@drawable/unsplash_8FwP6HHTHWI" />
+            app:srcCompat="@drawable/unsplash_8fwp6hhthwi" />
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="30dp"
             android:foreground="@drawable/brand_circle"
-            app:srcCompat="@drawable/unsplash_8FwP6HHTHWI" />
+            app:srcCompat="@drawable/unsplash_8fwp6hhthwi" />
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="30dp"
             android:foreground="@drawable/brand_circle"
-            app:srcCompat="@drawable/unsplash_8FwP6HHTHWI" />
+            app:srcCompat="@drawable/unsplash_8fwp6hhthwi" />
 
     </LinearLayout>
     <LinearLayout
