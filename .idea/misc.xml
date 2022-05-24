@@ -3,15 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/brand_backround.xml" value="0.1845" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/brand_circle.xml" value="0.1985" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/btn_custom.xml" value="0.184" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/btn_hollow_custom.xml" value="0.174" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/button_custom.xml" value="0.174" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/et_custom.xml" value="0.174" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1845" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1845" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1845" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1985" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1845" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/searchForm.xml" value="0.1985" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/searchform.xml" value="0.1845" />
-        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/activity_main.xml" value="0.18935837245696402" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/brands.xml" value="0.1953125" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/checkbox_remember.xml" value="0.5" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/checkbox_signup.xml" value="0.209375" />
@@ -22,6 +27,7 @@
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_product.xml" value="0.209375" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_register.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/register_reroute.xml" value="0.17255434782608695" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/viewholder_brandcategory.xml" value="0.5" />
       </map>
     </option>
   </component>
