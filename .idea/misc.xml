@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable-xxhdpi/borderad.xml" value="0.1845" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/brand_backround.xml" value="0.1845" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/brand_circle.xml" value="0.1985" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/btn_custom.xml" value="0.184" />
@@ -14,6 +15,8 @@
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1845" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1985" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1845" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/profile.xml" value="0.1845" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/recprofile.xml" value="0.1845" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/searchForm.xml" value="0.1985" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/searchform.xml" value="0.1845" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/activity_main.xml" value="0.18935837245696402" />

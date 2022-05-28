@@ -47,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        homeAd = findViewById(R.id.homeAd);
-        homeAd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Ad.class));
-            }
-        });
+//        homeAd = findViewById(R.id.homeAd);
+//        homeAd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, Ad.class));
+//            }
+//        });
 //        recyclerViewBrands();
     }
 
