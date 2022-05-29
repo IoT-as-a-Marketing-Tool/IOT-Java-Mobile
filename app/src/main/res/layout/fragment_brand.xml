@@ -50,8 +50,7 @@
                 android:layout_marginBottom="-40dp"
                 android:layout_weight="1"
                 android:foreground="@drawable/brand_circle"
-                app:srcCompat="@drawable/mesob">
-            </com.mikhaellopez.circularimageview.CircularImageView>
+                app:srcCompat="@drawable/mesob"></com.mikhaellopez.circularimageview.CircularImageView>
         </RelativeLayout>
 
 
