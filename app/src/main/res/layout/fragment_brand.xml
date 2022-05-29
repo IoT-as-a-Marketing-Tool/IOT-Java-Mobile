@@ -7,7 +7,6 @@
     tools:context=".Activity.brand"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <Button
         android:id="@+id/button"
