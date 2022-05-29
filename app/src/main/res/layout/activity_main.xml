@@ -165,216 +165,145 @@
                 android:layout_marginEnd="10dp">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_brand_list_recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:orientation="horizontal"
+                    android:scrollbars="horizontal"
+                    tools:listitem="@layout/home_brand_items">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:scrollbarAlwaysDrawHorizontalTrack="true">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="25dp"
-                    android:foreground="@drawable/brand_circle"
-                    app:srcCompat="@drawable/fornow" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="25dp"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:fontFamily="@font/roboto_regular"-->
+<!--                    android:text="Latest Ads"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textFontWeight="600"-->
+<!--                    android:textSize="18sp" />-->
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="30dp"
-                    android:foreground="@drawable/brand_circle"
-                    app:srcCompat="@drawable/fornow" />
+<!--                <TextView-->
+<!--                    android:id="@+id/homeAd"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="240dp"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:fontFamily="@font/roboto_regular"-->
+<!--                    android:text="See all"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/primary_purple"-->
+<!--                    android:textFontWeight="600"-->
+<!--                    android:textSize="15sp" />-->
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="30dp"
-                    android:foreground="@drawable/brand_circle"
-                    app:srcCompat="@drawable/fornow" />
+<!--            </LinearLayout>-->
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="10dp">-->
 
-            </LinearLayout>
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent">-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+<!--                </androidx.recyclerview.widget.RecyclerView>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Greta Fashion"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textFontWeight="200"
-                    android:textSize="15sp" />
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Greta Fashion"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textFontWeight="200"
-                    android:textSize="15sp" />
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Greta Fashion"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textFontWeight="200"
-                    android:textSize="15sp" />
+<!--                <ImageView-->
 
-            </LinearLayout>
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginStart="25dp"-->
+<!--                    android:foreground="@drawable/brand_circle"-->
+<!--                    app:srcCompat="@drawable/imagetwo" />-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:foreground="@drawable/brand_circle"-->
+<!--                    app:srcCompat="@drawable/imagetwo" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Latest Ads"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textFontWeight="600"
-                    android:textSize="18sp" />
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:foreground="@drawable/brand_circle"-->
+<!--                    app:srcCompat="@drawable/imagetwo" />-->
 
-                <TextView
-                    android:id="@+id/homeAd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="240dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="See all"
-                    android:textAlignment="center"
-                    android:textColor="@color/primary_purple"
-                    android:textFontWeight="600"
-                    android:textSize="15sp" />
+<!--            </LinearLayout>-->
 
-            </LinearLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp">-->
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:fontFamily="@font/roboto_regular"-->
+<!--                    android:text="New Arrival"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textFontWeight="200"-->
+<!--                    android:textSize="15sp" />-->
 
-                </androidx.recyclerview.widget.RecyclerView>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="40dp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:fontFamily="@font/roboto_regular"-->
+<!--                    android:text="Christmas choco"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textFontWeight="200"-->
+<!--                    android:textSize="15sp" />-->
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="35dp"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:fontFamily="@font/roboto_regular"-->
+<!--                    android:text="Greta Fashion"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textFontWeight="200"-->
+<!--                    android:textSize="15sp" />-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="25dp"
-                    android:foreground="@drawable/brand_circle"
-                    app:srcCompat="@drawable/imagetwo" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="30dp"
-                    android:foreground="@drawable/brand_circle"
-                    app:srcCompat="@drawable/imagetwo" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="30dp"
-                    android:foreground="@drawable/brand_circle"
-                    app:srcCompat="@drawable/imagetwo" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="New Arrival"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textFontWeight="200"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Christmas choco"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textFontWeight="200"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Greta Fashion"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textFontWeight="200"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
         </LinearLayout>
     </ScrollView>

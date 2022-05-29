@@ -1,6 +1,6 @@
 package com.example.iot_java_mobile.Domain;
 
-public class BrandsDomain {
+public class Brands {
     private String title;
     private String brandLogo;
 
@@ -20,7 +20,7 @@ public class BrandsDomain {
         this.brandLogo = brandLogo;
     }
 
-    public BrandsDomain(String title, String brandLogo){
+    public Brands(String title, String brandLogo){
         this.title = title;
         this.brandLogo = brandLogo;
     }
