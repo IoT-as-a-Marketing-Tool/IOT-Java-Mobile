@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,12 +13,15 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.iot_java_mobile.Adaptor.BrandsAdapter;
-import com.example.iot_java_mobile.Domain.Brands;
+import com.example.iot_java_mobile.Adaptor.EstablishmentsHomeAdapter;
+import com.example.iot_java_mobile.Adaptor.ProductsHomeAdapter;
+import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.Establishment;
+import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,8 +34,16 @@ public class MainActivity extends AppCompatActivity {
     private TextView homeAd;
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerViewHomeBrands;
-    private List<Brands> brandsList;
+    private RecyclerView recyclerViewHomeProducts;
+    private RecyclerView recyclerViewHomeEstablishments;
+
+    private List<Brand> brandList = new ArrayList<Brand>() ;
+    private List<Product> productList = new ArrayList<Product>() ;
+    private List<Establishment> establishmentList = new ArrayList<Establishment>() ;
+
     BrandsAdapter brandAdapter;
+    ProductsHomeAdapter productAdapter;
+    EstablishmentsHomeAdapter establishmentAdapter;
 
 
 
@@ -67,45 +76,89 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(new Intent(MainActivity.this, Ad.class));
 //            }
 //        });
-        brandsList = new ArrayList<Brands>();
+
 
         fetchData();
 
-        brandAdapter = new BrandsAdapter(brandsList);
+        brandAdapter = new BrandsAdapter(brandList);
         recyclerViewHomeBrands = findViewById(R.id.home_brand_list_recycler_view);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
-        recyclerViewHomeBrands.setLayoutManager(layoutManager);
+        RecyclerView.LayoutManager layoutManagerBrand = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
+        recyclerViewHomeBrands.setLayoutManager(layoutManagerBrand);
         recyclerViewHomeBrands.setAdapter(brandAdapter);
 
+        productAdapter = new ProductsHomeAdapter(productList);
+        RecyclerView.LayoutManager layoutManagerProduct = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
+        recyclerViewHomeProducts = findViewById(R.id.home_product_list_recycler_view);
+        recyclerViewHomeProducts.setLayoutManager(layoutManagerProduct);
+        recyclerViewHomeProducts.setAdapter(productAdapter);
 
 
+        establishmentAdapter = new EstablishmentsHomeAdapter(establishmentList);
+        RecyclerView.LayoutManager layoutManagerEst = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
+        recyclerViewHomeEstablishments = findViewById(R.id.home_est_list_recycler_view);
+        recyclerViewHomeEstablishments.setLayoutManager(layoutManagerEst);
+        recyclerViewHomeEstablishments.setAdapter(establishmentAdapter);
 
 //        recyclerViewBrands();
     }
 
     private void fetchData() {
-        APIClient.getRetrofitClient().getBrands().enqueue(new Callback<Brands>() {
-            @Override
-            public void onResponse(Call<Brands> call, Response<Brands> response) {
-                if(response.isSuccessful() && response.body()!= null){
-                    Log.e("Don", "SUCCESSSSS ");
-                    Log.e("Don", "SUCCESSSSS ");
-                    Log.e("Don", "SUCCESSSSS ");
+        APIClient.getRetrofitClient().getBrands().enqueue(new Callback<List<Brand>>() {
+          @Override
+          public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
+              if(response.isSuccessful() && response.body()!= null){
+                  Log.e("Don", "SUCCESSSSS "+ response.body().get(0).getName());
+                  Log.e("Don", "SUCCESSSSS ");
+                  Log.e("Don", "SUCCESSSSS ");
 
-                    Log.e("Don", "SUCCESSSSS " + response.body());
-                    brandsList.addAll(Collections.singleton(response.body()));
-                    brandAdapter.notifyDataSetChanged();
+                  Log.e("Don", "SUCCESSSSS " + response.body());
+                  brandList.addAll(response.body());
+                  brandAdapter.notifyDataSetChanged();
+              }
+          }
 
+          @Override
+          public void onFailure(Call<List<Brand>> call, Throwable t) {
+              Toast.makeText(MainActivity.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+          }
+      });
 
+        APIClient.getRetrofitClient().getProducts().enqueue(
+                new Callback<List<Product>>() {
+                    @Override
+                    public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                        if(response.isSuccessful() && response.body()!= null){
+                            Log.e("Don", "SUCCESSSSS " + response.body());
+                            productList.addAll(response.body());
+                            productAdapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Product>> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                        Log.e("Don", t.getMessage());
+                    }
                 }
-            }
+        );
+        APIClient.getRetrofitClient().getEstablishments().enqueue(
+                new Callback<List<Establishment>>() {
+                    @Override
+                    public void onResponse(Call<List<Establishment>> call, Response<List<Establishment>> response) {
+                        if(response.isSuccessful() && response.body()!= null){
+                            Log.e("Don", "SUCCESSSSS " + response.body());
+                            establishmentList.addAll(response.body());
+                            establishmentAdapter.notifyDataSetChanged();
+                        }
+                    }
 
-            @Override
-            public void onFailure(Call<Brands> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
-
-            }
-        });
+                    @Override
+                    public void onFailure(Call<List<Establishment>> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                        Log.e("Don", t.getMessage());
+                    }
+                }
+        );
 
     }
 

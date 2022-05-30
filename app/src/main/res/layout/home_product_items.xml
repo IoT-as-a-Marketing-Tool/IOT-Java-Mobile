@@ -19,7 +19,7 @@
 
 
         <ImageView
-            android:id="@+id/home_brand_image"
+            android:id="@+id/home_product_image"
             android:layout_width="105dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
@@ -27,7 +27,7 @@
             app:srcCompat="@drawable/fornow" />
 
         <TextView
-            android:id="@+id/home_brand_name"
+            android:id="@+id/home_product_name"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"

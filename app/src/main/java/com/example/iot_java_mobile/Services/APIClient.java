@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
 
-    public static String BASE_URL = "http://192.168.1.4:8000/";
+    public static String BASE_URL = "https://iot-api-g22.herokuapp.com/";
     public static Retrofit retrofit = null;
 
 
