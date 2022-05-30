@@ -31,6 +31,7 @@
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_all_ads.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_all_brands.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_brand.xml" value="0.209375" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_favorites.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_notifications.xml" value="0.22407407407407406" />
@@ -38,6 +39,8 @@
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_register.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/item_ads.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/item_brands.xml" value="0.22" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/item_fav_ads.xml" value="0.22" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/item_notification.xml" value="0.22" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/register_reroute.xml" value="0.17255434782608695" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/viewholder_brandcategory.xml" value="0.5" />
       </map>
