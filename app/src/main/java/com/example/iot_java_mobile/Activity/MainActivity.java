@@ -1,18 +1,23 @@
 package com.example.iot_java_mobile.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.iot_java_mobile.Advert;
 import com.example.iot_java_mobile.Domain.BrandsDomain;
+import com.example.iot_java_mobile.NotificationsFragment;
 import com.example.iot_java_mobile.R;
 
 import java.util.ArrayList;
@@ -24,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView homeAd;
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerViewBrands;
+    private TextView seeallBrands;
+    private TextView seeallAds;
+    private LinearLayout notificationBtnClick;
+    private LinearLayout ad1;
+    private LinearLayout brand1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +48,60 @@ public class MainActivity extends AppCompatActivity {
         slideModels.add( new SlideModel("https://world.openfoodfacts.org/images/products/878/456/290/8364/front_fr.3.full.jpg", ScaleTypes.FIT));
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
-
-        homeBrand = findViewById(R.id.homeBrand);
-        homeBrand.setOnClickListener(new View.OnClickListener() {
+        seeallBrands = findViewById(R.id.seeallBrand);
+        seeallBrands.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, brand.class));
+                Fragment productFragment = new product();
+                FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainPage, productFragment).commit();
             }
         });
+        seeallAds = findViewById(R.id.seeallAd);
+        seeallAds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment brandFragment= new brand();
+                FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainPage, brandFragment).commit();
+            }
+        });
+        notificationBtnClick = findViewById(R.id.notificationBtn);
+        notificationBtnClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment NotificationFragment= new NotificationsFragment();
+                FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainPage, NotificationFragment).commit();
+            }
+        });
+        ad1 = findViewById(R.id.homeBtn10);
+        ad1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment adFragment= new Advert();
+                FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainPage, adFragment).commit();
+            }
+        });
+        brand1 = findViewById(R.id.homeBtn105);
+        brand1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment brandFragment= new product();
+                FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainPage, brandFragment).commit();
+            }
+        });
+
+
+//        homeBrand = findViewById(R.id.homeBrand);
+//        homeBrand.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, brand.class));
+//            }
+//        });
 
 //        homeAd = findViewById(R.id.homeAd);
 //        homeAd.setOnClickListener(new View.OnClickListener() {
