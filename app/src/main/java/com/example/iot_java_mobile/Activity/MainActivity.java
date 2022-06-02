@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +22,14 @@ import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
+import com.example.iot_java_mobile.Services.APIInterface;
+import com.google.gson.Gson;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,13 +94,33 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManagerBrand = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
         recyclerViewHomeBrands.setLayoutManager(layoutManagerBrand);
         recyclerViewHomeBrands.setAdapter(brandAdapter);
+        brandAdapter.setOnItemClickListener(new BrandsAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                String EXTRA_MESSAGE = "BrandAttached";
+                Intent intent = new Intent(MainActivity.this, BrandPage.class);
+                Brand brand = brandList.get(position);
+                intent.putExtra(EXTRA_MESSAGE, brand);
+                startActivity(intent);
+            }
+        });
 
         productAdapter = new ProductsHomeAdapter(productList);
         RecyclerView.LayoutManager layoutManagerProduct = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
         recyclerViewHomeProducts = findViewById(R.id.home_product_list_recycler_view);
         recyclerViewHomeProducts.setLayoutManager(layoutManagerProduct);
         recyclerViewHomeProducts.setAdapter(productAdapter);
-
+        productAdapter.setOnItemClickListener(new ProductsHomeAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                String EXTRA_MESSAGE = "FromBrandPageToProductPage";
+                Intent intent = new Intent(MainActivity.this, ProductPage.class);
+                Product product = productList.get(position);
+                intent.putExtra(EXTRA_MESSAGE +"GivingProduct", product);
+//                intent.putExtra(EXTRA_MESSAGE +"GivingBrand", brand);
+                startActivity(intent);
+            }
+        });
 
         establishmentAdapter = new EstablishmentsHomeAdapter(establishmentList);
         RecyclerView.LayoutManager layoutManagerEst = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
@@ -103,17 +132,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        APIClient.getRetrofitClient().getBrands().enqueue(new Callback<List<Brand>>() {
+        APIInterface apiInterface = APIClient.getRetrofitClient(Brand.Color.class, new APIClient.ColorDeserializer());
+        apiInterface.getBrands().enqueue(new Callback<List<Brand>>() {
           @Override
           public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
               if(response.isSuccessful() && response.body()!= null){
+//                  Brand.Color c = apiClient.gson.fromJson(response.body(), Brand.Color.class);
                   Log.e("Don", "SUCCESSSSS "+ response.body().get(0).getName());
-                  Log.e("Don", "SUCCESSSSS ");
-                  Log.e("Don", "SUCCESSSSS ");
+//                  Log.e("Don", "SUCCESSSSS "+ response.body().get(0).toString());
+
 
                   Log.e("Don", "SUCCESSSSS " + response.body());
                   brandList.addAll(response.body());
                   brandAdapter.notifyDataSetChanged();
+                  Log.e("Don", "SUCCESSSSS " + brandList.get(0).getColors());
               }
           }
 
@@ -123,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
           }
       });
 
-        APIClient.getRetrofitClient().getProducts().enqueue(
+        apiInterface.getProducts().enqueue(
                 new Callback<List<Product>>() {
                     @Override
                     public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
@@ -141,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-        APIClient.getRetrofitClient().getEstablishments().enqueue(
+        apiInterface.getEstablishments().enqueue(
                 new Callback<List<Establishment>>() {
                     @Override
                     public void onResponse(Call<List<Establishment>> call, Response<List<Establishment>> response) {

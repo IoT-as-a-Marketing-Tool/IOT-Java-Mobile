@@ -1,39 +1,41 @@
 package com.example.iot_java_mobile.Adaptor;
 
-import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.iot_java_mobile.Activity.BrandPage;
-import com.example.iot_java_mobile.Activity.ProductPage;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
-public class ProductsHomeAdapter extends RecyclerView.Adapter<ProductsHomeAdapter.ViewHolder>{
+public class ProductsBrandAdapter extends RecyclerView.Adapter<ProductsBrandAdapter.ViewHolder>{
     public List<Product> productList;
-    private static ProductsHomeAdapter.ClickListener clickListener;
 
-    public ProductsHomeAdapter(List<Product> productList){
+    private static ProductsBrandAdapter.ClickListener clickListener;
+    public ProductsBrandAdapter(List<Product> productList){
         this.productList = productList;
     }
 
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView name;
+        ImageView image;
         //        ImageView logo;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.home_product_name);
-//            logo = itemView.findViewById(R.id.home_product_image);
+            image = itemView.findViewById(R.id.brand_product_image);
             itemView.setOnClickListener(this);
+//            logo = itemView.findViewById(R.id.home_product_image);
         }
 
         @Override
@@ -45,14 +47,24 @@ public class ProductsHomeAdapter extends RecyclerView.Adapter<ProductsHomeAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_product_items, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand_product_items, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(this.productList.get(position).getName());
-//        holder.logo.setImageDrawable();
+//        URL url = null;
+//        try {
+//            url = new URL(this.productList.get(position).getImage());
+//            InputStream content = (InputStream)url.getContent();
+//            Drawable d = Drawable.createFromStream(content , "src");
+//            holder.image.setImageDrawable(d);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        //holder.logo.setImageDrawable();
 //        holder.logo.setImageURI(Uri.parse(this.brandList.get(position).getBrandLogo()));
     }
 
@@ -64,8 +76,7 @@ public class ProductsHomeAdapter extends RecyclerView.Adapter<ProductsHomeAdapte
     public interface ClickListener {
         void onItemClick(int position, View v);
     }
-    public void setOnItemClickListener(ProductsHomeAdapter.ClickListener clickListener) {
-        ProductsHomeAdapter.clickListener = clickListener;
+    public void setOnItemClickListener(ProductsBrandAdapter.ClickListener clickListener) {
+        ProductsBrandAdapter.clickListener = clickListener;
     }
-    
 }

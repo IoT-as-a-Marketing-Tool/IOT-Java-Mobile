@@ -26,8 +26,6 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_baseline_favorite_border_24" />
 
-
-
     </LinearLayout>
 
 
@@ -41,6 +39,7 @@
         app:srcCompat="@drawable/imagetwo" />
 
     <TextView
+        android:id="@+id/brand_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -66,6 +65,7 @@
         android:textFontWeight="600"
         android:textSize="23sp" />
     <TextView
+        android:id="@+id/brand_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -76,13 +76,26 @@
         android:textColor="@color/grey"
         android:textFontWeight="600"
         android:textSize="15sp" />
+<!--&lt;!&ndash;    <androidx.constraintlayout.widget.ConstraintLayout&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginStart="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginTop="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginEnd="10dp">&ndash;&gt;-->
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="25dp"
-        app:srcCompat="@drawable/imagetwo" />
+<!--&lt;!&ndash;&lt;!&ndash;        <androidx.recyclerview.widget.RecyclerView&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            android:id="@+id/brand_product_list_recycler_view"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            android:orientation="horizontal"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            android:scrollbars="horizontal"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            app:layout_constraintStart_toStartOf="parent"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            app:layout_constraintTop_toTopOf="parent"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            tools:listitem="@layout/brand_product_items">&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </androidx.recyclerview.widget.RecyclerView>&ndash;&gt;-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"

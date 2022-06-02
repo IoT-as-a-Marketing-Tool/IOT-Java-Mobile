@@ -2,12 +2,14 @@ package com.example.iot_java_mobile.Domain;
 
 import com.google.gson.JsonElement;
 
-public class Establishment {
+import java.io.Serializable;
+
+public class Establishment implements Serializable {
     String name;
     String logo;
     String description;
     String est_type;
-    JsonElement location;
+    transient JsonElement location;
     String verification_status;
 
     public Establishment(String name, String logo, String description, String est_type, JsonElement location, String verification_status) {

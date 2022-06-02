@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.BrandPage">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activity.brand"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+<!--            <Button-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/ic_baseline_arrow_back_ios_24" />-->
+            <Button
+                android:id="@+id/button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="320dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_baseline_favorite_border_24" />
+
+
+
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="50dp"
+            app:srcCompat="@drawable/imagetwo" />
+
+        <TextView
+            android:id="@+id/brand_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Smooth Sundae"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textFontWeight="600"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Description"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textFontWeight="600"
+            android:textSize="23sp" />
+        <TextView
+            android:id="@+id/brand_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Our ice cream simply tastes better because it’s made better. With more cream, every bite is smooth, and dreamy."
+            android:textColor="@color/grey"
+            android:textFontWeight="600"
+            android:textSize="15sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/brand_product_list_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/brand_product_items">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_remember"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:padding="20dp"
+            android:text="View Ads"
+            android:textColor="@android:color/white"
+            android:textFontWeight="700" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
