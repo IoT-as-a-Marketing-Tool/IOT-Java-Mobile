@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.iot_java_mobile.Adaptor.BrandsAdapter;
 import com.example.iot_java_mobile.Adaptor.ProductsBrandAdapter;
@@ -15,9 +17,15 @@ import com.example.iot_java_mobile.Adaptor.ProductsHomeAdapter;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
+import com.example.iot_java_mobile.Services.APIClient;
+import com.example.iot_java_mobile.Services.APIInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BrandPage extends AppCompatActivity {
     List<Product> productList = new ArrayList<Product>();
@@ -48,12 +56,32 @@ public class BrandPage extends AppCompatActivity {
         productAdapter.setOnItemClickListener(new ProductsBrandAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String EXTRA_MESSAGE = "FromBrandPageToProductPage";
-                Intent intent = new Intent(BrandPage.this, ProductPage.class);
-                Product product = productList.get(position);
-                intent.putExtra(EXTRA_MESSAGE +"GivingProduct", product);
-                intent.putExtra(EXTRA_MESSAGE +"GivingBrand", brand);
-                startActivity(intent);
+                Log.e("Don", "onItemClick: show id "+ productList.get(position).getId()  );
+                APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+                apiInterface.getProduct(productList.get(position).getId()).enqueue(new Callback<Product>() {
+                    @Override
+                    public void onResponse(Call<Product> call, Response<Product> response) {
+                        if(response.isSuccessful() && response.body()!= null){
+                            String EXTRA_MESSAGE = "GivingProduct";
+                            Intent intent = new Intent(BrandPage.this, ProductPage.class);
+                            Product product = response.body();
+                            Log.e("Don", "Adcampaigns    : "+ response.body());
+                            intent.putExtra(EXTRA_MESSAGE, product);
+                            startActivity(intent);
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Product> call, Throwable t) {
+
+                        Toast.makeText(BrandPage.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+//                intent.putExtra(EXTRA_MESSAGE +"GivingBrand", brand);
             }
         });
 

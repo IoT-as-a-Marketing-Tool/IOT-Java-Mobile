@@ -9,7 +9,7 @@ public class Establishment implements Serializable {
     String logo;
     String description;
     String est_type;
-    transient JsonElement location;
+    transient JsonElement location; //TODO: make it serializable
     String verification_status;
 
     public Establishment(String name, String logo, String description, String est_type, JsonElement location, String verification_status) {
@@ -67,5 +67,17 @@ public class Establishment implements Serializable {
 
     public void setVerification_status(String verification_status) {
         this.verification_status = verification_status;
+    }
+
+    @Override
+    public String toString() {
+        return "Establishment{" +
+                "name='" + name + '\'' +
+                ", logo='" + logo + '\'' +
+                ", description='" + description + '\'' +
+                ", est_type='" + est_type + '\'' +
+                ", location=" + location +
+                ", verification_status='" + verification_status + '\'' +
+                '}';
     }
 }

@@ -113,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
         productAdapter.setOnItemClickListener(new ProductsHomeAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String EXTRA_MESSAGE = "FromBrandPageToProductPage";
+                String EXTRA_MESSAGE = "GivingProduct";
                 Intent intent = new Intent(MainActivity.this, ProductPage.class);
                 Product product = productList.get(position);
-                intent.putExtra(EXTRA_MESSAGE +"GivingProduct", product);
+                intent.putExtra(EXTRA_MESSAGE, product);
 //                intent.putExtra(EXTRA_MESSAGE +"GivingBrand", brand);
                 startActivity(intent);
             }
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        APIInterface apiInterface = APIClient.getRetrofitClient(Brand.Color.class, new APIClient.ColorDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
         apiInterface.getBrands().enqueue(new Callback<List<Brand>>() {
           @Override
           public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
