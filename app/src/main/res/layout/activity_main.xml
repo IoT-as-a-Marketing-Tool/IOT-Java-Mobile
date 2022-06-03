@@ -296,6 +296,178 @@
                 android:layout_marginEnd="10dp">
 
                 <TextView
+                    android:id="@+id/textView500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Products"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textFontWeight="600"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/seeallProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="See all"
+                    android:textAlignment="center"
+                    android:textColor="@color/primary_purple"
+                    android:textFontWeight="600"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:layout_marginEnd="10dp">-->
+
+            <!--                <androidx.recyclerview.widget.RecyclerView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent">-->
+
+            <!--                </androidx.recyclerview.widget.RecyclerView>-->
+
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:layout_marginBottom="20dp">
+                <LinearLayout
+                    android:id="@+id/homeBtn1057"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:foreground="@drawable/brand_circle"
+                        app:srcCompat="@drawable/mesob"
+                        >
+                    </com.mikhaellopez.circularimageview.CircularImageView>
+
+                    <TextView
+                        android:id="@+id/textView544"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Greta Fashion"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/homeBtn79"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:foreground="@drawable/brand_circle"
+                        app:srcCompat="@drawable/fornow"
+                        >
+                    </com.mikhaellopez.circularimageview.CircularImageView>
+
+                    <TextView
+                        android:id="@+id/textView908"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Greta Fashion"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/homeBtn31"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:foreground="@drawable/brand_circle"
+                        app:srcCompat="@drawable/mesob"
+                        >
+                    </com.mikhaellopez.circularimageview.CircularImageView>
+
+                    <TextView
+                        android:id="@+id/textView499"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Greta Fashion"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/homeBtn85"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:foreground="@drawable/brand_circle"
+                        app:srcCompat="@drawable/fornow"
+                        >
+                    </com.mikhaellopez.circularimageview.CircularImageView>
+
+                    <TextView
+                        android:id="@+id/textView73"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Greta Fashion"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+            </HorizontalScrollView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
                     android:id="@+id/textView53"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
