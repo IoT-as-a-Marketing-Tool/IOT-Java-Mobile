@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.example.iot_java_mobile.Activity.BrandPage;
 import com.example.iot_java_mobile.Activity.ProductPage;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -28,11 +30,11 @@ public class ProductsHomeAdapter extends RecyclerView.Adapter<ProductsHomeAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name;
-        //        ImageView logo;
+        ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.home_product_name);
-//            logo = itemView.findViewById(R.id.home_product_image);
+            image = itemView.findViewById(R.id.home_product_image);
             itemView.setOnClickListener(this);
         }
 
@@ -52,6 +54,8 @@ public class ProductsHomeAdapter extends RecyclerView.Adapter<ProductsHomeAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(this.productList.get(position).getName());
+        Picasso.get().load(this.productList.get(position).getImage()).into(holder.image);
+
 //        holder.logo.setImageDrawable();
 //        holder.logo.setImageURI(Uri.parse(this.brandList.get(position).getBrandLogo()));
     }
