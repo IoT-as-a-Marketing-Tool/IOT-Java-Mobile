@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.squareup.picasso.Picasso;
 
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
@@ -30,7 +31,7 @@ public class ProductsBrandAdapter extends RecyclerView.Adapter<ProductsBrandAdap
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView image;
-        //        ImageView logo;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.brand_product_image);
@@ -53,6 +54,8 @@ public class ProductsBrandAdapter extends RecyclerView.Adapter<ProductsBrandAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Picasso.get().load(this.productList.get(position).getImage()).into(holder.image);
+
 //        URL url = null;
 //        try {
 //            url = new URL(this.productList.get(position).getImage());

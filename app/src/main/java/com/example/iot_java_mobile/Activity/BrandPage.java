@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.iot_java_mobile.Adaptor.BrandsAdapter;
@@ -15,6 +16,7 @@ import com.example.iot_java_mobile.Adaptor.ProductsHomeAdapter;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +35,14 @@ public class BrandPage extends AppCompatActivity {
         Brand brand = (Brand) intent.getSerializableExtra(EXTRA_MESSAGE);
         productList = brand.getProducts();
         TextView brandNameTextView = findViewById(R.id.brand_name);
+        ImageView brandImageView = findViewById(R.id.brand_image);
         TextView brandDescTextView = findViewById(R.id.brand_description);
         RecyclerView productRecyclerView = findViewById(R.id.brand_product_list_recycler_view);
 
         brandNameTextView.setText(brand.getName());
         brandDescTextView.setText(brand.getDescription());
+        Picasso.get().load(brand.getLogo()).into(brandImageView);
+
 
 
         productAdapter = new ProductsBrandAdapter(productList);

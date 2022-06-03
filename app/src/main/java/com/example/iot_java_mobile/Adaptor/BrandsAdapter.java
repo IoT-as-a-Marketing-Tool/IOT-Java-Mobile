@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,6 +55,7 @@ public class BrandsAdapter extends RecyclerView.Adapter<BrandsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(this.brandList.get(position).getName());
+        Picasso.get().load(this.brandList.get(position).getLogo()).into(holder.logo);
 //        URL url = null;
 //        try {
 //            url = new URL(this.brandList.get(position).getLogo());
