@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import com.example.iot_java_mobile.Adaptor.AdCampaignProductAdapter;
 import com.example.iot_java_mobile.Adaptor.DetailAdapter;
 import com.example.iot_java_mobile.Adaptor.ProductsBrandAdapter;
+import com.example.iot_java_mobile.Domain.Ad;
+import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
@@ -68,7 +71,7 @@ public class ProductPage extends AppCompatActivity {
         ImageView productImage = findViewById(R.id.product_image);
 
 
-        Log.e("Don", "onCreate: Ad campaign"+ product.getAdcampaigns().get(0) );
+//        Log.e("Don", "onCreate: Ad campaign"+ product.getAdcampaigns().get(0) );
         //TODO: get Logo
         //TODO: make brand clickable and go to brand
         productName.setText(product.getName());
@@ -87,6 +90,16 @@ public class ProductPage extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManagerAdCampaign = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
         adCampaignRecyclerView.setLayoutManager(layoutManagerAdCampaign);
         adCampaignRecyclerView.setAdapter(campaignProductAdapter);
+        campaignProductAdapter.setOnItemClickListener(new AdCampaignProductAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                String EXTRA_MESSAGE = "AdAttached";
+                Intent intent = new Intent(ProductPage.this, AdPage.class);
+                AdCampaign adCampaign = product.getAdcampaigns().get(position);
+                intent.putExtra(EXTRA_MESSAGE, adCampaign);
+                startActivity(intent);
+            }
+        });
 
 
     }

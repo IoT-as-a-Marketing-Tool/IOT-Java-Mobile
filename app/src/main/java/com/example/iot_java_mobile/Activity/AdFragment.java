@@ -12,10 +12,10 @@ import com.example.iot_java_mobile.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Ad#newInstance} factory method to
+ * Use the {@link AdFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Ad extends Fragment {
+public class AdFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Ad extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Ad() {
+    public AdFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class Ad extends Fragment {
      * @return A new instance of fragment Ad.
      */
     // TODO: Rename and change types and number of parameters
-    public static Ad newInstance(String param1, String param2) {
-        Ad fragment = new Ad();
+    public static AdFragment newInstance(String param1, String param2) {
+        AdFragment fragment = new AdFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

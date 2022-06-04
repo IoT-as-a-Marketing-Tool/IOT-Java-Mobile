@@ -10,9 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.iot_java_mobile.Domain.Ad;
 import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +62,12 @@ public class AdCampaignProductAdapter extends RecyclerView.Adapter<AdCampaignPro
         Log.e("Don", "onBindViewHolder: is this even visible" );
         Log.e("Don", "onBindViewHolder: "+ campaignList.get(position) );
 //        holder.text.setText("helllo");
+        Ad ad = campaignList.get(position).getAd();
+        if (ad != null){
+            Picasso.get().load(ad.getAd_image()).into(holder.adImage);
+        }
+
+
     }
 
     @Override
