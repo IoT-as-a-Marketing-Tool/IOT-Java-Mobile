@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hp/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/select_dialog_item.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/hp/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/drawable/searchForm.xml" value="0.1" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_brand_page.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_customer_sign_up.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_login_page.xml" value="0.1" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_product_page.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_sign_up.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_register.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/home_brand_items.xml" value="0.17481884057971014" />

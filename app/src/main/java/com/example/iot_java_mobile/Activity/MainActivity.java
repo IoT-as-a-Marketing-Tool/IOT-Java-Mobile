@@ -20,6 +20,8 @@ import com.example.iot_java_mobile.Adaptor.ProductsHomeAdapter;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
+import com.example.iot_java_mobile.Domain.SessionManager;
+import com.example.iot_java_mobile.Domain.User;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     BrandsAdapter brandAdapter;
     ProductsHomeAdapter productAdapter;
     EstablishmentsHomeAdapter establishmentAdapter;
+    SessionManager sessionManager;
 
 
 
@@ -69,7 +72,14 @@ public class MainActivity extends AppCompatActivity {
         slideModels.add( new SlideModel("https://world.openfoodfacts.org/images/products/878/456/290/8364/front_fr.3.full.jpg", ScaleTypes.FIT));
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+        homeBrand = findViewById(R.id.logoutButton);
+        homeBrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sessionManager.logoutUser();
 
+            }
+        });
 //        homeBrand = findViewById(R.id.homeBrand);
 //        homeBrand.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -86,9 +96,12 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        sessionManager=  new SessionManager(getApplicationContext());
 
         fetchData();
-
+        TextView username = findViewById(R.id.home_username);
+        User user= sessionManager.getUserDetails();
+        username.setText("Hello, "+ user.getUsername());
         brandAdapter = new BrandsAdapter(brandList);
         recyclerViewHomeBrands = findViewById(R.id.home_brand_list_recycler_view);
         RecyclerView.LayoutManager layoutManagerBrand = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);

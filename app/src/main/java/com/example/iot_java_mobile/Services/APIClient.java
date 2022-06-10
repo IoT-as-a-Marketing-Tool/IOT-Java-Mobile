@@ -87,4 +87,14 @@ public class APIClient {
         }
         return retrofit.create(APIInterface.class);
     }
+    public static APIInterface authClient(){
+
+        if (retrofit == null){
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit.create(APIInterface.class);
+    }
 }
