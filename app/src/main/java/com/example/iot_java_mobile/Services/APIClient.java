@@ -2,7 +2,9 @@ package com.example.iot_java_mobile.Services;
 
 import android.util.Log;
 
+import com.example.iot_java_mobile.Domain.AdItem;
 import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.Product;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -13,6 +15,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -33,40 +36,30 @@ public class APIClient {
             Brand.Color c = new Brand.Color(p_color, s_color);
             return c;
 
-//            if (jsonArray.size()==0){
-//                Log.e("Don", "deserialize: this is null");
-//            }else{
-//                Log.e("Don", "deserialize: not null");
-//            }
-//            for (JsonElement itemsJsonElement : jsonArray) {
-//                final JsonObject itemJsonObject = itemsJsonElement.getAsJsonObject();
-//                if (itemJsonObject.get("desription")==null){
-//                    Log.e("Don", "deserialize: I WAS WRONG");
-//                }else{
-//                    Log.e("Don", "deserialize: okay" );
-//                }
-//                final JsonObject colors = itemJsonObject.get("colors").getAsJsonObject();
-//
 
-//                final int amount = itemJsonObject.get("amount").getAsInteger();
-
-
-//            }
-//            return null;
-//            final JsonElement colors = jsonArray.get("description");
-//            if (colors==null){
-//                Log.e("Don", "deserialize: this is null");
-//            }else{
-//                Log.e("Don", "deserialize: not null");
-//            }
-//            final String p_color = ((JsonObject)colors).get("primaryColor").getAsString();
-//            final String s_color = ((JsonObject)colors).get("secondaryColor").getAsString();
 //
-//
-//            return new Brand.Color(p_color,s_color);
         }
     }
+    public static class ProductDetailDeserializer implements JsonDeserializer<Product.Details>{
 
+        @Override
+        public Product.Details deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            final JsonElement jsonObject = json.getAsJsonObject();
+            HashMap<String, Object> detail = new Gson().fromJson(jsonObject, HashMap.class);
+            Log.e("Don", "deserialize: we're herreeeeeeeeeeeeeeee" );
+            return new Product.Details(detail);
+        }
+    }
+    public  static class AdItemStyleDeserializer implements JsonDeserializer<AdItem.Style>{
+
+        @Override
+        public AdItem.Style deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            final JsonElement jsonObject = json.getAsJsonObject();
+            HashMap<String, Object> style = new Gson().fromJson(jsonObject, HashMap.class);
+            Log.e("Don", "deserialize: we're in STYLE herreeeeeeeeeeeeeeee" );
+            return new AdItem.Style(style);
+        }
+    }
 
     private static Converter.Factory createGsonConverter(Type type, Object typeAdapter) {
         GsonBuilder gsonBuilder = new GsonBuilder();

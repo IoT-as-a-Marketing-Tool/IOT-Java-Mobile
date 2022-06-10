@@ -126,12 +126,29 @@ public class MainActivity extends AppCompatActivity {
         productAdapter.setOnItemClickListener(new ProductsHomeAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String EXTRA_MESSAGE = "FromBrandPageToProductPage";
-                Intent intent = new Intent(MainActivity.this, ProductPage.class);
-                Product product = productList.get(position);
-                intent.putExtra(EXTRA_MESSAGE +"GivingProduct", product);
-//                intent.putExtra(EXTRA_MESSAGE +"GivingBrand", brand);
-                startActivity(intent);
+                APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+                apiInterface.getProduct(productList.get(position).getId()).enqueue(new Callback<Product>() {
+                    @Override
+                    public void onResponse(Call<Product> call, Response<Product> response) {
+                        if(response.isSuccessful() && response.body()!= null){
+                            String EXTRA_MESSAGE = "GivingProduct";
+                            Intent intent = new Intent(MainActivity.this, ProductPage.class);
+                            Product product = response.body();
+                            Log.e("Don", "Adcampaigns    : "+ response.body());
+                            intent.putExtra(EXTRA_MESSAGE, product);
+                            startActivity(intent);
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Product> call, Throwable t) {
+
+                        Toast.makeText(MainActivity.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+
             }
         });
 
@@ -145,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        APIInterface apiInterface = APIClient.getRetrofitClient(Brand.Color.class, new APIClient.ColorDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
         apiInterface.getBrands().enqueue(new Callback<List<Brand>>() {
           @Override
           public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {

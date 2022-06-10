@@ -37,6 +37,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Activity.AdPage"
+            android:exported="false" />
+        <activity
             android:name=".Activity.ProductPage"
             android:exported="false" />
         <activity

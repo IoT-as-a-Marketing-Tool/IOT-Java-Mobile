@@ -74,11 +74,10 @@
             android:textSize="23sp" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            >
+            android:layout_marginEnd="10dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/product_detail_recycler_view"
@@ -91,55 +90,28 @@
                 tools:listitem="@layout/product_detail_item">
 
             </androidx.recyclerview.widget.RecyclerView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/product_ad_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/product_adcampaign_items">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="0dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Price: 30 Birr"
-            android:textAlignment="center"
-            android:textColor="@color/grey"
-            android:textFontWeight="600"
-            android:textSize="15sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Ingridients: Berries, Bananas, Stawberry"
-            android:textAlignment="center"
-            android:textColor="@color/grey"
-            android:textFontWeight="600"
-            android:textSize="15sp" />
-        <ImageView
-            android:id="@+id/product_ad"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="25dp"
-            app:srcCompat="@drawable/imagetwo" />
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_remember"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/button_custom"
-            android:fontFamily="@font/roboto_regular"
-            android:padding="20dp"
-            android:text="Add to favorites"
-            android:textColor="@android:color/white"
-            android:textFontWeight="700" />
 
     </LinearLayout>
 
