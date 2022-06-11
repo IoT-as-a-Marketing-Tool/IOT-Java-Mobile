@@ -5,14 +5,26 @@ import com.google.gson.JsonElement;
 import java.io.Serializable;
 
 public class Establishment implements Serializable {
+
+    public static class Location implements Serializable {
+        String latitude;
+        String longitude;
+
+        public Location(String latitude, String longitude) {
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+    }
+    
     String name;
     String logo;
     String description;
     String est_type;
-    transient JsonElement location; //TODO: make it serializable
+    Location location; //TODO: make it serializable
     String verification_status;
+    
 
-    public Establishment(String name, String logo, String description, String est_type, JsonElement location, String verification_status) {
+    public Establishment(String name, String logo, String description, String est_type, Location location, String verification_status) {
         this.name = name;
         this.logo = logo;
         this.description = description;
@@ -53,11 +65,11 @@ public class Establishment implements Serializable {
         this.est_type = est_type;
     }
 
-    public JsonElement getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(JsonElement location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 

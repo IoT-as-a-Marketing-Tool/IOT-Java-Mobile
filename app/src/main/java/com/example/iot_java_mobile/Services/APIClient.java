@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.iot_java_mobile.Domain.AdItem;
 import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,13 +41,29 @@ public class APIClient {
 //
         }
     }
+    public static class LocationDeserializer implements JsonDeserializer<Establishment.Location>
+    {
+
+        @Override
+        public Establishment.Location deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            final JsonObject jsonObject = json.getAsJsonObject();
+            final String latitude = jsonObject.get("latitude").getAsString();
+            final String longitude = jsonObject.get("longitude").getAsString();
+            Establishment.Location l = new Establishment.Location(latitude, longitude);
+            return l;
+
+
+//
+        }
+    }
     public static class ProductDetailDeserializer implements JsonDeserializer<Product.Details>{
 
         @Override
         public Product.Details deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             final JsonElement jsonObject = json.getAsJsonObject();
             HashMap<String, Object> detail = new Gson().fromJson(jsonObject, HashMap.class);
-            Log.e("Don", "deserialize: we're herreeeeeeeeeeeeeeee" );
+            Log.e("Don", "detail deserialize: we're herreeeeeeeeeeeeeeee" );
+            Log.e("Don", "detail deserialized: "+ detail );
             return new Product.Details(detail);
         }
     }
@@ -56,7 +73,8 @@ public class APIClient {
         public AdItem.Style deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             final JsonElement jsonObject = json.getAsJsonObject();
             HashMap<String, Object> style = new Gson().fromJson(jsonObject, HashMap.class);
-            Log.e("Don", "deserialize: we're in STYLE herreeeeeeeeeeeeeeee" );
+            Log.e("Don", "style deserialize: we're in STYLE herreeeeeeeeeeeeeeee" );
+
             return new AdItem.Style(style);
         }
     }

@@ -93,10 +93,12 @@ public class ProductPage extends AppCompatActivity {
         campaignProductAdapter.setOnItemClickListener(new AdCampaignProductAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String EXTRA_MESSAGE = "AdAttached";
+                String EXTRA_MESSAGE = "GivingAdCampaign";
                 Intent intent = new Intent(ProductPage.this, AdPage.class);
                 AdCampaign adCampaign = product.getAdcampaigns().get(position);
                 intent.putExtra(EXTRA_MESSAGE, adCampaign);
+                intent.putExtra("GivingEstablishment", "View all Establishments");
+
                 startActivity(intent);
             }
         });

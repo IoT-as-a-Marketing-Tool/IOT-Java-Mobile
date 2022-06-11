@@ -1,6 +1,7 @@
 package com.example.iot_java_mobile.Services;
 
 import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.EstProduct;
 import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
 
@@ -24,9 +25,13 @@ public interface APIInterface {
     @GET("api/customers/1/brands/{id}/")
     Call<Brand> getBrand(@Path("id") int id);
 
+    @GET("api/customers/1/beacons/{uuid}/")
+    Call<EstProduct> getEstProduct(@Path("uuid") String uuid);
+
     @GET("api/customers/1/establishments/")
     Call<List<Establishment>> getEstablishments();
 
-
+    @GET("api/customers/1/establishments/{id}/")
+    Call <Establishment> getEstablishment(@Path("id") int id);
 
 }
