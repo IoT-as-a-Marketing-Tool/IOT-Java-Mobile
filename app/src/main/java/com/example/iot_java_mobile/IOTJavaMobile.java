@@ -35,8 +35,10 @@ import org.altbeacon.beacon.Region;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -50,6 +52,8 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     BeaconManager beaconManager = null;
     Handler mHandler = new Handler();
     HashSet<Beacon> visited_beacons;
+    ArrayList<String> uuids;
+
 
     public void onCreate() {
 
@@ -67,6 +71,9 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 
         beaconManager.startMonitoring(wildcardRegion);
         visited_beacons = new HashSet<Beacon>();
+        uuids= new ArrayList<>();
+
+
 
 
 
@@ -76,42 +83,55 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     public void didEnterRegion(Region region) {
         Log.e(TAG, "did enter region.");
         insideRegion = true;
-
         final String[] detail = {"Bla bla"};
         RangeNotifier rangeNotifier = new RangeNotifier() {
             @Override
             public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
                 if (beacons.size() > 0) {
                     Log.e(TAG, "didRangeBeaconsInRegion called with beacon count:  "+beacons.size());
-                    Beacon firstBeacon = beacons.iterator().next();
-                    Log.e(TAG, "first beacon = "+firstBeacon );
-                    while (firstBeacon != null && (visited_beacons.contains(firstBeacon) || (firstBeacon.getDistance() > 1))){
-                        firstBeacon = beacons.iterator().next();
-                    }
-                    if(firstBeacon == null){
+                    for (Beacon beacon : beacons) {
+//                        Log.e(TAG, "first beacon = "+beacon.toString()+ String.format("%.2f", beacon.getDistance()) + " meters away.");
+                        String uuid=String.valueOf(beacon.getId1()).toUpperCase(Locale.ROOT);
+                        if(uuids.indexOf(uuid)== -1){
+                            uuids.add(uuid);
+                            Log.e(TAG, "beacon = "+beacon.toString()+ String.format("%.2f", beacon.getDistance()) + " meters away.");
 
-                        Log.e(TAG, "didRangeBeaconsInRegion: first beacon == null");
-                    }
-                    Log.e(TAG, "first beacon = "+firstBeacon );
-                    if (firstBeacon != null){
-                        String uuid = String.valueOf(firstBeacon.getId1()).toUpperCase(Locale.ROOT);
+                            getEstProduct(uuid);
+                        }
 
-                        detail[0] = uuid + " is about " + firstBeacon.getDistance() + " meters away.";
-                        Log.e(TAG, "didRangeBeaconsInRegion: detail = "+detail[0]);
-                        Log.e("Don", "The first beacon " + uuid + " is about " + firstBeacon.getDistance() + " meters away.");
 
-                        getEstProduct(uuid);
-                        //TODO: make visited uuid when it sends notification
-                        Toast.makeText(IOTJavaMobile.this, "Returned from getEstProduct " ,Toast.LENGTH_LONG).show();
-                        visited_beacons.add(firstBeacon);
-//                        beaconManager.stopMonitoring(region);
-//                        beaconManager.startMonitoring(IOTJavaMobile.wildcardRegion);
+
                     }
+//                    Beacon firstBeacon = beacons.iterator().next();
+//                    Log.e(TAG, "first beacon = "+firstBeacon );
+//                    while (firstBeacon != null && (visited_beacons.contains(firstBeacon) || (firstBeacon.getDistance() > 1))){
+//                        firstBeacon = beacons.iterator().next();
+//                    }
+//                    if(firstBeacon == null){
+//
+//                        Log.e(TAG, "didRangeBeaconsInRegion: first beacon == null");
+//                    }
+//                    Log.e(TAG, "first beacon = "+firstBeacon );
+//                    if (firstBeacon != null){
+//                        String uuid = String.valueOf(firstBeacon.getId1()).toUpperCase(Locale.ROOT);
+//
+//                        detail[0] = uuid + " is about " + firstBeacon.getDistance() + " meters away.";
+//                        Log.e(TAG, "didRangeBeaconsInRegion: detail = "+detail[0]);
+//                        Log.e("Don", "The first beacon " + uuid + " is about " + firstBeacon.getDistance() + " meters away.");
+//
+//                        getEstProduct(uuid);
+//                        //TODO: make visited uuid when it sends notification
+//                        Toast.makeText(IOTJavaMobile.this, "Returned from getEstProduct " ,Toast.LENGTH_LONG).show();
+//                        visited_beacons.add(firstBeacon);
+////                        beaconManager.stopMonitoring(region);
+////                        beaconManager.startMonitoring(IOTJavaMobile.wildcardRegion);
+//                    }
                 }
             }
         };
         beaconManager.addRangeNotifier(rangeNotifier);
         beaconManager.startRangingBeacons(IOTJavaMobile.wildcardRegion);
+        Log.e(TAG, "beacons" + uuids.toString() );
 
 //        mHandler.postDelayed(new Runnable() {
 //            @Override
@@ -127,6 +147,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     public void didExitRegion(Region region) {
         insideRegion = false;
         Log.e(TAG, "didExitRegion: " );
+        uuids.clear();
     }
 
     @Override
@@ -145,8 +166,8 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
                     EstProduct estProduct = response.body();
 //                    Toast.makeText(IOTJavaMobile.this, "Sending notification  " +estProduct,Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Sending notification.");
-                    //sendNotification(estProduct);
-                    new MyAsyncTask().execute(estProduct);
+                    sendNotification(estProduct, uuids.indexOf(uuid));
+//                    new MyAsyncTask().execute(estProduct);
 
                 }
             }
@@ -158,7 +179,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         });
 
     }
-    private void sendNotification(EstProduct estProduct) {
+    private void sendNotification(EstProduct estProduct, Integer index) {
         NotificationManager notificationManager =
                 (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification.Builder builder;
@@ -187,14 +208,14 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         stackBuilder.addNextIntent(intent);
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(
-                        0,
+                        index,
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
         builder.setContentTitle(campaign.getName());
         builder.setContentText("Tap here to view the Ad");
         builder.setContentIntent(resultPendingIntent);
-        notificationManager.notify(1, builder.build());
+        notificationManager.notify(index, builder.build());
 
 //        Log.e(TAG, "Stopping ranging");
 //        beaconManager.stopRangingBeacons(IOTJavaMobile.wildcardRegion);
@@ -258,7 +279,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 
         @Override
         protected Void doInBackground(EstProduct... estProducts) {
-            sendNotification(estProducts[0]);
+//            sendNotification(estProducts[0]);
             return null;
         }
     }
