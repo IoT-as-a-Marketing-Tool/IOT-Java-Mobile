@@ -55,9 +55,9 @@ public class APIClient {
         @Override
         public AdItem.Style deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             final JsonElement jsonObject = json.getAsJsonObject();
-            HashMap<String, Object> style = new Gson().fromJson(jsonObject, HashMap.class);
+            AdItem.Style style = new Gson().fromJson(jsonObject, AdItem.Style.class);
             Log.e("Don", "deserialize: we're in STYLE herreeeeeeeeeeeeeeee" );
-            return new AdItem.Style(style);
+            return style;
         }
     }
 
