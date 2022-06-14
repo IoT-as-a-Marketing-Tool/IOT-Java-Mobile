@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/home_est_image"
-            android:layout_width="105dp"
-            android:layout_height="100dp"
+            android:layout_width="100dp"
+            android:layout_height="79dp"
             android:layout_margin="10dp"
             android:foreground="@drawable/brand_circle"
             app:srcCompat="@drawable/fornow" />
@@ -36,7 +36,7 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textFontWeight="200"
-            android:textSize="15sp" />
+            android:textSize="10sp" />
 
     </LinearLayout>
 

@@ -6,8 +6,19 @@
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/drawable/searchForm.xml" value="0.1595" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/activity_ad_page.xml" value="0.1" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/activity_brand_page.xml" value="0.11503623188405797" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/activity_main.xml" value="0.16680497925311202" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/activity_product_page.xml" value="0.11503623188405797" />
         <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/brand_product_items.xml" value="0.11503623188405797" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/checkbox_signup.xml" value="0.11503623188405797" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_ad.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_advert.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_location.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_notifications.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/fragment_setting.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/home_brand_items.xml" value="0.33" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/home_est_items.xml" value="0.11503623188405797" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/home_product_items.xml" value="0.5" />
+        <entry key="..\:/Users/Bilen/AndroidStudioProjects/IOTJavaMobile/app/src/main/res/layout/item_ads.xml" value="0.14628623188405798" />
       </map>
     </option>
   </component>
