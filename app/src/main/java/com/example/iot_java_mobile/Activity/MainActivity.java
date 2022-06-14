@@ -16,7 +16,7 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.iot_java_mobile.Advert;
-import com.example.iot_java_mobile.Domain.BrandsDomain;
+import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.NotificationsFragment;
 import com.example.iot_java_mobile.R;
 
