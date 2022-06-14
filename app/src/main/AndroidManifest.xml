@@ -18,12 +18,15 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Activity.AdPage"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Activity.ProductPage"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Activity.BrandPage"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="false" />
 
         <uses-library
