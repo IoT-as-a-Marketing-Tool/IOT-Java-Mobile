@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         productAdapter.setOnItemClickListener(new ProductsHomeAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+                APIInterface apiInterface = APIClient.getRetrofitClient(Establishment.Location.class, new APIClient.LocationDeserializer());
                 apiInterface.getProduct(productList.get(position).getId()).enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient(Establishment.Location.class, new APIClient.LocationDeserializer());
         apiInterface.getBrands().enqueue(new Callback<List<Brand>>() {
           @Override
           public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {

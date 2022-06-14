@@ -16,6 +16,7 @@ import com.example.iot_java_mobile.Adaptor.BrandsAdapter;
 import com.example.iot_java_mobile.Adaptor.ProductsBrandAdapter;
 import com.example.iot_java_mobile.Adaptor.ProductsHomeAdapter;
 import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;
@@ -55,14 +56,13 @@ public class BrandPage extends AppCompatActivity {
 
         productAdapter = new ProductsBrandAdapter(productList);
         RecyclerView.LayoutManager layoutManagerProduct = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
-        productRecyclerView = findViewById(R.id.brand_product_list_recycler_view);
         productRecyclerView.setLayoutManager(layoutManagerProduct);
         productRecyclerView.setAdapter(productAdapter);
         productAdapter.setOnItemClickListener(new ProductsBrandAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
                 Log.e("Don", "onItemClick: show id "+ productList.get(position).getId()  );
-                APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+                APIInterface apiInterface = APIClient.getRetrofitClient(Establishment.Location.class, new APIClient.LocationDeserializer());
                 apiInterface.getProduct(productList.get(position).getId()).enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {

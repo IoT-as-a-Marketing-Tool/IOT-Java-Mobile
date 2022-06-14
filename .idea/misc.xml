@@ -3,19 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/drawable/searchForm.xml" value="0.1" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_brand_page.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_login_page.xml" value="0.1" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_product_page.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_sign_up.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_login.xml" value="0.1" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_register.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/home_brand_items.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/register_reroute.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/drawable/searchForm.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/drawable/searchform.xml" value="0.1045" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_ad_page.xml" value="0.22" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_ads_page.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_brand_page.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_product_page.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/brand_product_items.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/checkbox_remember.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/checkbox_signup.xml" value="0.18" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_ad.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_brand.xml" value="0.25" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_product.xml" value="0.33" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/fragment_register.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/home_brand_items.xml" value="0.2234375" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/home_est_items.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/home_product_items.xml" value="0.2621654501216545" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/product_adcampaign_items.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/product_campaign_list.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/product_detail_item.xml" value="0.444234404536862" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/register_reroute.xml" value="0.18" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK" />
 </project>

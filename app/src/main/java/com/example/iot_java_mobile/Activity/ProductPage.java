@@ -18,6 +18,7 @@ import com.example.iot_java_mobile.Adaptor.ProductsBrandAdapter;
 import com.example.iot_java_mobile.Domain.Ad;
 import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;
@@ -47,7 +48,7 @@ public class ProductPage extends AppCompatActivity {
 //        startActivity(intent);
         TextView brandName = findViewById(R.id.product_brand_name);
         final Brand[] brand = {null};
-        APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient(Establishment.Location.class, new APIClient.LocationDeserializer());
         apiInterface.getBrand(product.getBrand()).enqueue(new Callback<Brand>() {
             @Override
             public void onResponse(Call<Brand> call, Response<Brand> response) {
