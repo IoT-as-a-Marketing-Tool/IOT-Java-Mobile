@@ -14,6 +14,14 @@ public class Establishment implements Serializable {
             this.latitude = latitude;
             this.longitude = longitude;
         }
+
+        @Override
+        public String toString() {
+            return "Location{" +
+                    "latitude='" + latitude + '\'' +
+                    ", longitude='" + longitude + '\'' +
+                    '}';
+        }
     }
     int id;
     String name;

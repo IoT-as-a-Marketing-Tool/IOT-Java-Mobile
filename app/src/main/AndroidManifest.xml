@@ -16,6 +16,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.AdEstablishmentsPage"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AdsPage"
             android:parentActivityName=".Activity.MainActivity" />
         <activity

@@ -65,6 +65,8 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     int SUMMARY_ID = 0;
     boolean new_ad_flag = false;
     List<EstProduct> estProductList = null;
+    List<AdCampaign> campaignList = null;
+    List<Establishment> establishmentList = null;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onCreate() {
@@ -85,6 +87,8 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         visited_beacons = new HashSet<Beacon>();
         uuids= new ArrayList<>();
         estProductList = new ArrayList<EstProduct>();
+        campaignList = new ArrayList<AdCampaign>();
+        establishmentList = new ArrayList<>();
 
 
 
@@ -198,6 +202,8 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 //                    Toast.makeText(IOTJavaMobile.this, "Sending notification  " +estProduct,Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Sending notification.");
                     estProductList.add(estProduct);
+                    campaignList.add(estProduct.getCampaign());
+                    establishmentList.add(estProduct.getEstablishment());
                     sendNotification(estProduct, uuids.indexOf(uuid));
 //                    new MyAsyncTask().execute(estProduct);
 
@@ -223,8 +229,8 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 
         Intent notifyIntent = new Intent(this, AdsPage.class);
 
-        notifyIntent.putExtra("GivingEstProducts", (Serializable) estProductList);
-//        notifyIntent.putExtra("GivingEstablishment", estProduct.getEstablishment().getName());
+        notifyIntent.putExtra("GivingCampaignList", (Serializable) campaignList);
+        notifyIntent.putExtra("GivingEstablishmentNameList", (Serializable) establishmentList);
         stackBuilder.addNextIntentWithParentStack(notifyIntent);
         notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);

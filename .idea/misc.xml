@@ -3,13 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/drawable/border_see_all.xml" value="0.1405" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/drawable/borderad.xml" value="0.1405" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/drawable/searchForm.xml" value="0.1" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/drawable/searchform.xml" value="0.1045" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_ad_establishments_page.xml" value="0.1" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_ad_page.xml" value="0.22" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_ads_page.xml" value="0.1" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_brand_page.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_product_page.xml" value="0.1" />
+        <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/ad_establishment_item.xml" value="0.1" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/brand_product_items.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/checkbox_remember.xml" value="0.1" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/checkbox_signup.xml" value="0.18" />
