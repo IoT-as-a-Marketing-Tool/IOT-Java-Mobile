@@ -52,9 +52,9 @@ public class APIClient {
         public Establishment.Location deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             final JsonObject jsonObject = json.getAsJsonObject();
             Establishment.Location l = null;
-            if(jsonObject.has("latitude") && jsonObject.has("longitude")){
-                final String latitude = jsonObject.get("latitude").getAsString();
-                final String longitude = jsonObject.get("longitude").getAsString();
+            if(jsonObject.has("latitude") && jsonObject.has("longititude")){
+                final double latitude = jsonObject.get("latitude").getAsDouble();
+                final double longitude = jsonObject.get("longititude").getAsDouble();
                 l = new Establishment.Location(latitude, longitude);
             }
 
@@ -96,7 +96,7 @@ public class APIClient {
         }
     }
 
-    private static Converter.Factory createGsonConverter(Type type, Object typeAdapter) {
+    private static Converter.Factory createGsonConverter() {
         GsonBuilder gsonBuilder = new GsonBuilder();
 //        gsonBuilder.registerTypeAdapter(type, typeAdapter);
         Gson gson = new Gson();
@@ -112,12 +112,12 @@ public class APIClient {
     }
 
 
-    public static APIInterface getRetrofitClient(Type type, Object typeAdapter){
+    public static APIInterface getRetrofitClient(){
 
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(createGsonConverter(type, typeAdapter))
+                    .addConverterFactory(createGsonConverter())
                     .build();
         }
         return retrofit.create(APIInterface.class);

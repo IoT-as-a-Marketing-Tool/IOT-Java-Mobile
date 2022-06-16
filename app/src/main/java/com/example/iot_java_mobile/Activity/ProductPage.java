@@ -52,7 +52,7 @@ public class ProductPage extends AppCompatActivity {
 //        startActivity(intent);
         TextView brandName = findViewById(R.id.product_brand_name);
         final Brand[] brand = {null};
-        APIInterface apiInterface = APIClient.getRetrofitClient(Establishment.Location.class, new APIClient.LocationDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient();
         apiInterface.getBrand(product.getBrand()).enqueue(new Callback<Brand>() {
             @Override
             public void onResponse(Call<Brand> call, Response<Brand> response) {

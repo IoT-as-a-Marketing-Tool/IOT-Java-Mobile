@@ -1,5 +1,6 @@
 package com.example.iot_java_mobile;
 
+import android.Manifest;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -8,6 +9,10 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
@@ -15,6 +20,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -68,6 +74,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     List<AdCampaign> campaignList = null;
     List<Establishment> establishmentList = null;
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onCreate() {
 
@@ -79,13 +86,13 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         beaconManager.getBeaconParsers().add(new BeaconParser().
                 setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
 
-        for (Region region: beaconManager.getMonitoredRegions()) {
+        for (Region region : beaconManager.getMonitoredRegions()) {
             beaconManager.stopMonitoring(region);
         }
 
         beaconManager.startMonitoring(wildcardRegion);
         visited_beacons = new HashSet<Beacon>();
-        uuids= new ArrayList<>();
+        uuids = new ArrayList<>();
         estProductList = new ArrayList<EstProduct>();
         campaignList = new ArrayList<AdCampaign>();
         establishmentList = new ArrayList<>();
@@ -192,7 +199,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     public void getEstProduct(String uuid){
         Log.e(TAG, "getEstProduct: uuid = "+ uuid );
 
-        APIInterface apiInterface = APIClient.getRetrofitClient(Establishment.Location.class, new APIClient.LocationDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient();
         apiInterface.getEstProduct(uuid).enqueue(new Callback<EstProduct>() {
             @Override
             public void onResponse(Call<EstProduct> call, Response<EstProduct> response) {

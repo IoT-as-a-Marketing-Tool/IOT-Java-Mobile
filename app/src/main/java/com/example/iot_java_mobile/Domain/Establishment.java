@@ -7,12 +7,20 @@ import java.io.Serializable;
 public class Establishment implements Serializable {
 
     public static class Location implements Serializable {
-        String latitude;
-        String longitude;
+        double latitude;
+        double longitude;
 
-        public Location(String latitude, String longitude) {
+        public Location(double latitude, double longitude) {
             this.latitude = latitude;
             this.longitude = longitude;
+        }
+
+        public double getLatitude() {
+            return latitude;
+        }
+
+        public double getLongitude() {
+            return longitude;
         }
 
         @Override
@@ -30,6 +38,7 @@ public class Establishment implements Serializable {
     String est_type;
     Location location; //TODO: make it serializable
     String verification_status;
+    double distanceFromPhone;
     
 
     public Establishment(int id, String name, String logo, String description, String est_type, Location location, String verification_status) {
@@ -48,6 +57,14 @@ public class Establishment implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public double getDistanceFromPhone() {
+        return distanceFromPhone;
+    }
+
+    public void setDistanceFromPhone(double distanceFromPhone) {
+        this.distanceFromPhone = distanceFromPhone;
     }
 
     public String getLogo() {
