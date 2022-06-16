@@ -31,6 +31,7 @@ import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -48,6 +49,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class MainActivity extends AppCompatActivity {
     private ImageSlider imageSlider;
     private TextView homeBrand;
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewHomeBrands;
     private RecyclerView recyclerViewHomeProducts;
     private RecyclerView recyclerViewHomeEstablishments;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+
 
     private List<Brand> brandList = new ArrayList<Brand>() ;
     private List<Product> productList = new ArrayList<Product>() ;
@@ -74,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
         verifyBluetooth();
         requestPermissions();
         imageSlider = findViewById(R.id.carousel);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
         slideModels.add( new SlideModel("https://thumbs.dreamstime.com/z/mango-juice-ads-liquid-hand-banner-grabbing-fruit-effect-blue-sky-background-d-illustration-152914246.jpg", ScaleTypes.FIT));
@@ -115,6 +123,11 @@ public class MainActivity extends AppCompatActivity {
                 Brand brand = brandList.get(position);
                 intent.putExtra(EXTRA_MESSAGE, brand);
                 startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_ID, brand.getId().toString());
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, brand.getName());
+                bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "brand");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
             }
         });
 

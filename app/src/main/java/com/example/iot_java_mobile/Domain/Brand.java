@@ -22,6 +22,7 @@ public class Brand implements Serializable {
     }
 
     private String name;
+    private Integer id;
     private String logo;
     String description;
     String brand_type;
@@ -46,6 +47,10 @@ public class Brand implements Serializable {
 
     public String getLogo() {
         return logo;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getDescription() {

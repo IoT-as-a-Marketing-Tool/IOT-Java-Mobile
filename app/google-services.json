@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "446146441173",
+    "project_id": "iot-marketing-347310",
+    "storage_bucket": "iot-marketing-347310.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446146441173:android:c76d6342c2be8c39f1175c",
+        "android_client_info": {
+          "package_name": "com.example.iot_java_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446146441173-cs1qhqvoqm7tpjrcu7u0s9c8t3c7rmm8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIVaUbT0RyPyk3fQeg4eeqOkVbv6STTNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446146441173-cs1qhqvoqm7tpjrcu7u0s9c8t3c7rmm8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
