@@ -29,11 +29,11 @@
                     android:id="@+id/home_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Hello, Bilen Gizachew"
-                    android:textColor="@color/primary_purple"
-                    android:textSize="20sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Home"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -82,22 +82,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp">
 
                 <EditText
                     android:id="@+id/et_search"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="46dp"
                     android:background="@drawable/searchform"
                     android:drawableLeft="@drawable/ic_baseline_search_24"
                     android:drawablePadding="10dp"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="Brand, Product, Ad Campaign"
                     android:inputType="textCapCharacters"
-                    android:padding="15dp"
-                    android:textFontWeight="600"
-                    android:textSize="15sp"
+                    android:padding="14dp"
+                    android:textFontWeight="500"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -113,7 +113,7 @@
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/carousel"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="135dp"
                     app:iss_auto_cycle="true"
                     app:iss_corner_radius="15"
                     app:iss_delay="1000"
@@ -142,8 +142,8 @@
                     android:text="Brands"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textFontWeight="600"
-                    android:textSize="18sp"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -156,8 +156,8 @@
                     android:text="See all"
                     android:textAlignment="center"
                     android:textColor="@color/primary_purple"
-                    android:textFontWeight="600"
-                    android:textSize="18sp"
+                    android:textFontWeight="500"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -166,10 +166,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-    >
+                >
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/home_brand_list_recycler_view"
@@ -190,7 +190,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -199,8 +200,8 @@
                     android:text="Products"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textFontWeight="600"
-                    android:textSize="18sp"
+                    android:textFontWeight="500"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -212,8 +213,8 @@
                     android:text="See all"
                     android:textAlignment="center"
                     android:textColor="@color/primary_purple"
-                    android:textFontWeight="600"
-                    android:textSize="18sp"
+                    android:textFontWeight="500"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -222,9 +223,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 >
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -240,8 +241,6 @@
                 </androidx.recyclerview.widget.RecyclerView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -298,131 +297,133 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
             <!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="horizontal">-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="25dp"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_marginBottom="5dp"-->
-<!--                    android:fontFamily="@font/roboto_regular"-->
-<!--                    android:text="Latest Ads"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textFontWeight="600"-->
-<!--                    android:textSize="18sp" />-->
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="25dp"-->
+            <!--                    android:layout_marginTop="20dp"-->
+            <!--                    android:layout_marginBottom="5dp"-->
+            <!--                    android:fontFamily="@font/roboto_regular"-->
+            <!--                    android:text="Latest Ads"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textColor="@color/black"-->
+            <!--                    android:textFontWeight="600"-->
+            <!--                    android:textSize="18sp" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/homeAd"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="240dp"-->
-<!--                    android:layout_marginTop="20dp"-->
-<!--                    android:layout_marginBottom="5dp"-->
-<!--                    android:fontFamily="@font/roboto_regular"-->
-<!--                    android:text="See all"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="@color/primary_purple"-->
-<!--                    android:textFontWeight="600"-->
-<!--                    android:textSize="15sp" />-->
+            <!--                <TextView-->
+            <!--                    android:id="@+id/homeAd"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="240dp"-->
+            <!--                    android:layout_marginTop="20dp"-->
+            <!--                    android:layout_marginBottom="5dp"-->
+            <!--                    android:fontFamily="@font/roboto_regular"-->
+            <!--                    android:text="See all"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textColor="@color/primary_purple"-->
+            <!--                    android:textFontWeight="600"-->
+            <!--                    android:textSize="15sp" />-->
 
-<!--            </LinearLayout>-->
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginEnd="10dp">-->
+            <!--            </LinearLayout>-->
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:layout_marginTop="10dp"-->
+            <!--                android:layout_marginEnd="10dp">-->
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent">-->
+            <!--                <androidx.recyclerview.widget.RecyclerView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent">-->
 
-<!--                </androidx.recyclerview.widget.RecyclerView>-->
+            <!--                </androidx.recyclerview.widget.RecyclerView>-->
 
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp">-->
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="20dp">-->
 
-<!--                <ImageView-->
+            <!--                <ImageView-->
 
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_marginStart="25dp"-->
-<!--                    android:foreground="@drawable/brand_circle"-->
-<!--                    app:srcCompat="@drawable/imagetwo" />-->
+            <!--                    android:layout_width="100dp"-->
+            <!--                    android:layout_height="100dp"-->
+            <!--                    android:layout_marginStart="25dp"-->
+            <!--                    android:foreground="@drawable/brand_circle"-->
+            <!--                    app:srcCompat="@drawable/imagetwo" />-->
 
-<!--                <ImageView-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_marginStart="30dp"-->
-<!--                    android:foreground="@drawable/brand_circle"-->
-<!--                    app:srcCompat="@drawable/imagetwo" />-->
+            <!--                <ImageView-->
+            <!--                    android:layout_width="100dp"-->
+            <!--                    android:layout_height="100dp"-->
+            <!--                    android:layout_marginStart="30dp"-->
+            <!--                    android:foreground="@drawable/brand_circle"-->
+            <!--                    app:srcCompat="@drawable/imagetwo" />-->
 
-<!--                <ImageView-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_marginStart="30dp"-->
-<!--                    android:foreground="@drawable/brand_circle"-->
-<!--                    app:srcCompat="@drawable/imagetwo" />-->
+            <!--                <ImageView-->
+            <!--                    android:layout_width="100dp"-->
+            <!--                    android:layout_height="100dp"-->
+            <!--                    android:layout_marginStart="30dp"-->
+            <!--                    android:foreground="@drawable/brand_circle"-->
+            <!--                    app:srcCompat="@drawable/imagetwo" />-->
 
-<!--            </LinearLayout>-->
+            <!--            </LinearLayout>-->
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp">-->
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="20dp">-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="30dp"-->
-<!--                    android:layout_marginTop="0dp"-->
-<!--                    android:layout_marginBottom="5dp"-->
-<!--                    android:fontFamily="@font/roboto_regular"-->
-<!--                    android:text="New Arrival"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textFontWeight="200"-->
-<!--                    android:textSize="15sp" />-->
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="30dp"-->
+            <!--                    android:layout_marginTop="0dp"-->
+            <!--                    android:layout_marginBottom="5dp"-->
+            <!--                    android:fontFamily="@font/roboto_regular"-->
+            <!--                    android:text="New Arrival"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textColor="@color/black"-->
+            <!--                    android:textFontWeight="200"-->
+            <!--                    android:textSize="15sp" />-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="40dp"-->
-<!--                    android:layout_marginTop="0dp"-->
-<!--                    android:layout_marginBottom="5dp"-->
-<!--                    android:fontFamily="@font/roboto_regular"-->
-<!--                    android:text="Christmas choco"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textFontWeight="200"-->
-<!--                    android:textSize="15sp" />-->
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="40dp"-->
+            <!--                    android:layout_marginTop="0dp"-->
+            <!--                    android:layout_marginBottom="5dp"-->
+            <!--                    android:fontFamily="@font/roboto_regular"-->
+            <!--                    android:text="Christmas choco"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textColor="@color/black"-->
+            <!--                    android:textFontWeight="200"-->
+            <!--                    android:textSize="15sp" />-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="35dp"-->
-<!--                    android:layout_marginTop="0dp"-->
-<!--                    android:layout_marginBottom="5dp"-->
-<!--                    android:fontFamily="@font/roboto_regular"-->
-<!--                    android:text="Greta Fashion"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textFontWeight="200"-->
-<!--                    android:textSize="15sp" />-->
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="35dp"-->
+            <!--                    android:layout_marginTop="0dp"-->
+            <!--                    android:layout_marginBottom="5dp"-->
+            <!--                    android:fontFamily="@font/roboto_regular"-->
+            <!--                    android:text="Greta Fashion"-->
+            <!--                    android:textAlignment="center"-->
+            <!--                    android:textColor="@color/black"-->
+            <!--                    android:textFontWeight="200"-->
+            <!--                    android:textSize="15sp" />-->
 
-<!--            </LinearLayout>-->
+            <!--            </LinearLayout>-->
 
         </LinearLayout>
     </ScrollView>
@@ -436,11 +437,10 @@
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="54dp"
             android:layout_gravity="bottom"
             app:fabCradleMargin="8dp"
             app:fabCradleRoundedCornerRadius="50dp"
-            app:fabCradleVerticalOffset="6dp"
             android:theme="@style/Theme.MaterialComponents.Light">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -453,12 +453,23 @@
                     android:layout_weight="0.2"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_baseline_home_24" />
+                   <androidx.constraintlayout.widget.ConstraintLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent">
+
+                       <ImageView
+                           android:id="@+id/imageView7"
+                           android:layout_width="35dp"
+                           android:layout_height="35dp"
+                           android:layout_weight="1"
+                           app:layout_constraintBottom_toBottomOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintTop_toTopOf="parent"
+                           app:srcCompat="@drawable/icons8_home_96" />
+
+                   </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </LinearLayout>
 
@@ -468,13 +479,23 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
                     android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imageView30"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_baseline_notifications_24" />
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView30"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/icons8_notification_96" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </LinearLayout>
 
@@ -484,13 +505,23 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
                     android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imageView20"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView20"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/icons8_star_96" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -500,12 +531,22 @@
                     android:layout_weight="0.2"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageView50"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView50"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/icons8_user_96" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -514,4 +555,3 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

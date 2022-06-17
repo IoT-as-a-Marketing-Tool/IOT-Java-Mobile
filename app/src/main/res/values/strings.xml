@@ -10,4 +10,5 @@
         <item>Male</item>
         <item>Other</item>
     </string-array>
+    <string name="somelink"><u>This is an underline</u>.</string>
 </resources>

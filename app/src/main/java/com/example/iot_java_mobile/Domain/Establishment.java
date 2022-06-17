@@ -39,7 +39,7 @@ public class Establishment implements Serializable {
     Location location; //TODO: make it serializable
     String verification_status;
     double distanceFromPhone;
-    
+
 
     public Establishment(int id, String name, String logo, String description, String est_type, Location location, String verification_status) {
         this.name = name;
