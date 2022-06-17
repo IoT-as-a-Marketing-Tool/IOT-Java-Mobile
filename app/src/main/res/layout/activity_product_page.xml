@@ -70,21 +70,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Berry Smoothie"
-            android:textAlignment="center"
-            android:textColor="@color/primary_purple"
-            android:textFontWeight="600"
-            android:textSize="15sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
             android:fontFamily="@font/roboto_regular"
             android:text="Details"
             android:textAlignment="center"
@@ -107,19 +92,19 @@
             tools:listitem="@layout/product_detail_item">
 
         </androidx.recyclerview.widget.RecyclerView>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/product_ad_recycler_view"
-                android:layout_width="306dp"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:scrollbars="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/product_detail_recycler_view"
-                app:layout_constraintStart_toStartOf="@+id/product_name"
-                tools:listitem="@layout/product_adcampaign_items"
-                >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/product_ad_recycler_view"
+            android:layout_width="306dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/product_detail_recycler_view"
+            app:layout_constraintStart_toStartOf="@+id/product_name"
+            tools:listitem="@layout/product_adcampaign_items"
+            >
 
-            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:id="@+id/btn_login"
