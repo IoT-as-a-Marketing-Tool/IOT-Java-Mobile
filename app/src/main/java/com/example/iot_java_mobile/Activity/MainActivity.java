@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         productAdapter.setOnItemClickListener(new ProductsHomeAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+                APIInterface apiInterface = APIClient.getRetrofitClient();
                 apiInterface.getProduct(productList.get(position).getId()).enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {

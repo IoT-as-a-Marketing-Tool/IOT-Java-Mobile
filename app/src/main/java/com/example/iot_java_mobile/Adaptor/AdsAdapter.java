@@ -75,14 +75,14 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                 url = "http://" + url;
             String backgroundColor = a.getStyle().getBackgroundColor();
             backgroundColor = holder.toSixHex(backgroundColor);
-            String color = adItems.get(i).getStyle().getColor();
+            String color = a.getStyle().getColor();
             color= holder.toSixHex(color);
-            float x = holder.nearestVal(adItems.get(i).getStyle().getX()) ;
-            float y = holder.nearestVal(adItems.get(i).getStyle().getY()) ;
+            float x = holder.nearestVal(a.getStyle().getX()) ;
+            float y = holder.nearestVal(a.getStyle().getY()) ;
             String finalUrl = url;
-            Log.e("AD", "ths"+ adItems.get(i).getType());
+            Log.e("AD", "ths"+ a.getType());
 
-            switch (adItems.get(i).getType()){
+            switch (a.getType()){
                 case "button":
 
 
@@ -94,7 +94,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                     sd.setColor(Color.parseColor(backgroundColor));
                     sd.invalidateSelf();
                     holder.adButton.setTextColor(Color.parseColor(color));
-                    holder.adButton.setText(adItems.get(i).getTitle());
+                    holder.adButton.setText(a.getTitle());
                     holder.positionElements(holder.constraintLayout,x,y,holder.adButton.getId());
 
                     holder.adButton.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +109,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                     holder.adLink.setVisibility(View.VISIBLE);
 
                     holder.adLink.setTextColor(Color.parseColor(color));
-                    holder.adLink.setText(adItems.get(i).getTitle());
+                    holder.adLink.setText(a.getTitle());
                     Log.e("AS", x +""+ y);
                     holder.positionElements(holder.constraintLayout,x,y,holder.adLink.getId());
 
@@ -126,7 +126,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                     holder.adHeading.setVisibility(View.VISIBLE);
 
                     holder.adHeading.setTextColor(Color.parseColor(color));
-                    holder.adHeading.setText(adItems.get(i).getTitle());
+                    holder.adHeading.setText(a.getTitle());
                     holder.positionElements(holder.constraintLayout,x,y,holder.adHeading.getId());
 
             }
