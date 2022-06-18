@@ -7,11 +7,22 @@ import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
-    private double id;
+    private int id;
     @JsonProperty("profile")
     private Profile profile;
     private ArrayList<Integer> favorites;
     private ArrayList<Integer> notifications;
+
+    public int getId() {
+        return id;
+    }
+
+    public Customer(int id, Profile profile, ArrayList<Integer> favorites, ArrayList<Integer> notifications) {
+        this.id = id;
+        this.profile = profile;
+        this.favorites = favorites;
+        this.notifications = notifications;
+    }
 
     public Customer(Profile profile, ArrayList<Integer> favorites, ArrayList<Integer> notifications) {
         this.profile = profile;

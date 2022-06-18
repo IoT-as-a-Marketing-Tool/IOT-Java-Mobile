@@ -11,7 +11,7 @@
     >
 
     <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
-        android:id="@+id/brand_item_logo"
+        android:id="@+id/product_item_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="5dp"
@@ -23,7 +23,7 @@
         app:siSquare="true" />
 
     <TextView
-        android:id="@+id/brand_item_name"
+        android:id="@+id/product_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -32,11 +32,11 @@
         android:textColor="@color/black"
         android:textFontWeight="700"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/brand_item_logo"
-        app:layout_constraintTop_toTopOf="@+id/brand_item_logo" />
+        app:layout_constraintStart_toEndOf="@+id/product_item_image"
+        app:layout_constraintTop_toTopOf="@+id/product_item_image" />
 
     <TextView
-        android:id="@+id/brand_item_desc"
+        android:id="@+id/product_item_details"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -48,21 +48,19 @@
         android:textColor="@color/secondary_text"
         android:textFontWeight="600"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/brand_item_logo"
-        app:layout_constraintTop_toBottomOf="@+id/brand_item_name" />
-    <Button
-        android:id="@+id/brand_item_remove_btn"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        app:layout_constraintStart_toEndOf="@+id/product_item_image"
+        app:layout_constraintTop_toBottomOf="@+id/product_item_name" />
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/product_item_ad_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_weight="1"
-        android:background="@drawable/ic_baseline_close_24"
+        android:foreground="@drawable/brand_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        >
-
-    </Button>
+        app:srcCompat="@drawable/mesob"/>
 
 
 

@@ -19,7 +19,7 @@
 
 
         <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
-            android:id="@+id/home_est_image"
+            android:id="@+id/home_recent_ad_image"
             android:layout_width="140dp"
             android:layout_height="136dp"
             android:src="@drawable/arada"
@@ -29,17 +29,7 @@
             app:siSquare="true" />
 
 
-        <TextView
-            android:id="@+id/home_est_name"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Greta Fashion"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textFontWeight="200"
-            android:textSize="10sp" />
+
 
     </LinearLayout>
 
