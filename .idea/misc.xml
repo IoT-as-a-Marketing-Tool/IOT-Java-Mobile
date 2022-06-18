@@ -32,9 +32,17 @@
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/product_campaign_list.xml" value="0.1" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/product_detail_item.xml" value="0.444234404536862" />
         <entry key="..\:/Users/bezat/AndroidStudioProjects/IOT-Java-Mobile/app/src/main/res/layout/register_reroute.xml" value="0.18" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_ad_page.xml" value="0.11141304347826086" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_customer_sign_up.xml" value="0.12092391304347826" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_login_page.xml" value="0.12092391304347826" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_main.xml" value="0.11141304347826086" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_product_page.xml" value="0.16903837861147047" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/activity_sign_up.xml" value="0.12092391304347826" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/product_adcampaign_items.xml" value="0.1" />
+        <entry key="..\:/Users/hp/StudioProjects/IOT-Java-Mobile/app/src/main/res/layout/product_detail_item.xml" value="0.1" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK" />
 </project>

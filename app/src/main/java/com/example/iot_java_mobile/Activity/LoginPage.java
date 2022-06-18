@@ -138,7 +138,7 @@ public class LoginPage extends AppCompatActivity implements Validator.Validation
                     @Override
                     public void onFailure(Call call, Throwable t) {
                         Toast.makeText(LoginPage.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
-                        Log.e("Don", t.getMessage());
+                        Log.e("Donlog", t.getMessage());
                     }
                 }
         );

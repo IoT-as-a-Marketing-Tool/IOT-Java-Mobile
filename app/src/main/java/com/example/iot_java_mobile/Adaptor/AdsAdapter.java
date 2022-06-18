@@ -1,10 +1,14 @@
 package com.example.iot_java_mobile.Adaptor;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iot_java_mobile.Activity.AdEstablishmentsPage;
@@ -33,6 +38,8 @@ import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
@@ -55,7 +62,39 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_ad_page, parent, false);
         return new AdsAdapter.ViewHolder(view);
     }
+    public void createPaletteAsync(Bitmap bitmap, ImageView img) {
 
+        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+            public void onGenerated(Palette p) {
+                img.setBackgroundColor(p.getDominantColor(Color.parseColor("#FFFFFF")));
+            }
+        });
+    }
+    public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+        public GetImageFromUrl(ImageView img){
+            this.imageView = img;
+        }
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            String stringUrl = url[0];
+            Bitmap bitmap = null;
+            InputStream inputStream;
+            try {
+                inputStream = new java.net.URL(stringUrl).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+            super.onPostExecute(bitmap);
+            createPaletteAsync(bitmap,imageView );
+
+        }
+    }
     @Override
     public void onBindViewHolder(@NonNull AdsAdapter.ViewHolder holder, int position) {
         AdCampaign campaign = this.campaignList.get(position);
@@ -63,6 +102,10 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
         Ad ad = campaign.getAd();
         holder.establishment_name.setText(establishment_name);
         Picasso.get().load(ad.getAd_image()).into(holder.ad_image);
+        holder.ad_image.buildDrawingCache();
+
+
+        new GetImageFromUrl(holder.ad_image).execute(ad.getAd_image());
         int i = holder.getAdapterPosition();
 
         List<AdItem> adItems= ad.getAdItems();

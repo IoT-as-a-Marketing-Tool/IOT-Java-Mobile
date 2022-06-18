@@ -101,6 +101,8 @@ public class CustomerSignUp extends AppCompatActivity{
 
         APIInterface apiInterface = APIClient.authClient();
         String token= "Bearer "+ session.getAuthToken();
+        Log.e("Don", "Res " + token );
+
         apiInterface.createProfile(profile,token).enqueue(
                 new Callback<Object>() {
                     @Override
