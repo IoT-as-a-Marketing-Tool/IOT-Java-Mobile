@@ -31,9 +31,7 @@ public class Product implements Serializable {
 
         @Override
         public String toString() {
-            return "Details{" +
-                    "querys=" + querys +
-                    '}';
+            return " " + querys;
         }
     }
     public Product(String name, String image, Details details, List<AdCampaign> adcampaigns) {

@@ -28,8 +28,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iot_java_mobile.Activity.AdEstablishmentsPage;
 import com.example.iot_java_mobile.Activity.AdsPage;
-import com.example.iot_java_mobile.Activity.BrandPage;
-import com.example.iot_java_mobile.Activity.ProductPage;
+//import com.example.iot_java_mobile.Activity.BrandPage;
+//import com.example.iot_java_mobile.Activity.ProductPage;
 import com.example.iot_java_mobile.Domain.Ad;
 import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.AdItem;

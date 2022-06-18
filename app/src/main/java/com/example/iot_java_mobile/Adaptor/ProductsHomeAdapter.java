@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.iot_java_mobile.Activity.BrandPage;
-import com.example.iot_java_mobile.Activity.ProductPage;
+//import com.example.iot_java_mobile.Activity.BrandPage;
+//import com.example.iot_java_mobile.Activity.ProductPage;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;

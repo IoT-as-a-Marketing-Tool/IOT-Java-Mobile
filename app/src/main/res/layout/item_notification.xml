@@ -12,7 +12,7 @@
 
 
     <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/circularImageView2"
+        android:id="@+id/notification_ad_image"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginStart="1dp"

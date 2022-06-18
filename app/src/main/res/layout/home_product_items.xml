@@ -17,19 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
 
-        <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/home_product_image"
-            android:layout_width="140dp"
-            android:layout_height="136dp"
-            android:src="@drawable/arada"
+            android:layout_width="79dp"
+            android:layout_height="79dp"
+            android:foreground="@drawable/brand_circle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:siShape="@drawable/borderad"
-            app:siSquare="true" />
+            app:srcCompat="@drawable/fornow"></com.mikhaellopez.circularimageview.CircularImageView>
 
         <TextView
             android:id="@+id/home_product_name"
-            android:layout_width="140dp"
+            android:layout_width="79dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
             android:text="Greta Fashion"

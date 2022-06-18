@@ -27,7 +27,6 @@ import androidx.core.app.NotificationManagerCompat;
 import com.example.iot_java_mobile.Activity.AdPage;
 import com.example.iot_java_mobile.Activity.AdsPage;
 import com.example.iot_java_mobile.Activity.MainActivity;
-import com.example.iot_java_mobile.Activity.ProductPage;
 import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.AdItem;
 import com.example.iot_java_mobile.Domain.EstProduct;
@@ -200,7 +199,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         Log.e(TAG, "getEstProduct: uuid = "+ uuid );
 
         APIInterface apiInterface = APIClient.getRetrofitClient();
-        apiInterface.getEstProduct(uuid).enqueue(new Callback<EstProduct>() {
+        apiInterface.getEstProduct(uuid,MainActivity.custID).enqueue(new Callback<EstProduct>() {
             @Override
             public void onResponse(Call<EstProduct> call, Response<EstProduct> response) {
                 if(response.isSuccessful() && response.body()!= null){
@@ -230,7 +229,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 
         Log.e(TAG, "sendNotification: " );
-        Toast.makeText(IOTJavaMobile.this, "Inside SendNotification ",Toast.LENGTH_LONG).show();
+//        Toast.makeText(IOTJavaMobile.this, "Inside SendNotification ",Toast.LENGTH_LONG).show();
         AdCampaign campaign = estProduct.getCampaign();
         Log.e(TAG, "sendNotification: campaign ="+ campaign );
 
@@ -247,7 +246,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         );
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Toast.makeText(IOTJavaMobile.this, "Build version >= 0", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(IOTJavaMobile.this, "Build version >= 0", Toast.LENGTH_SHORT).show();
             NotificationCompat.Builder builder;
 
             channel = new NotificationChannel("Beacon Reference Notifications",

@@ -49,7 +49,7 @@ public class AdEstablishmentsPage extends AppCompatActivity {
         int currentId = -123;
 
         APIInterface apiInterface = APIClient.getRetrofitClient();
-        apiInterface.getProduct(campaign.getProduct()).enqueue(new Callback<Product>() {
+        apiInterface.getProduct(campaign.getProduct(),MainActivity.custID).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
                 if(response.isSuccessful() && response.body()!= null){
