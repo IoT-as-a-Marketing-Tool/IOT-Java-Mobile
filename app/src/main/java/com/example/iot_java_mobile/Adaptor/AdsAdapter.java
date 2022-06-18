@@ -1,6 +1,5 @@
 package com.example.iot_java_mobile.Adaptor;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -41,10 +40,6 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
     public List<AdCampaign> campaignList;
     private static AdsAdapter.ClickListener clickListener;
     public View.OnClickListener establishmentClickListener;
-    ConstraintSet set = new ConstraintSet();
-
-
-
 
 
     public AdsAdapter(List<AdCampaign> campaignList, List<Establishment> establishmentList){
@@ -78,23 +73,20 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
             String url= a.getLink();
             if (!url.startsWith("http://") && !url.startsWith("https://"))
                 url = "http://" + url;
-            Log.e("AD", "ths"+ a.getType());
-
             String backgroundColor = a.getStyle().getBackgroundColor();
             backgroundColor = holder.toSixHex(backgroundColor);
             String color = a.getStyle().getColor();
             color= holder.toSixHex(color);
-
-
+            float x = holder.nearestVal(a.getStyle().getX()) ;
+            float y = holder.nearestVal(a.getStyle().getY()) ;
             String finalUrl = url;
+            Log.e("AD", "ths"+ a.getType());
 
             switch (a.getType()){
                 case "button":
-                    float x =(float) (50+  a.getStyle().getX())/100 ;
-                    float y = (float) (200+  a.getStyle().getY())/400 ;
+
 
                     holder.adButton.setVisibility(View.VISIBLE);
-                    holder.adButton.invalidate();
 
                     Drawable wrappedDrawable = DrawableCompat.wrap(holder.unwrappedDrawable);
 
@@ -109,37 +101,33 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                         @Override
                         public void onClick(View v) {
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalUrl));
-//                            context.startActivity(browserIntent);
+//                            startActivity(browserIntent);
                             }
                     });
                 case "link":
-                    float xLink =(float) (50+  a.getStyle().getX())/100 ;
-                    float yLink = (float) (200+  a.getStyle().getY())/400 ;
+
                     holder.adLink.setVisibility(View.VISIBLE);
-                    holder.adLink.invalidate();
 
                     holder.adLink.setTextColor(Color.parseColor(color));
                     holder.adLink.setText(a.getTitle());
-                    Log.e("y", "y="+yLink);
-                    holder.positionElements(holder.constraintLayout,xLink,yLink,holder.adLink.getId());
+                    Log.e("AS", x +""+ y);
+                    holder.positionElements(holder.constraintLayout,x,y,holder.adLink.getId());
 
 
                     holder.adLink.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalUrl));
-//                            context.startActivity(browserIntent);
+//                            startActivity(browserIntent);
                             }
                     });
                 case "heading":
-                    float xHeading =(float) (50+  a.getStyle().getX())/100 ;
-                    float yHeading = (float) (200+  a.getStyle().getY())/400 ;
+
                     holder.adHeading.setVisibility(View.VISIBLE);
-                    holder.adHeading.invalidate();
 
                     holder.adHeading.setTextColor(Color.parseColor(color));
                     holder.adHeading.setText(a.getTitle());
-                    holder.positionElements(holder.constraintLayout,xHeading,yHeading,holder.adHeading.getId());
+                    holder.positionElements(holder.constraintLayout,x,y,holder.adHeading.getId());
 
             }
         }
@@ -196,19 +184,20 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
             return hex;
         }
         public void positionElements(ConstraintLayout constraintLayout, float x, float y, Integer id){
+            ConstraintSet set = new ConstraintSet();
             set.clone(constraintLayout);
             set.setHorizontalBias(id, x);
             set.setVerticalBias(id,y);
             set.applyTo(constraintLayout);
         }
-        public float nearestVal(double val){
-
+        public float nearestVal(double a){
+            float val=(float) (50+  a)/100;
             if(val>1 ){
                 val= 1;
             }else if (val<0){
                 val= 0;
             }
-            return (float) val;
+            return val;
         }
     }
     public interface ClickListener {

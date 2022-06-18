@@ -33,6 +33,8 @@ import com.example.iot_java_mobile.Adaptor.ProductsHomeAdapter;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
+import com.example.iot_java_mobile.Domain.SessionManager;
+import com.example.iot_java_mobile.Domain.User;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     BrandsAdapter brandAdapter;
     ProductsHomeAdapter productAdapter;
     EstablishmentsHomeAdapter establishmentAdapter;
+    SessionManager sessionManager;
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int PERMISSION_REQUEST_BACKGROUND_LOCATION = 2;
     private FusedLocationProviderClient fusedLocationClient;
@@ -103,7 +106,14 @@ public class MainActivity extends AppCompatActivity {
         slideModels.add(new SlideModel("https://world.openfoodfacts.org/images/products/878/456/290/8364/front_fr.3.full.jpg", ScaleTypes.FIT));
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+        homeBrand = findViewById(R.id.logoutButton);
+        homeBrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sessionManager.logoutUser();
 
+            }
+        });
 //        homeBrand = findViewById(R.id.homeBrand);
 //        homeBrand.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -120,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        sessionManager=  new SessionManager(getApplicationContext());
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -180,17 +191,10 @@ public class MainActivity extends AppCompatActivity {
 //        };
 
 
-
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    ActivityCompat#requestPermissions
-//
-//            return;
-//        }
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
-        Log.e("Don", "------ oncreate lat and long " + latitude + " " + longitude);
         fetchData();
-
+        TextView username = findViewById(R.id.home_username);
+        User user= sessionManager.getUserDetails();
+        username.setText("Hello, "+ user.getUsername());
         brandAdapter = new BrandsAdapter(brandList);
         recyclerViewHomeBrands = findViewById(R.id.home_brand_list_recycler_view);
         RecyclerView.LayoutManager layoutManagerBrand = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
@@ -318,8 +322,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
 //    private void recyclerViewBrands() {
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 //        recyclerViewBrands.setLayoutManager(linearLayoutManager);
@@ -349,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
                                 @TargetApi(23)
                                 @Override
                                 public void onDismiss(DialogInterface dialog) {
-                                    requestPermissions(new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 
+                                    requestPermissions(new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION},
                                             PERMISSION_REQUEST_BACKGROUND_LOCATION);
                                 }
 

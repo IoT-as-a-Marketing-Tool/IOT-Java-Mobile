@@ -13,4 +13,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="date_picker_theme" parent="@android:style/Widget.DatePicker"/>
+
 </resources>

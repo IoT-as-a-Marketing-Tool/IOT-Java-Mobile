@@ -5,27 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.brand"
-    android:orientation="vertical">
-
-    <!-- TODO: Update blank fragment layout -->
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/ic_baseline_arrow_back_ios_24" />
+    android:orientation="vertical"
+    android:background="@color/white">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_marginStart="20dp"
+             />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="350dp"
-        android:layout_height="250dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/imagetwo" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:src="@drawable/arada"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:siShape="@drawable/borderad"
+                app:siSquare="true" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,6 +71,7 @@
         android:textColor="@color/primary_purple"
         android:textFontWeight="600"
         android:textSize="15sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,12 +108,13 @@
         android:textColor="@color/grey"
         android:textFontWeight="600"
         android:textSize="15sp" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
+    <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+        android:layout_width="150dp"
+        android:layout_height="120dp"
         android:layout_marginStart="25dp"
-        app:srcCompat="@drawable/imagetwo" />
+        app:siShape="@drawable/borderad"
+        android:src="@drawable/imagetwo"
+        app:siSquare="true"/>
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
@@ -107,5 +129,7 @@
         android:text="Add to favorites"
         android:textColor="@android:color/white"
         android:textFontWeight="700" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
