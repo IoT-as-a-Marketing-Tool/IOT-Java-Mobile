@@ -1,6 +1,7 @@
 package com.example.iot_java_mobile.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +37,9 @@ import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -62,15 +70,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private List<Brand> brandList = new ArrayList<Brand>() ;
-    private List<Product> productList = new ArrayList<Product>() ;
-    private List<Establishment> establishmentList = new ArrayList<Establishment>() ;
+    private List<Brand> brandList = new ArrayList<Brand>();
+    private List<Product> productList = new ArrayList<Product>();
+    private List<Establishment> establishmentList = new ArrayList<Establishment>();
 
     BrandsAdapter brandAdapter;
     ProductsHomeAdapter productAdapter;
     EstablishmentsHomeAdapter establishmentAdapter;
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
     private static final int PERMISSION_REQUEST_BACKGROUND_LOCATION = 2;
+    private FusedLocationProviderClient fusedLocationClient;
+
+
+    static double latitude = 0.0;
+    static double longitude = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         ArrayList<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add( new SlideModel("https://thumbs.dreamstime.com/z/mango-juice-ads-liquid-hand-banner-grabbing-fruit-effect-blue-sky-background-d-illustration-152914246.jpg", ScaleTypes.FIT));
-        slideModels.add( new SlideModel("https://www.sunchipsethiopia.net/img/photo_2021-04-27_15-48-07.jpg", ScaleTypes.FIT));
-        slideModels.add( new SlideModel("https://www.logogenie.net/images/articles/brands-of-the-world-coca-cola.jpg", ScaleTypes.FIT));
-        slideModels.add( new SlideModel("https://world.openfoodfacts.org/images/products/878/456/290/8364/front_fr.3.full.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://thumbs.dreamstime.com/z/mango-juice-ads-liquid-hand-banner-grabbing-fruit-effect-blue-sky-background-d-illustration-152914246.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://www.sunchipsethiopia.net/img/photo_2021-04-27_15-48-07.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://www.logogenie.net/images/articles/brands-of-the-world-coca-cola.jpg", ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://world.openfoodfacts.org/images/products/878/456/290/8364/front_fr.3.full.jpg", ScaleTypes.FIT));
 
         imageSlider.setImageList(slideModels, ScaleTypes.FIT);
 
@@ -107,7 +120,75 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            longitude = location.getLongitude();
+                            latitude = location.getLatitude();
+                            Log.e("Don", "------ lat and long " + latitude + " " + longitude);
+                            Toast.makeText(MainActivity.this, "lat and long==  " + latitude + " " + longitude, Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
+
+//        Criteria criteria = new Criteria();
+//        criteria.setAccuracy(Criteria.ACCURACY_COARSE);   //default
+//
+//        // user defines the criteria
+//
+//        criteria.setCostAllowed(false);
+//        // get the best provider depending on the criteria
+//
+//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        // the last known location of this provider
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return;
+//        }
+//
+//        String provider = locationManager.getBestProvider(criteria, false);
+//        Location location = locationManager.getLastKnownLocation(provider);
+//        final LocationListener locationListener = new LocationListener() {
+//            public void onLocationChanged(Location location) {
+//                longitude = location.getLongitude();
+//                latitude = location.getLatitude();
+//                Log.e("Don", "------ lat and long " + latitude + " " + longitude);
+//                Toast.makeText(MainActivity.this, "lat and long==  " +latitude+" "+longitude,Toast.LENGTH_LONG).show();
+//            }
+//        };
+
+
+
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//
+//            return;
+//        }
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
+        Log.e("Don", "------ oncreate lat and long " + latitude + " " + longitude);
         fetchData();
 
         brandAdapter = new BrandsAdapter(brandList);
@@ -139,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
         productAdapter.setOnItemClickListener(new ProductsHomeAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+                APIInterface apiInterface = APIClient.getRetrofitClient();
                 apiInterface.getProduct(productList.get(position).getId()).enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {
@@ -175,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient();
         apiInterface.getBrands().enqueue(new Callback<List<Brand>>() {
           @Override
           public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
@@ -236,6 +317,8 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
+
+
 
 //    private void recyclerViewBrands() {
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);

@@ -1,5 +1,6 @@
 package com.example.iot_java_mobile;
 
+import android.Manifest;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -8,13 +9,23 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.example.iot_java_mobile.Activity.AdPage;
+import com.example.iot_java_mobile.Activity.AdsPage;
 import com.example.iot_java_mobile.Activity.MainActivity;
 import com.example.iot_java_mobile.Activity.ProductPage;
 import com.example.iot_java_mobile.Domain.AdCampaign;
@@ -33,6 +44,7 @@ import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
@@ -53,8 +65,17 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     Handler mHandler = new Handler();
     HashSet<Beacon> visited_beacons;
     ArrayList<String> uuids;
+    String GROUP_KEY_ADS = "com.android.example.WORK_EMAIL";
+    NotificationChannel channel = null;
+    NotificationManagerCompat notificationManager = null;
+    int SUMMARY_ID = 0;
+    boolean new_ad_flag = false;
+    List<EstProduct> estProductList = null;
+    List<AdCampaign> campaignList = null;
+    List<Establishment> establishmentList = null;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void onCreate() {
 
         super.onCreate();
@@ -65,13 +86,16 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         beaconManager.getBeaconParsers().add(new BeaconParser().
                 setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
 
-        for (Region region: beaconManager.getMonitoredRegions()) {
+        for (Region region : beaconManager.getMonitoredRegions()) {
             beaconManager.stopMonitoring(region);
         }
 
         beaconManager.startMonitoring(wildcardRegion);
         visited_beacons = new HashSet<Beacon>();
-        uuids= new ArrayList<>();
+        uuids = new ArrayList<>();
+        estProductList = new ArrayList<EstProduct>();
+        campaignList = new ArrayList<AdCampaign>();
+        establishmentList = new ArrayList<>();
 
 
 
@@ -81,10 +105,13 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 
     @Override
     public void didEnterRegion(Region region) {
+        new_ad_flag = false;
         Log.e(TAG, "did enter region.");
         insideRegion = true;
         final String[] detail = {"Bla bla"};
+
         RangeNotifier rangeNotifier = new RangeNotifier() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
                 if (beacons.size() > 0) {
@@ -94,6 +121,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
                         String uuid=String.valueOf(beacon.getId1()).toUpperCase(Locale.ROOT);
                         if(uuids.indexOf(uuid)== -1){
                             uuids.add(uuid);
+                            new_ad_flag = true;
                             Log.e(TAG, "beacon = "+beacon.toString()+ String.format("%.2f", beacon.getDistance()) + " meters away.");
 
                             getEstProduct(uuid);
@@ -102,6 +130,28 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 
 
                     }
+
+//                    if(new_ad_flag){
+//                        Notification summaryNotification =
+//                                new NotificationCompat.Builder(IOTJavaMobile.this, channel.getId())
+//
+//                                        .setContentText("New Ad messages")
+//                                        .setSmallIcon(R.drawable.ic_baseline_star_outline_24)
+//                                        //build summary info into InboxStyle template
+////                        .setStyle(new NotificationCompat.InboxStyle()
+////                                .addLine("Alex Faarborg  Check this out")
+////                                .addLine("Jeff Chang    Launch Party")
+////                                .setBigContentTitle("2 new messages")
+////                                .setSummaryText("janedoe@example.com"))
+//                                        //specify which group this notification belongs to
+//                                        .setGroup(GROUP_KEY_ADS)
+//                                        //set this notification as the summary for the group
+//                                        .setGroupSummary(true)
+//                                        .build();
+//                        SUMMARY_ID = beacons.size();
+//                        notificationManager.notify(SUMMARY_ID, summaryNotification);
+//                    }
+
 //                    Beacon firstBeacon = beacons.iterator().next();
 //                    Log.e(TAG, "first beacon = "+firstBeacon );
 //                    while (firstBeacon != null && (visited_beacons.contains(firstBeacon) || (firstBeacon.getDistance() > 1))){
@@ -133,14 +183,6 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         beaconManager.startRangingBeacons(IOTJavaMobile.wildcardRegion);
         Log.e(TAG, "beacons" + uuids.toString() );
 
-//        mHandler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        }, 3000);
-
-
     }
 
     @Override
@@ -157,7 +199,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     public void getEstProduct(String uuid){
         Log.e(TAG, "getEstProduct: uuid = "+ uuid );
 
-        APIInterface apiInterface = APIClient.getRetrofitClient(Establishment.Location.class, new APIClient.LocationDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient();
         apiInterface.getEstProduct(uuid).enqueue(new Callback<EstProduct>() {
             @Override
             public void onResponse(Call<EstProduct> call, Response<EstProduct> response) {
@@ -166,6 +208,9 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
                     EstProduct estProduct = response.body();
 //                    Toast.makeText(IOTJavaMobile.this, "Sending notification  " +estProduct,Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Sending notification.");
+                    estProductList.add(estProduct);
+                    campaignList.add(estProduct.getCampaign());
+                    establishmentList.add(estProduct.getEstablishment());
                     sendNotification(estProduct, uuids.indexOf(uuid));
 //                    new MyAsyncTask().execute(estProduct);
 
@@ -180,42 +225,65 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 
     }
     private void sendNotification(EstProduct estProduct, Integer index) {
-        NotificationManager notificationManager =
-                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("Beacon Reference Notifications",
-                    "Beacon Reference Notifications", NotificationManager.IMPORTANCE_HIGH);
-            channel.enableLights(true);
-            channel.enableVibration(true);
-            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-            notificationManager.createNotificationChannel(channel);
-            builder = new Notification.Builder(this, channel.getId());
-        }
-        else {
-            builder = new Notification.Builder(this);
-            builder.setPriority(Notification.PRIORITY_HIGH);
-        }
+        String GROUP_KEY_ADS = "com.android.example.WORK_EMAIL";
+
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 
         Log.e(TAG, "sendNotification: " );
         Toast.makeText(IOTJavaMobile.this, "Inside SendNotification ",Toast.LENGTH_LONG).show();
         AdCampaign campaign = estProduct.getCampaign();
+        Log.e(TAG, "sendNotification: campaign ="+ campaign );
 
-        Intent intent = new Intent(this, AdPage.class);
-        intent.putExtra("GivingAdCampaign", campaign);
-        intent.putExtra("GivingEstablishment", estProduct.getEstablishment().getName());
-        stackBuilder.addNextIntent(intent);
-        PendingIntent resultPendingIntent =
-                stackBuilder.getPendingIntent(
-                        index,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
-        builder.setContentTitle(campaign.getName());
-        builder.setContentText("Tap here to view the Ad");
-        builder.setContentIntent(resultPendingIntent);
-        notificationManager.notify(index, builder.build());
+        Intent notifyIntent = new Intent(this, AdsPage.class);
+
+        notifyIntent.putExtra("GivingCampaignList", (Serializable) campaignList);
+        notifyIntent.putExtra("GivingEstablishmentNameList", (Serializable) establishmentList);
+        stackBuilder.addNextIntentWithParentStack(notifyIntent);
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                this, 0, notifyIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Toast.makeText(IOTJavaMobile.this, "Build version >= 0", Toast.LENGTH_SHORT).show();
+            NotificationCompat.Builder builder;
+
+            channel = new NotificationChannel("Beacon Reference Notifications",
+                    "Beacon Reference Notifications", NotificationManager.IMPORTANCE_HIGH);
+            channel.enableLights(true);
+            channel.enableVibration(true);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
+            notificationManager = NotificationManagerCompat.from(this);
+
+            notificationManager.createNotificationChannel(channel);
+
+            builder = new NotificationCompat.Builder(this, channel.getId());
+            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+            builder.setContentTitle(campaign.getName());
+            builder.setContentText("Tap here to view the Ad");
+            builder.setContentIntent(notifyPendingIntent);
+//            builder.setGroup(GROUP_KEY_ADS);
+
+            notificationManager.notify(index, builder.build());
+
+        }
+        else {
+            NotificationManager notificationManager =
+                    (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+            Notification.Builder builder = new Notification.Builder(this);
+            builder.setPriority(Notification.PRIORITY_HIGH);
+            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+            builder.setContentTitle(campaign.getName());
+            builder.setContentText("Tap here to view the Ad");
+            builder.setContentIntent(notifyPendingIntent);
+            notificationManager.notify(index, builder.build());
+        }
+
 
 //        Log.e(TAG, "Stopping ranging");
 //        beaconManager.stopRangingBeacons(IOTJavaMobile.wildcardRegion);

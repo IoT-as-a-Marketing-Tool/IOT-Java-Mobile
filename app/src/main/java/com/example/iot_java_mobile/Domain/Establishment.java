@@ -7,83 +7,91 @@ import java.io.Serializable;
 public class Establishment implements Serializable {
 
     public static class Location implements Serializable {
-        String latitude;
-        String longitude;
+        double latitude;
+        double longitude;
 
-        public Location(String latitude, String longitude) {
+        public Location(double latitude, double longitude) {
             this.latitude = latitude;
             this.longitude = longitude;
         }
+
+        public double getLatitude() {
+            return latitude;
+        }
+
+        public double getLongitude() {
+            return longitude;
+        }
+
+        @Override
+        public String toString() {
+            return "Location{" +
+                    "latitude='" + latitude + '\'' +
+                    ", longitude='" + longitude + '\'' +
+                    '}';
+        }
     }
-    
+    int id;
     String name;
     String logo;
     String description;
     String est_type;
     Location location; //TODO: make it serializable
     String verification_status;
+    double distanceFromPhone;
     
 
-    public Establishment(String name, String logo, String description, String est_type, Location location, String verification_status) {
+    public Establishment(int id, String name, String logo, String description, String est_type, Location location, String verification_status) {
         this.name = name;
         this.logo = logo;
         this.description = description;
         this.est_type = est_type;
         this.location = location;
         this.verification_status = verification_status;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public double getDistanceFromPhone() {
+        return distanceFromPhone;
+    }
+
+    public void setDistanceFromPhone(double distanceFromPhone) {
+        this.distanceFromPhone = distanceFromPhone;
     }
 
     public String getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getEst_type() {
         return est_type;
     }
 
-    public void setEst_type(String est_type) {
-        this.est_type = est_type;
-    }
-
     public Location getLocation() {
         return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public String getVerification_status() {
         return verification_status;
     }
 
-    public void setVerification_status(String verification_status) {
-        this.verification_status = verification_status;
-    }
 
     @Override
     public String toString() {
         return "Establishment{" +
+                "id='" + id + '\'' +
                 "name='" + name + '\'' +
                 ", logo='" + logo + '\'' +
                 ", description='" + description + '\'' +

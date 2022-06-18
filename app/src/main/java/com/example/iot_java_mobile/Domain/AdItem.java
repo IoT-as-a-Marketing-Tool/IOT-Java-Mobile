@@ -5,21 +5,41 @@ import java.util.HashMap;
 
 public class AdItem implements Serializable {
     public static class Style implements Serializable{
-        public HashMap<String, Object> style;
+        String fontSize;
+        String backgroundColor;
+        String color;
+        Double x;
+        Double y;
 
-        public Style(HashMap<String, Object> style) {
-            this.style = style;
+        public Style(String fontSize, String backgroundColor, String color, Double x, Double y) {
+            this.fontSize = fontSize;
+            this.backgroundColor = backgroundColor;
+            this.color = color;
+            this.x = x;
+            this.y = y;
+        }
+        public  Style(){
+
         }
 
-        public HashMap<String, Object> getStyle() {
-            return style;
+        public String getFontSize() {
+            return fontSize;
         }
 
-        @Override
-        public String toString() {
-            return "Style{" +
-                    "style=" + style +
-                    '}';
+        public String getBackgroundColor() {
+            return backgroundColor;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public Double getX() {
+            return x;
+        }
+
+        public Double getY() {
+            return y;
         }
     }
 
@@ -39,6 +59,8 @@ public class AdItem implements Serializable {
         this.active = active;
         this.style = style;
         this.ad = ad;
+
+
     }
 
     public int getId() {

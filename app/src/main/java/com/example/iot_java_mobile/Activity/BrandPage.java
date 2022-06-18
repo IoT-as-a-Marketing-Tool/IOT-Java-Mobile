@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import com.example.iot_java_mobile.Adaptor.BrandsAdapter;
 import com.example.iot_java_mobile.Adaptor.ProductsBrandAdapter;
 import com.example.iot_java_mobile.Adaptor.ProductsHomeAdapter;
 import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;
@@ -51,18 +54,29 @@ public class BrandPage extends AppCompatActivity {
         brandDescTextView.setText(brand.getDescription());
         Picasso.get().load(brand.getLogo()).into(brandImageView);
 
+        Button favBtn = findViewById(R.id.brand_fav_btn);
+        favBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        favBtn.setBackgroundResource(R.drawable.ic_baseline_home_24);
+                        Intent intent = new Intent(BrandPage.this, FavoritesPage.class);
+//                        intent.putExtra("GivingListOf")
+                        startActivity(intent);
+                    }
+                }
+        );
 
 
         productAdapter = new ProductsBrandAdapter(productList);
         RecyclerView.LayoutManager layoutManagerProduct = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
-        productRecyclerView = findViewById(R.id.brand_product_list_recycler_view);
         productRecyclerView.setLayoutManager(layoutManagerProduct);
         productRecyclerView.setAdapter(productAdapter);
         productAdapter.setOnItemClickListener(new ProductsBrandAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
                 Log.e("Don", "onItemClick: show id "+ productList.get(position).getId()  );
-                APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+                APIInterface apiInterface = APIClient.getRetrofitClient();
                 apiInterface.getProduct(productList.get(position).getId()).enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {

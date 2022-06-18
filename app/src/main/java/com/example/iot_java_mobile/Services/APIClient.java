@@ -32,9 +32,13 @@ public class APIClient {
         @Override
         public Brand.Color deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             final JsonObject jsonObject = json.getAsJsonObject();
-            final String p_color = jsonObject.get("primaryColor").getAsString();
-            final String s_color = jsonObject.get("secondaryColor").getAsString();
-            Brand.Color c = new Brand.Color(p_color, s_color);
+            Brand.Color c = null;
+            if (jsonObject.has("primaryColor") && jsonObject.has("secondaryColor")){
+                final String p_color = jsonObject.get("primaryColor").getAsString();
+                final String s_color = jsonObject.get("secondaryColor").getAsString();
+                c = new Brand.Color(p_color, s_color);
+            }
+
             return c;
 
 
@@ -47,9 +51,13 @@ public class APIClient {
         @Override
         public Establishment.Location deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             final JsonObject jsonObject = json.getAsJsonObject();
-            final String latitude = jsonObject.get("latitude").getAsString();
-            final String longitude = jsonObject.get("longitude").getAsString();
-            Establishment.Location l = new Establishment.Location(latitude, longitude);
+            Establishment.Location l = null;
+            if(jsonObject.has("latitude") && jsonObject.has("longititude")){
+                final double latitude = jsonObject.get("latitude").getAsDouble();
+                final double longitude = jsonObject.get("longititude").getAsDouble();
+                l = new Establishment.Location(latitude, longitude);
+            }
+
             return l;
 
 
@@ -57,43 +65,59 @@ public class APIClient {
         }
     }
     public static class ProductDetailDeserializer implements JsonDeserializer<Product.Details>{
+        Gson gson;
 
+        public ProductDetailDeserializer(Gson gson) {
+            this.gson = gson;
+        }
         @Override
         public Product.Details deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             final JsonElement jsonObject = json.getAsJsonObject();
-            HashMap<String, Object> detail = new Gson().fromJson(jsonObject, HashMap.class);
+            HashMap<String, Object> detail = gson.fromJson(jsonObject, HashMap.class);
             Log.e("Don", "detail deserialize: we're herreeeeeeeeeeeeeeee" );
             Log.e("Don", "detail deserialized: "+ detail );
             return new Product.Details(detail);
         }
     }
+
     public  static class AdItemStyleDeserializer implements JsonDeserializer<AdItem.Style>{
+        Gson gson;
+
+        public AdItemStyleDeserializer(Gson gson) {
+            this.gson = gson;
+        }
 
         @Override
         public AdItem.Style deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             final JsonElement jsonObject = json.getAsJsonObject();
-            HashMap<String, Object> style = new Gson().fromJson(jsonObject, HashMap.class);
-            Log.e("Don", "style deserialize: we're in STYLE herreeeeeeeeeeeeeeee" );
-
-            return new AdItem.Style(style);
+            AdItem.Style style = gson.fromJson(jsonObject, AdItem.Style.class);
+            Log.e("Don", "deserialize: we're in STYLE herreeeeeeeeeeeeeeee" );
+            return style;
         }
     }
 
-    private static Converter.Factory createGsonConverter(Type type, Object typeAdapter) {
+    private static Converter.Factory createGsonConverter() {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(type, typeAdapter);
-        Gson gson = gsonBuilder.create();
+//        gsonBuilder.registerTypeAdapter(type, typeAdapter);
+        Gson gson = new Gson();
+        gsonBuilder.registerTypeAdapter(AdItem.Style.class, new AdItemStyleDeserializer(gson));
+        gsonBuilder.registerTypeAdapter(Product.Details.class, new ProductDetailDeserializer(gson));
+        gsonBuilder.registerTypeAdapter(Establishment.Location.class, new LocationDeserializer());
+        gsonBuilder.registerTypeAdapter(Brand.Color.class, new ColorDeserializer());
+
+
+        gson = gsonBuilder.create();
 
         return GsonConverterFactory.create(gson);
     }
 
 
-    public static APIInterface getRetrofitClient(Type type, Object typeAdapter){
+    public static APIInterface getRetrofitClient(){
 
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(createGsonConverter(type, typeAdapter))
+                    .addConverterFactory(createGsonConverter())
                     .build();
         }
         return retrofit.create(APIInterface.class);

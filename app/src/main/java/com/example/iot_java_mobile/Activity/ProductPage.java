@@ -18,11 +18,16 @@ import com.example.iot_java_mobile.Adaptor.ProductsBrandAdapter;
 import com.example.iot_java_mobile.Domain.Ad;
 import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +52,7 @@ public class ProductPage extends AppCompatActivity {
 //        startActivity(intent);
         TextView brandName = findViewById(R.id.product_brand_name);
         final Brand[] brand = {null};
-        APIInterface apiInterface = APIClient.getRetrofitClient(Product.Details.class, new APIClient.ProductDetailDeserializer());
+        APIInterface apiInterface = APIClient.getRetrofitClient();
         apiInterface.getBrand(product.getBrand()).enqueue(new Callback<Brand>() {
             @Override
             public void onResponse(Call<Brand> call, Response<Brand> response) {
@@ -93,11 +98,15 @@ public class ProductPage extends AppCompatActivity {
         campaignProductAdapter.setOnItemClickListener(new AdCampaignProductAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String EXTRA_MESSAGE = "GivingAdCampaign";
-                Intent intent = new Intent(ProductPage.this, AdPage.class);
-                AdCampaign adCampaign = product.getAdcampaigns().get(position);
-                intent.putExtra(EXTRA_MESSAGE, adCampaign);
-                intent.putExtra("GivingEstablishment", "View all Establishments");
+                String EXTRA_MESSAGE = "GivingCampaignList";
+                Intent intent = new Intent(ProductPage.this, AdsPage.class);
+                List<AdCampaign> adCampaignList = product.getAdcampaigns();
+                intent.putExtra(EXTRA_MESSAGE, (Serializable) adCampaignList);
+                List<Establishment> establishmentList = new ArrayList<>();
+//                for (int i = 0; i < adCampaignList.size(); i++){
+//                    establishmentNameList.add("View all Establishments");
+//                }
+                intent.putExtra("GivingEstablishmentNameList", (Serializable) establishmentList);
 
                 startActivity(intent);
             }
