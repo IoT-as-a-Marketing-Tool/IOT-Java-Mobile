@@ -11,6 +11,7 @@ import com.example.iot_java_mobile.Domain.User;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -81,10 +82,10 @@ public interface APIInterface {
     Call<List<AdCampaign>> getNotifications(@Path("cust_id") int cust_id);
 
     @POST("api/customers/{cust_id}/notifications/")
-    Call<List<AdCampaign>> createNotifications(@Path("cust_id") int cust_id, @Body List campaigns);
+    Call<List<AdCampaign>> createNotifications(@Path("cust_id") int cust_id, @Body HashMap<String, List> campaigns);
 
     @GET("api/customers/{cust_id}/notifications/{id}/")
-    Call <Establishment> deleteNotification(@Path("id") int id, @Path("cust_id") int cust_id);
+    Call <List<AdCampaign>> deleteNotification(@Path("id") int id, @Path("cust_id") int cust_id);
 
 
 

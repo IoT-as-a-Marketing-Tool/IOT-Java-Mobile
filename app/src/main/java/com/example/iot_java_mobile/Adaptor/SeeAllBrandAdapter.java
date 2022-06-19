@@ -15,6 +15,7 @@ import com.example.iot_java_mobile.Fragments.SeeAllBrandFragment;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeeAllBrandAdapter extends RecyclerView.Adapter<SeeAllBrandAdapter.ViewHolder> {
@@ -22,6 +23,9 @@ public class SeeAllBrandAdapter extends RecyclerView.Adapter<SeeAllBrandAdapter.
     private static ClickListener clickListener;
     public SeeAllBrandAdapter(List<Brand> brandList) {
         this.brandList = brandList;
+        if (this.brandList == null){
+            this.brandList = new ArrayList<>();
+        }
     }
 
     @NonNull

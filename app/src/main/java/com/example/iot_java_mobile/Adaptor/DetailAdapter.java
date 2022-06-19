@@ -14,6 +14,7 @@ import com.example.iot_java_mobile.R;
 import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder> {
@@ -38,6 +39,8 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
             Log.e("Don", "nnnnnnnnnnnnottttt nulll, "+ this.details.toString() );
         }else{
             Log.e("Don", "It is nullllllll");
+            this.details = new Product.Details(new HashMap<>());
+
         }
 
 //        detail_string.add("price: 300");

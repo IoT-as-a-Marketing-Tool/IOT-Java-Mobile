@@ -42,6 +42,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
@@ -54,6 +55,12 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
     public AdsAdapter(List<AdCampaign> campaignList, List<Establishment> establishmentList){
         this.campaignList = campaignList;
         this.establishmentList = establishmentList;
+        if (this.campaignList == null){
+            this.campaignList = new ArrayList<>();
+        }
+        if (this.establishmentList == null){
+            this.establishmentList = new ArrayList<>();
+        }
     }
 
 
@@ -144,8 +151,6 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                     sd.setColor(Color.parseColor(backgroundColor));
                     sd.invalidateSelf();
                     holder.adButton.setTextColor(Color.parseColor(color));
-                    Log.e("AdbjD", "but"+ a.getTitle());
-
                     holder.adButton.setText(a.getTitle());
                     if(a.getStyle().getFontSize()!=""){
                         holder.adButton.setTextSize(Float.parseFloat(a.getStyle().getFontSize()));
