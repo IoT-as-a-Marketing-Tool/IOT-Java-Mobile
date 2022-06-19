@@ -56,12 +56,6 @@
         <activity
             android:name=".Activity.AdPage"
             android:parentActivityName=".Activity.MainActivity" />
-        <activity
-            android:name=".Activity.ProductPage"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.BrandPage"
-            android:exported="false" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -73,6 +67,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
     </application>
 
 </manifest>

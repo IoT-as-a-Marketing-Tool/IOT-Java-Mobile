@@ -34,6 +34,7 @@ import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
+//import com.example.iot_java_mobile.Services.MyForegroundService;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconManager;
@@ -80,6 +81,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     public void onCreate() {
 
         super.onCreate();
+
         beaconManager = BeaconManager.getInstanceForApplication(this);
         Log.e(TAG, "setting up background monitoring in app onCreate");
         beaconManager.addMonitorNotifier(this);
@@ -122,7 +124,10 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         campaignList = new ArrayList<AdCampaign>();
         establishmentList = new ArrayList<>();
 
-
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            Intent intent = new Intent(this, MyForegroundService.class);
+//            startForegroundService(intent);
+//        }
 
 
 
@@ -159,24 +164,24 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 //                    if(new_ad_flag){
 //                        Notification summaryNotification =
 //                                new NotificationCompat.Builder(IOTJavaMobile.this, channel.getId())
-//
+
 //                                        .setContentText("New Ad messages")
 //                                        .setSmallIcon(R.drawable.ic_baseline_star_outline_24)
-//                                        //build summary info into InboxStyle template
-////                        .setStyle(new NotificationCompat.InboxStyle()
-////                                .addLine("Alex Faarborg  Check this out")
-////                                .addLine("Jeff Chang    Launch Party")
-////                                .setBigContentTitle("2 new messages")
-////                                .setSummaryText("janedoe@example.com"))
+                                        //build summary info into InboxStyle template
+//                        .setStyle(new NotificationCompat.InboxStyle()
+//                                .addLine("Alex Faarborg  Check this out")
+//                                .addLine("Jeff Chang    Launch Party")
+//                                .setBigContentTitle("2 new messages")
+//                                .setSummaryText("janedoe@example.com"))
 //                                        //specify which group this notification belongs to
 //                                        .setGroup(GROUP_KEY_ADS)
 //                                        //set this notification as the summary for the group
 //                                        .setGroupSummary(true)
 //                                        .build();
-//                        SUMMARY_ID = beacons.size();
-//                        notificationManager.notify(SUMMARY_ID, summaryNotification);
-//                    }
-
+////                        SUMMARY_ID = beacons.size();
+////                        notificationManager.notify(SUMMARY_ID, summaryNotification);
+////                    }
+//
 //                    Beacon firstBeacon = beacons.iterator().next();
 //                    Log.e(TAG, "first beacon = "+firstBeacon );
 //                    while (firstBeacon != null && (visited_beacons.contains(firstBeacon) || (firstBeacon.getDistance() > 1))){
