@@ -41,6 +41,7 @@ import com.example.iot_java_mobile.Fragments.SettingsFragment;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
+//import com.example.iot_java_mobile.Services.MyForegroundService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;

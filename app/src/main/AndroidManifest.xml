@@ -10,18 +10,22 @@
     <application
         android:name=".IOTJavaMobile"
         android:allowBackup="true"
-        android:launchMode="singleTask"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:launchMode="singleTask"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".Services.MyForegroundService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".Activity.SeeAllAds"
             android:exported="false" />
         <activity
-
             android:name=".Activity.SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -32,8 +36,7 @@
         </activity>
         <activity
             android:name=".Activity.CustomerSignUp"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".Activity.LoginPage"
             android:exported="false" />
@@ -59,12 +62,6 @@
         <activity
             android:name=".Activity.AdPage"
             android:parentActivityName=".Activity.MainActivity" />
-        <activity
-            android:name=".Activity.ProductPage"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.BrandPage"
-            android:exported="false" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -80,6 +77,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
