@@ -27,9 +27,6 @@ import com.example.iot_java_mobile.Fragments.HomeFragment;
 import com.example.iot_java_mobile.Fragments.NotificationFragment;
 import com.example.iot_java_mobile.Fragments.SettingsFragment;
 import com.example.iot_java_mobile.R;
-import com.example.iot_java_mobile.Services.APIClient;
-import com.example.iot_java_mobile.Services.APIInterface;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -40,27 +37,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import org.altbeacon.beacon.BeaconManager;
 
-import java.lang.reflect.Type;
-import java.security.Permissions;
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-
 public class MainActivity extends AppCompatActivity {
-    private ImageSlider imageSlider;
-    private TextView homeBrand;
-    private TextView homeAd;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView recyclerViewHomeBrands;
-    private RecyclerView recyclerViewHomeProducts;
-    private RecyclerView recyclerViewHomeEstablishments;
-    private FirebaseAnalytics mFirebaseAnalytics;
-
-
 
     SessionManager sessionManager;
     private static final int PERMISSION_REQUEST_FINE_LOCATION = 1;
@@ -68,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment;
+
     FavoritesFragment favoritesFragment;
     NotificationFragment notificationFragment;
     SettingsFragment settingsFragment;
@@ -83,10 +61,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         verifyBluetooth();
         requestPermissions();
-        imageSlider = findViewById(R.id.carousel);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-
 
 
 
@@ -143,30 +117,6 @@ public class MainActivity extends AppCompatActivity {
         favoritesFragment = new FavoritesFragment();
         settingsFragment = new SettingsFragment();
 
-        fetchData();
-        TextView username = findViewById(R.id.home_username);
-        User user= sessionManager.getUserDetails();
-        username.setText("Hello, "+ user.getUsername());
-        brandAdapter = new BrandsAdapter(brandList);
-        recyclerViewHomeBrands = findViewById(R.id.home_brand_list_recycler_view);
-        RecyclerView.LayoutManager layoutManagerBrand = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
-        recyclerViewHomeBrands.setLayoutManager(layoutManagerBrand);
-        recyclerViewHomeBrands.setAdapter(brandAdapter);
-        brandAdapter.setOnItemClickListener(new BrandsAdapter.ClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                String EXTRA_MESSAGE = "BrandAttached";
-                Intent intent = new Intent(MainActivity.this, BrandPage.class);
-                Brand brand = brandList.get(position);
-                intent.putExtra(EXTRA_MESSAGE, brand);
-                startActivity(intent);
-                Bundle bundle = new Bundle();
-                bundle.putString(FirebaseAnalytics.Param.ITEM_ID, brand.getId().toString());
-                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, brand.getName());
-                bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "brand");
-                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-            }
-        });
 
 //        fragmentTransaction.replace(R.id.fragment_container_view, homeFragment);
 //        fragmentTransaction.addToBackStack(null);//add the transaction to the back stack so the user can navigate back

@@ -67,6 +67,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'androidx.palette:palette:1.0.0'
 
+
     implementation 'org.altbeacon:android-beacon-library:2+'
     implementation 'com.hbb20:ccp:2.4.5'
 

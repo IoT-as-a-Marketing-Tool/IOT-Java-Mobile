@@ -37,6 +37,8 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        sessionManager = new SessionManager(getActivity().getApplicationContext());
+
         View v = inflater.inflate(R.layout.fragment_setting, container, false);
         Button logoutBtn = v.findViewById(R.id.logoutButton);
         logoutBtn.setOnClickListener(new View.OnClickListener() {

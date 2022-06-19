@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,18 +64,20 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_ad_page, parent, false);
         return new AdsAdapter.ViewHolder(view);
     }
-    public void createPaletteAsync(Bitmap bitmap, ImageView img) {
+    public void createPaletteAsync(Bitmap bitmap, ImageView img, LinearLayout linearLayout) {
 
         Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
             public void onGenerated(Palette p) {
                 img.setBackgroundColor(p.getDominantColor(Color.parseColor("#FFFFFF")));
+                linearLayout.setBackgroundColor(p.getDominantColor(Color.parseColor("#FFFFFF")));
             }
         });
     }
     public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
         ImageView imageView;
-        public GetImageFromUrl(ImageView img){
-            this.imageView = img;
+        LinearLayout linearLayout;
+        public GetImageFromUrl(ImageView img,LinearLayout linearLay){
+            this.imageView = img; this.linearLayout=linearLay;
         }
         @Override
         protected Bitmap doInBackground(String... url) {
@@ -91,7 +95,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
         @Override
         protected void onPostExecute(Bitmap bitmap){
             super.onPostExecute(bitmap);
-            createPaletteAsync(bitmap,imageView );
+            createPaletteAsync(bitmap,imageView, linearLayout );
 
         }
     }
@@ -105,7 +109,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
         holder.ad_image.buildDrawingCache();
 
 
-        new GetImageFromUrl(holder.ad_image).execute(ad.getAd_image());
+        new GetImageFromUrl(holder.ad_image,holder.linearLayout).execute(ad.getAd_image());
         int i = holder.getAdapterPosition();
 
         List<AdItem> adItems= ad.getAdItems();
@@ -113,6 +117,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
             return;
         }
         for (AdItem a: adItems) {
+
             String url= a.getLink();
             if (!url.startsWith("http://") && !url.startsWith("https://"))
                 url = "http://" + url;
@@ -120,10 +125,12 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
             backgroundColor = holder.toSixHex(backgroundColor);
             String color = a.getStyle().getColor();
             color= holder.toSixHex(color);
-            float x = holder.nearestVal(a.getStyle().getX()) ;
-            float y = holder.nearestVal(a.getStyle().getY()) ;
+            float x = holder.nearestVal((50+  a.getStyle().getX())/100);
+            float y = holder.nearestVal((200+  a.getStyle().getY())/400);
+            Log.e("items", a.getType());
+
             String finalUrl = url;
-            Log.e("AD", "ths"+ a.getType());
+
 
             switch (a.getType()){
                 case "button":
@@ -137,8 +144,15 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                     sd.setColor(Color.parseColor(backgroundColor));
                     sd.invalidateSelf();
                     holder.adButton.setTextColor(Color.parseColor(color));
+                    Log.e("AdbjD", "but"+ a.getTitle());
+
                     holder.adButton.setText(a.getTitle());
-                    holder.positionElements(holder.constraintLayout,x,y,holder.adButton.getId());
+                    if(a.getStyle().getFontSize()!=""){
+                        holder.adButton.setTextSize(Float.parseFloat(a.getStyle().getFontSize()));
+                    }
+
+
+                    holder.positionElements(x,y,holder.adButton.getId());
 
                     holder.adButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -147,14 +161,25 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
 //                            startActivity(browserIntent);
                             }
                     });
+
+                    break;
                 case "link":
 
                     holder.adLink.setVisibility(View.VISIBLE);
 
                     holder.adLink.setTextColor(Color.parseColor(color));
+
                     holder.adLink.setText(a.getTitle());
+                    if(a.getStyle().getFontSize()!=""){
+                        holder.adLink.setTextSize(Float.parseFloat(a.getStyle().getFontSize()));
+                    }
+
+                    holder.adLink.setPaintFlags(holder.adLink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                    Log.e("AdbjD", "lonk"+ holder.adLink.getText());
+
                     Log.e("AS", x +""+ y);
-                    holder.positionElements(holder.constraintLayout,x,y,holder.adLink.getId());
+                    y= (float) y;
+                    holder.positionElements(x,y,holder.adLink.getId());
 
 
                     holder.adLink.setOnClickListener(new View.OnClickListener() {
@@ -164,14 +189,17 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
 //                            startActivity(browserIntent);
                             }
                     });
+                    break;
                 case "heading":
-
                     holder.adHeading.setVisibility(View.VISIBLE);
 
                     holder.adHeading.setTextColor(Color.parseColor(color));
                     holder.adHeading.setText(a.getTitle());
-                    holder.positionElements(holder.constraintLayout,x,y,holder.adHeading.getId());
-
+                    if(a.getStyle().getFontSize()!=""){
+                        holder.adHeading.setTextSize(Float.parseFloat(a.getStyle().getFontSize()));
+                    }
+                    holder.positionElements(x,y,holder.adHeading.getId());
+                    break;
             }
         }
 
@@ -192,19 +220,20 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         public TextView establishment_name;
         public ImageView ad_image;
-        ConstraintLayout constraintLayout;
         Button adButton;
         TextView adLink;
         TextView adHeading;
+        LinearLayout linearLayout;
         Drawable unwrappedDrawable;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             establishment_name = itemView.findViewById(R.id.ad_establishment);
             ad_image = itemView.findViewById(R.id.ad_image);
+            linearLayout= itemView.findViewById(R.id.ad_linear_bg);
 //            itemView.setOnClickListener(establishment_name);
             establishment_name.setOnClickListener(this::onClick);
-            constraintLayout = (ConstraintLayout)itemView.findViewById(R.id.ad_constraint);
+
             adButton = itemView.findViewById(R.id.ad_button_item);
             adLink = itemView.findViewById(R.id.ad_link_item);
             adHeading = itemView.findViewById(R.id.ad_heading_item);
@@ -226,21 +255,27 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
             }
             return hex;
         }
-        public void positionElements(ConstraintLayout constraintLayout, float x, float y, Integer id){
+        public void positionElements( float x, float y, Integer id){
+
+            ConstraintLayout  constraintLayout = (ConstraintLayout)itemView.findViewById(R.id.ad_constraint);
             ConstraintSet set = new ConstraintSet();
             set.clone(constraintLayout);
+            Log.e("bias"+ id, String.valueOf(y));
+            set.connect(id,ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
+            set.connect(id,ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
+
             set.setHorizontalBias(id, x);
             set.setVerticalBias(id,y);
             set.applyTo(constraintLayout);
         }
-        public float nearestVal(double a){
-            float val=(float) (50+  a)/100;
+        public float nearestVal(double val){
+
             if(val>1 ){
                 val= 1;
             }else if (val<0){
                 val= 0;
             }
-            return val;
+            return (float)val;
         }
     }
     public interface ClickListener {

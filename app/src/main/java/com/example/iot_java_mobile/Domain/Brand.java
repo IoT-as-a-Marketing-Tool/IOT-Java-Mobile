@@ -23,7 +23,7 @@ public class Brand implements Serializable {
     int id;
 
     private String name;
-    private Integer id;
+
     private String logo;
     String description;
     String brand_type;
@@ -95,9 +95,6 @@ public class Brand implements Serializable {
         this.products = products;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public String getBrand_colors() {
         return brand_colors;

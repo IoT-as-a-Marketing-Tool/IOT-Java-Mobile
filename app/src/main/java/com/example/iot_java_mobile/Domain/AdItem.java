@@ -1,7 +1,6 @@
 package com.example.iot_java_mobile.Domain;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
 public class AdItem implements Serializable {
     public static class Style implements Serializable{
