@@ -126,6 +126,8 @@ public class ProductFragment extends Fragment {
                 String EXTRA_MESSAGE = "GivingCampaignList";
                 Intent intent = new Intent(getContext(), AdsPage.class);
                 List<AdCampaign> adCampaignList = product.getAdcampaigns();
+                if(adCampaignList== null || adCampaignList.size()==0)
+                    return;
                 intent.putExtra(EXTRA_MESSAGE, (Serializable) adCampaignList);
                 List<Establishment> establishmentList = new ArrayList<>();
 //                for (int i = 0; i < adCampaignList.size(); i++){

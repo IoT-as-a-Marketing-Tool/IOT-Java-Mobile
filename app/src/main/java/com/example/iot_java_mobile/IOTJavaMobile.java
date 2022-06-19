@@ -48,6 +48,7 @@ import java.lang.ref.WeakReference;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -72,6 +73,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     List<EstProduct> estProductList = null;
     List<AdCampaign> campaignList = null;
     List<Establishment> establishmentList = null;
+    List<Integer> campaigns = new ArrayList<>();
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -211,6 +213,8 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
                     campaignList.add(estProduct.getCampaign());
                     establishmentList.add(estProduct.getEstablishment());
                     sendNotification(estProduct, uuids.indexOf(uuid));
+                    campaigns.add(estProduct.getCampaign().getId());
+
 //                    new MyAsyncTask().execute(estProduct);
 
                 }
@@ -224,6 +228,29 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
 
     }
     private void sendNotification(EstProduct estProduct, Integer index) {
+        HashMap<String, List> hashMap = new HashMap<String, List>();
+        List<Integer> campaigns = new ArrayList<>();
+        campaigns.add(estProduct.getCampaign().getId());
+        hashMap.put("campaigns", campaigns);
+
+        APIInterface apiInterface = APIClient.getRetrofitClient();
+        apiInterface.createNotifications(MainActivity.custID,hashMap).enqueue(new Callback<List<AdCampaign>>() {
+            @Override
+            public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {
+                if(response.isSuccessful() && response.body()!= null){
+                    Log.e("Don", "onResponse: "+ response.body() );
+
+                    Log.e("Don", "SUCCESSSSSfully added notification ");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AdCampaign>> call, Throwable t) {
+                Log.e("Don", "not added notification Error: "+ t.getMessage());
+            }
+        });
+
+
         String GROUP_KEY_ADS = "com.android.example.WORK_EMAIL";
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
@@ -236,6 +263,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         Intent notifyIntent = new Intent(this, AdsPage.class);
 
         notifyIntent.putExtra("GivingCampaignList", (Serializable) campaignList);
+        notifyIntent.putExtra("UnFavoriteCampaignList", (Serializable) campaigns);
         notifyIntent.putExtra("GivingEstablishmentNameList", (Serializable) establishmentList);
         stackBuilder.addNextIntentWithParentStack(notifyIntent);
         notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK

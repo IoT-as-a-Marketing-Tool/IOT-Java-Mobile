@@ -14,6 +14,7 @@ import com.example.iot_java_mobile.Domain.Product;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeeAllProductAdapter extends RecyclerView.Adapter<SeeAllProductAdapter.ViewHolder> {
@@ -21,6 +22,9 @@ public class SeeAllProductAdapter extends RecyclerView.Adapter<SeeAllProductAdap
     private static ClickListener clickListener;
     public SeeAllProductAdapter(List<Product> productList) {
         this.productList = productList;
+        if (this.productList == null){
+            this.productList = new ArrayList<>();
+        }
 
     }
 

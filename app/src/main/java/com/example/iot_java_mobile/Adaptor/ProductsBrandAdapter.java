@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsBrandAdapter extends RecyclerView.Adapter<ProductsBrandAdapter.ViewHolder>{
@@ -26,6 +27,9 @@ public class ProductsBrandAdapter extends RecyclerView.Adapter<ProductsBrandAdap
     private static ProductsBrandAdapter.ClickListener clickListener;
     public ProductsBrandAdapter(List<Product> productList){
         this.productList = productList;
+        if (this.productList == null){
+            this.productList = new ArrayList<>();
+        }
     }
 
 

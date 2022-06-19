@@ -16,14 +16,21 @@ import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.EstProduct;
 import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.R;
+import com.example.iot_java_mobile.Services.APIClient;
+import com.example.iot_java_mobile.Services.APIInterface;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AdsPage extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class AdsPage extends AppCompatActivity {
+    List<AdCampaign> campaignList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String EXTRA_MESSAGE = "GivingEstProducts";
@@ -36,8 +43,33 @@ public class AdsPage extends AppCompatActivity {
 //            Log.e("Don", "onCreate: estProducts == "+ estProductList );
 //            AdsAdapter adsAdapter = new AdsAdapter(estProductList);
 //        }
-        List<AdCampaign> campaignList = (List<AdCampaign>) intent.getSerializableExtra("GivingCampaignList");
+        campaignList = (List<AdCampaign>) intent.getSerializableExtra("GivingCampaignList");
         List<Establishment> establishmentList = (List<Establishment>) intent.getSerializableExtra("GivingEstablishmentNameList");
+        List<Integer> campaignIds = (List<Integer>) intent.getSerializableExtra("UnFavoriteCampaignList");
+        APIInterface apiInterface = APIClient.getRetrofitClient();
+        if(campaignIds == null){
+            campaignIds = new ArrayList<>();
+        }
+        for(Integer i: campaignIds){
+            apiInterface.deleteNotification(i, MainActivity.custID).enqueue(
+                    new Callback<List<AdCampaign>>() {
+                        @Override
+                        public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {
+                            if(response.isSuccessful() && response.body()!= null){
+                                Log.e("Don", "succesfully deleted notification: "+ response.body() );
+
+//                    Log.e("Don", "SUCCESSSSS "+ response.body().get(0).getName());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<AdCampaign>> call, Throwable t) {
+
+                        }
+                    }
+            );
+        }
+
 
         Log.e("Don", "onCreate: campaignList == "+ campaignList );
         AdsAdapter adsAdapter = new AdsAdapter(campaignList, establishmentList );

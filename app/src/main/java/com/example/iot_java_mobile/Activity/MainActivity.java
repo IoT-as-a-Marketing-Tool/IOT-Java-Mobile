@@ -4,13 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -20,6 +29,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.iot_java_mobile.Domain.AdCampaign;
+import com.example.iot_java_mobile.Domain.EstProduct;
+import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.SessionManager;
 import com.example.iot_java_mobile.Domain.User;
 import com.example.iot_java_mobile.Fragments.FavoritesFragment;
@@ -27,6 +39,8 @@ import com.example.iot_java_mobile.Fragments.HomeFragment;
 import com.example.iot_java_mobile.Fragments.NotificationFragment;
 import com.example.iot_java_mobile.Fragments.SettingsFragment;
 import com.example.iot_java_mobile.R;
+import com.example.iot_java_mobile.Services.APIClient;
+import com.example.iot_java_mobile.Services.APIInterface;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -36,6 +50,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import org.altbeacon.beacon.BeaconManager;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -114,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment(sessionManager);
         notificationFragment = new NotificationFragment();
         favoritesFragment = new FavoritesFragment();
-        settingsFragment = new SettingsFragment();
+        settingsFragment = new SettingsFragment(sessionManager);
 
 
 //        fragmentTransaction.replace(R.id.fragment_container_view, homeFragment);
@@ -152,9 +175,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        List<AdCampaign> notifications = new ArrayList<>();
+//
+//        APIInterface apiInterface = APIClient.getRetrofitClient();
+//        apiInterface.getNotifications(MainActivity.custID).enqueue(new Callback<List<AdCampaign>>() {
+//            @Override
+//            public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {
+//                if(response.isSuccessful() && response.body()!= null){
+//                    Log.e("Don", "onResponse: "+ response.body() );
+//                    notifications.addAll(response.body());
+//                    for (int i = 0; i <notifications.size(); i++){
+//                        AdCampaign n = notifications.get(i);
+//                        sendNotification(n, i, notifications);
+//                    }
+//
+//
+////                    Log.e("Don", "SUCCESSSSS "+ response.body().get(0).getName());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<AdCampaign>> call, Throwable t) {
+//                Toast.makeText(MainActivity.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+//            }
+//        });
+    }
 
     private void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -303,6 +351,98 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    private void sendNotification(AdCampaign campaign,int index, List<AdCampaign> campaignList) {
+//        HashMap<String, List> hashMap = new HashMap<String, List>();
+//        hashMap.put("campaigns", campaigns);
+//
+//        APIInterface apiInterface = APIClient.getRetrofitClient();
+//        apiInterface.createNotifications(MainActivity.custID,hashMap).enqueue(new Callback<List<AdCampaign>>() {
+//            @Override
+//            public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {
+//                if(response.isSuccessful() && response.body()!= null){
+//                    Log.e("Don", "onResponse: "+ response.body() );
+//
+//                    Log.e("Don", "SUCCESSSSSfully added notification ");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<AdCampaign>> call, Throwable t) {
+//                Log.e("Don", "not added notification Error: "+ t.getMessage());
+//            }
+//        });
+
+        NotificationChannel channel = null;
+        NotificationManagerCompat notificationManager = null;
+        ArrayList<Establishment> establishmentList = new ArrayList<>();
+        ArrayList<Integer> campaigns = new ArrayList<>();
+        campaigns.add(campaign.getId());
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        String TAG = "HELP";
+        Log.e(TAG, "sendNotification: " );
+//        Toast.makeText(IOTJavaMobile.this, "Inside SendNotification ",Toast.LENGTH_LONG).show();
+
+        Log.e(TAG, "sendNotification: campaign ="+ campaign );
+
+        Intent notifyIntent = new Intent(this, AdsPage.class);
+
+        notifyIntent.putExtra("GivingCampaignList", (Serializable) campaignList);
+        notifyIntent.putExtra("UnFavoriteCampaignList", (Serializable) campaigns);
+        notifyIntent.putExtra("GivingEstablishmentNameList", (Serializable) establishmentList);
+        stackBuilder.addNextIntentWithParentStack(notifyIntent);
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                this, 0, notifyIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            Toast.makeText(IOTJavaMobile.this, "Build version >= 0", Toast.LENGTH_SHORT).show();
+            NotificationCompat.Builder builder;
+
+            channel = new NotificationChannel("Beacon Reference Notifications",
+                    "Beacon Reference Notifications", NotificationManager.IMPORTANCE_HIGH);
+            channel.enableLights(true);
+            channel.enableVibration(true);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+
+            notificationManager = NotificationManagerCompat.from(this);
+
+            notificationManager.createNotificationChannel(channel);
+
+            builder = new NotificationCompat.Builder(this, channel.getId());
+            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+            builder.setContentTitle(campaign.getName());
+            builder.setContentText("Tap here to view the Ad");
+            builder.setContentIntent(notifyPendingIntent);
+//            builder.setGroup(GROUP_KEY_ADS);
+
+            notificationManager.notify(index, builder.build());
+
+        }
+        else {
+            NotificationManager notifManager =
+                    (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+            Notification.Builder builder = new Notification.Builder(this);
+            builder.setPriority(Notification.PRIORITY_HIGH);
+            builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+            builder.setContentTitle(campaign.getName());
+            builder.setContentText("Tap here to view the Ad");
+            builder.setContentIntent(notifyPendingIntent);
+            notifManager.notify(index, builder.build());
+        }
+
+
+//        Log.e(TAG, "Stopping ranging");
+//        beaconManager.stopRangingBeacons(IOTJavaMobile.wildcardRegion);
+//        beaconManager.removeAllRangeNotifiers();
+    }
+
 
 
 }

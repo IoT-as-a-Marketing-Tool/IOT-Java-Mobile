@@ -38,7 +38,7 @@ import retrofit2.Response;
 public class BrandFragment extends Fragment {
     List<Product> productList = new ArrayList<Product>();
     private ProductsBrandAdapter productAdapter;
-
+    SessionManager sessionManager;
     public BrandFragment(){
 
     }
@@ -57,6 +57,8 @@ public class BrandFragment extends Fragment {
         Bundle bundle = this.getArguments();
         Brand brand = (Brand) bundle.getSerializable(EXTRA_MESSAGE);
         productList = brand.getProducts();
+        sessionManager = new SessionManager(getContext());
+
 
         TextView brandNameTextView =v.findViewById(R.id.brand_name);
         ImageView brandImageView =v.findViewById(R.id.brand_image);
@@ -66,7 +68,7 @@ public class BrandFragment extends Fragment {
         brandNameTextView.setText(brand.getName());
         brandDescTextView.setText(brand.getDescription());
         Picasso.get().load(brand.getLogo()).into(brandImageView);
-
+        APIInterface apiInterface = APIClient.getRetrofitClient();
         Button favBtn =v.findViewById(R.id.brand_fav_btn);
         favBtn.setOnClickListener(
                 new View.OnClickListener() {
@@ -75,11 +77,37 @@ public class BrandFragment extends Fragment {
                         if(isFavoritedBrand(brand)){
                             // unFavorite it
                             Toast.makeText(getContext(), "UnFavoriting", Toast.LENGTH_LONG);
+                            Customer customer = null;
+                            try {
+                                customer = sessionManager.getCustomerDetails();
+                                if(customer.getFavorites()!=null){
+                                    customer.getFavorites().remove(brand.getId());
+                                }else{
+                                    customer.setFavorites( new ArrayList<>());
+                                }
+
+                            } catch (JsonProcessingException e) {
+                                e.printStackTrace();
+                            }
+
+                            apiInterface.unfavoriteBrand(brand.getId(), MainActivity.custID).enqueue(new Callback<List<Brand>>() {
+                                @Override
+                                public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
+                                    if(response.isSuccessful() && response.body()!= null) {
+                                        Log.e("Don", "onResponse: UNFAVORITED");
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<List<Brand>> call, Throwable t) {
+                                    Log.e("Don", "onResponse: not successful unfavorite");
+                                }
+                            });
 
                         }else{
                             //favorite
                             Toast.makeText(getContext(), "Favoriting", Toast.LENGTH_LONG);
-                            APIInterface apiInterface = APIClient.getRetrofitClient();
+
                             apiInterface.favoriteBrand(brand.getId(), MainActivity.custID).enqueue(new Callback<List<Brand>>() {
                                 @Override
                                 public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
@@ -93,6 +121,19 @@ public class BrandFragment extends Fragment {
                                     Log.e("Don", "onResponse: not successful favorite");
                                 }
                             });
+
+                            Customer customer = null;
+                            try {
+                                customer = sessionManager.getCustomerDetails();
+                                if(customer.getFavorites()==null){
+                                    customer.setFavorites( new ArrayList<>());
+
+                                }
+                                customer.getFavorites().add(brand.getId());
+                            } catch (JsonProcessingException e) {
+                                e.printStackTrace();
+                            }
+
 
 
                         }
@@ -159,7 +200,7 @@ public class BrandFragment extends Fragment {
     }
 
     private boolean isFavoritedBrand(Brand brand) {
-        SessionManager sessionManager = new SessionManager(getContext());
+
         try {
             Customer c = sessionManager.getCustomerDetails();
             if (c.getFavorites() != null && c.getFavorites().contains(brand))

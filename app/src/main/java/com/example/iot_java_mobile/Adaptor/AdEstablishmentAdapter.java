@@ -16,6 +16,7 @@ import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdEstablishmentAdapter extends RecyclerView.Adapter<AdEstablishmentAdapter.ViewHolder> {
@@ -23,6 +24,9 @@ public class AdEstablishmentAdapter extends RecyclerView.Adapter<AdEstablishment
 
     public AdEstablishmentAdapter(List<Establishment> establishmentList) {
         this.establishmentList = establishmentList;
+        if (this.establishmentList == null){
+            this.establishmentList = new ArrayList<>();
+        }
     }
 
     @NonNull
