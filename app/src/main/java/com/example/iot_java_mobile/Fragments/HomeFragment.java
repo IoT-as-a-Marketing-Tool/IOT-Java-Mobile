@@ -31,6 +31,7 @@ import com.example.iot_java_mobile.Domain.User;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.w3c.dom.Text;
 
@@ -65,7 +66,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerViewHomeBrands;
     private RecyclerView recyclerViewHomeProducts;
     private RecyclerView recyclerViewHomeEstablishments;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     private List<Brand> brandList;
     private List<Product> productList;
     private List<AdCampaign> recentCampaignList;
@@ -77,7 +78,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        mFirebaseAnalytics= FirebaseAnalytics.getInstance(getActivity().getApplicationContext());
 //
 
 
@@ -116,7 +117,11 @@ public class HomeFragment extends Fragment {
                 String EXTRA_MESSAGE = "BrandAttached";
 //                Intent intent = new Intent(v, BrandPage.class);
                 Brand brand = brandList.get(position);
-
+                Bundle firebundle = new Bundle();
+                firebundle.putString(FirebaseAnalytics.Param.ITEM_ID, "brand"+brand.getId());
+                firebundle.putString(FirebaseAnalytics.Param.ITEM_NAME, brand.getName());
+                firebundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "brand");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, firebundle);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(EXTRA_MESSAGE, brand);
 

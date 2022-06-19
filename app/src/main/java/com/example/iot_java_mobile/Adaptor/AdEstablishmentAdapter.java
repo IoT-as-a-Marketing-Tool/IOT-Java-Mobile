@@ -1,5 +1,7 @@
 package com.example.iot_java_mobile.Adaptor;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +49,8 @@ public class AdEstablishmentAdapter extends RecyclerView.Adapter<AdEstablishment
             @Override
             public void onClick(View view) {
                 Log.e("Don", "onLocationClick: "+ establishment.getLocation() );
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.com/?q="+establishment.getLocation().getLatitude() +","+ establishment.getLocation().getLongitude()));
+                view.getContext().startActivity(browserIntent);
             }
         });
 

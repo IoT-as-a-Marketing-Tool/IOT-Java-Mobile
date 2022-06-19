@@ -1,5 +1,6 @@
 package com.example.iot_java_mobile.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -70,6 +71,15 @@ public class BrandFragment extends Fragment {
         Picasso.get().load(brand.getLogo()).into(brandImageView);
         APIInterface apiInterface = APIClient.getRetrofitClient();
         Button favBtn =v.findViewById(R.id.brand_fav_btn);
+        Button backBtn= v.findViewById(R.id.back_button_brand);
+        backBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+                    }}
+        );
         favBtn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

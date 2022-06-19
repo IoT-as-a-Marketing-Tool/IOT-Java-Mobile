@@ -163,7 +163,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                         @Override
                         public void onClick(View v) {
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalUrl));
-//                            startActivity(browserIntent);
+                            v.getContext().startActivity(browserIntent);
                             }
                     });
 
@@ -191,7 +191,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.ViewHolder>{
                         @Override
                         public void onClick(View v) {
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalUrl));
-//                            startActivity(browserIntent);
+                            v.getContext().startActivity(browserIntent);
                             }
                     });
                     break;

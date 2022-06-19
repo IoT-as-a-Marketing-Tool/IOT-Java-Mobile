@@ -1,6 +1,7 @@
 package com.example.iot_java_mobile.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.EstProduct;
 import com.example.iot_java_mobile.Domain.Establishment;
+import com.example.iot_java_mobile.Domain.Profile;
 import com.example.iot_java_mobile.Domain.SessionManager;
 import com.example.iot_java_mobile.Domain.User;
 import com.example.iot_java_mobile.Fragments.FavoritesFragment;
@@ -48,10 +50,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.altbeacon.beacon.BeaconManager;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment;
-
+    FirebaseAnalytics firebaseAnalytics;
     FavoritesFragment favoritesFragment;
     NotificationFragment notificationFragment;
     SettingsFragment settingsFragment;
@@ -78,12 +83,14 @@ public class MainActivity extends AppCompatActivity {
     static double longitude = 0.0;
     FragmentTransaction fragmentTransaction;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         verifyBluetooth();
         requestPermissions();
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
 
@@ -102,8 +109,23 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(new Intent(MainActivity.this, Ad.class));
 //            }
 //        });
-
         sessionManager = new SessionManager(getApplicationContext());
+
+        Profile profile = null;
+        try {
+            profile = sessionManager.getCustomerDetails().getProfile();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        LocalDate birthday=LocalDate.parse(profile.getBirthday());
+        LocalDate today= LocalDate.now();
+
+        firebaseAnalytics.setUserProperty("user_age", String.valueOf(Period.between(birthday, today).getYears()));
+        firebaseAnalytics.setUserProperty("user_country", profile.getCountry());
+        firebaseAnalytics.setUserProperty("user_gender", profile.getGender());
+
+
+
         try {
             custID = sessionManager.getCustomerDetails().getId();
             Log.e("Don", "-----cussstID "+sessionManager.getCustomerDetails() );

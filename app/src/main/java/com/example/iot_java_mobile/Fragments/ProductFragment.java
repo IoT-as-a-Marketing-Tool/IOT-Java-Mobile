@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -120,6 +123,16 @@ public class ProductFragment extends Fragment {
             }
         });
         Button viewAds = v.findViewById(R.id.view_ads_btn);
+        Button backBtn = v.findViewById(R.id.button_back_product);
+        backBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+
+                    }}
+        );
         viewAds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
