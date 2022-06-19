@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.iot_java_mobile.R;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class SplashScreen extends AppCompatActivity {
     private Handler handler;
@@ -24,7 +25,11 @@ public class SplashScreen extends AppCompatActivity {
         callback = new Runnable() {
             @Override
             public void run() {
-                sessionManager.checkLogin();
+                try {
+                    sessionManager.checkLogin();
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

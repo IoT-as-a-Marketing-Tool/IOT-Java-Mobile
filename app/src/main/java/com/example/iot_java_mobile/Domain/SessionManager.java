@@ -57,8 +57,8 @@ public class SessionManager {
 
         editor.commit();
     }
-    public void checkLogin(){
-        if(!this.isLoggedIn()){
+    public void checkLogin() throws JsonProcessingException {
+        if(!this.isLoggedIn()|| this.getCustomerDetails()==null){
             Intent i = new Intent(_context, LoginPage.class);
 
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
         sessionManager = new SessionManager(getApplicationContext());
-
         Profile profile = null;
         try {
             profile = sessionManager.getCustomerDetails().getProfile();

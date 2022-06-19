@@ -127,9 +127,13 @@ public class LoginPage extends AppCompatActivity implements Validator.Validation
                             Log.e("Don", "SUCCESSSSS " + u);
 
 
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(i);
-                            finish();
+                        }else{
+                            try {
+                                Toast.makeText(getApplicationContext(), "Incorrect Credentials", Toast.LENGTH_LONG).show();
+
+                            } catch (Exception e) {
+                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
 
                         }
 
@@ -159,9 +163,20 @@ public class LoginPage extends AppCompatActivity implements Validator.Validation
                             String res=new Gson().toJson(response.body());
                             session.createCustomer(res);
 
-                            Log.e("Don", "SUCCESSSSS " + res);
 
 
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(i);
+                            finish();
+
+
+                        }else{
+                            try {
+                                Toast.makeText(getApplicationContext(), "Error, try again", Toast.LENGTH_LONG).show();
+
+                            } catch (Exception e) {
+                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
 
                         }
 
