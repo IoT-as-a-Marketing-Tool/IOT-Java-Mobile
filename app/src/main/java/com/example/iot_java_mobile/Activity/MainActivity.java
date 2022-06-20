@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAnalytics firebaseAnalytics;
     FavoritesFragment favoritesFragment;
     NotificationFragment notificationFragment;
-    SettingsFragment settingsFragment;
     public static int custID = 0;
 
     static double latitude = 0.0;
@@ -161,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment(sessionManager);
         notificationFragment = new NotificationFragment();
         favoritesFragment = new FavoritesFragment();
-        settingsFragment = new SettingsFragment(sessionManager);
 
 
 //        fragmentTransaction.replace(R.id.fragment_container_view, homeFragment);
@@ -187,9 +185,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, favoritesFragment).commit();
                         return true;
 
-                    case R.id.settings_item:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, settingsFragment).commit();
-                        return true;
+
                 }
                 return false;
             }

@@ -23,7 +23,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/toolbar_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints">
             <TextView
                 android:id="@+id/home_username"
                 android:layout_width="wrap_content"
@@ -36,6 +40,15 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:menu="@menu/option_bar_menu"
+                android:layout_marginLeft="280dp">
+
+            </androidx.appcompat.widget.Toolbar>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <TextView
                 android:id="@+id/textView5"
@@ -45,8 +58,8 @@
                 android:text="Buy the products you desire"
                 android:textColor="#000000"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/home_username"
-                app:layout_constraintTop_toBottomOf="@+id/home_username" />
+                app:layout_constraintStart_toStartOf="@+id/toolbar_container"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_container" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"

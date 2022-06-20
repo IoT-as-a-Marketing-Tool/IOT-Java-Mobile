@@ -12,8 +12,5 @@
         android:icon="@drawable/icons8_star_96"
         android:title="Favorites" />
 
-    <item android:id="@+id/settings_item"
-        android:icon="@drawable/icons8_user_96"
-        android:title="Settings" />
 
 </menu>

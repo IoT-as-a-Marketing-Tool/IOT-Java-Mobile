@@ -9,16 +9,27 @@
     android:weightSum="1"
     android:gravity="center"
     android:orientation="vertical">
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ad_constraint"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ad_constraint"
     android:layout_weight="0.77"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
 
+        <Button
+            android:id="@+id/ad_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
+        </Button>
+
+        <ImageView
         android:id="@+id/ad_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
