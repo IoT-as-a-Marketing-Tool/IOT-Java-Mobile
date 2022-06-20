@@ -3,6 +3,7 @@ package com.example.iot_java_mobile.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -86,6 +87,15 @@ public class SignUp extends AppCompatActivity implements Validator.ValidationLis
         signUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 validator.validate();
+
+            }
+        });
+        TextView terms = findViewById(R.id.terms_conditions);
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://iot-web-g22.herokuapp.com/terms"));
+                view.getContext().startActivity(browserIntent);
 
             }
         });

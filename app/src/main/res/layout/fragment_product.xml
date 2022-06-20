@@ -9,11 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activity.brand"
+        tools:context=".Fragments.ProductFragment"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         >
 
 
@@ -21,24 +19,22 @@
             android:id="@+id/button_back_product"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="16dp"
-
+            android:layout_marginTop="10dp"
             android:background="@drawable/ic_baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="@id/product_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
             android:id="@+id/product_image"
-            android:layout_width="match_parent"
+            android:layout_width="306dp"
             android:layout_height="286dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/button_back_product"
             app:siShape="@drawable/borderad"
             app:siSquare="true" />
+
 
         <TextView
             android:id="@+id/product_name"
@@ -61,23 +57,13 @@
             android:fontFamily="@font/roboto_regular"
             android:text="Berry Smoothie"
             android:layout_marginTop="2dp"
-            android:layout_marginStart="0.4dp"
+            android:layout_marginStart="1dp"
             android:textAlignment="center"
             android:textColor="@color/primary_purple"
             android:textFontWeight="600"
-            android:textSize="16sp"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/product_name"
             app:layout_constraintTop_toBottomOf="@+id/product_name" />
-
-
-        <View
-            android:id="@+id/horLine"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey"
-            app:layout_constraintStart_toStartOf="@+id/product_name"
-            app:layout_constraintTop_toBottomOf="@+id/product_brand_name"
-            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/textView7"
@@ -88,29 +74,28 @@
             android:text="Details"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textFontWeight="500"
-            android:textSize="16sp"
+            android:textFontWeight="600"
+            android:textSize="23sp"
             app:layout_constraintStart_toStartOf="@+id/product_name"
-            app:layout_constraintTop_toBottomOf="@+id/horLine" />
+            app:layout_constraintTop_toBottomOf="@+id/product_brand_name" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/product_detail_recycler_view"
-            android:layout_width="match_parent"
+            android:layout_width="306dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="7dp"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/product_image"
             app:layout_constraintTop_toBottomOf="@id/textView7"
+            app:layout_constraintStart_toStartOf="@+id/product_image"
             tools:listitem="@layout/product_detail_item">
 
         </androidx.recyclerview.widget.RecyclerView>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/product_ad_recycler_view"
-            android:layout_width="match_parent"
+            android:layout_width="306dp"
             android:layout_marginTop="20dp"
-
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
@@ -123,7 +108,7 @@
 
         <Button
             android:id="@+id/view_ads_btn"
-            android:layout_width="match_parent"
+            android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_custom"
             android:fontFamily="@font/roboto_regular"
@@ -138,5 +123,6 @@
             app:layout_constraintStart_toStartOf="@+id/product_ad_recycler_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>

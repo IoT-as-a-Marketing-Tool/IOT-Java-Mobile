@@ -179,7 +179,8 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onFailure(Call<Product> call, Throwable t) {
 
-                        Toast.makeText(getContext(), "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Sorry this is not working right now, Try again later ",Toast.LENGTH_SHORT).show();
+                        Log.e("Don", t.getMessage());
                     }
                 });
 
@@ -268,7 +269,8 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Brand>> call, Throwable t) {
-                Toast.makeText(getContext(), "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Sorry this is not working right now, Try again later ",Toast.LENGTH_SHORT).show();
+                Log.e("Don", t.getMessage());
             }
         });
 
@@ -285,7 +287,7 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<List<Product>> call, Throwable t) {
-                        Toast.makeText(getContext(), "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Sorry this is not working right now, Try again later ",Toast.LENGTH_SHORT).show();
                         Log.e("Don", t.getMessage());
                     }
                 }
@@ -308,7 +310,9 @@ public class HomeFragment extends Fragment {
 //                    }
 //                }
 //        );
-        apiInterface.getRecentAds(MainActivity.custID).enqueue(new Callback<List<AdCampaign>>() {
+
+        String token= "Bearer "+ sessionManager.getAuthToken();
+        apiInterface.getRecentAds(MainActivity.custID, token).enqueue(new Callback<List<AdCampaign>>() {
             @Override
             public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {
                 if(response.isSuccessful() && response.body()!= null){
@@ -319,7 +323,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<AdCampaign>> call, Throwable t) {
-                Toast.makeText(getContext(), "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Sorry this is not working right now, Try again later ",Toast.LENGTH_SHORT).show();
 
             }
         });

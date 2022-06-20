@@ -60,6 +60,7 @@ public class SeeAllBrandAdapter extends RecyclerView.Adapter<SeeAllBrandAdapter.
             brandDesc = itemView.findViewById(R.id.brand_item_desc);
             removeBtn = itemView.findViewById(R.id.brand_item_remove_btn);
             removeBtn.setVisibility(View.GONE);
+            itemView.setOnClickListener(this);
 
         }
 

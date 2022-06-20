@@ -21,6 +21,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIInterface {
     @GET("api/customers/{cust_id}/brands/")
@@ -29,6 +30,12 @@ public interface APIInterface {
 
     @GET("api/customers/{cust_id}/products/")
     Call<List<Product>> getProducts(@Path("cust_id") int cust_id);
+
+    @GET("api/customers/{cust_id}/products/")
+    Call<List<Product>> getProductsFiltered(@Path("cust_id") int cust_id, @Query("q") String str);
+
+    @GET("api/customers/{cust_id}/brands/")
+    Call<List<Brand>> getBrandsFiltered(@Path("cust_id") int cust_id, @Query("q") String str);
 
     @GET("api/customers/{cust_id}/products/{id}/")
     Call<Product> getProduct(@Path("id") int id,@Path("cust_id") int cust_id);
@@ -67,25 +74,25 @@ public interface APIInterface {
      *     path('<int:pk>/notifications/<int:campaign_id>/', NotificationDeleteAPIView.as_view()),
      * */
     @GET("api/customers/{cust_id}/recent_campaigns/")
-    Call <List<AdCampaign>> getRecentAds(@Path("cust_id") int cust_id);
+    Call <List<AdCampaign>> getRecentAds(@Path("cust_id") int cust_id, @Header("Authorization") String auth);
 
     @GET("api/customers/{cust_id}/favorite_brands/")
-    Call<List<Brand>> getFavoriteBrands(@Path("cust_id") int cust_id);
+    Call<List<Brand>> getFavoriteBrands(@Path("cust_id") int cust_id, @Header("Authorization") String auth);
 
     @GET("api/customers/{cust_id}/favorite_brand/{id}/")
-    Call<List<Brand>> favoriteBrand(@Path("id") int id, @Path("cust_id") int cust_id);
+    Call<List<Brand>> favoriteBrand(@Path("id") int id, @Path("cust_id") int cust_id, @Header("Authorization") String auth);
 
     @GET("api/customers/{cust_id}/unfavorite_brand/{id}/")
-    Call<List<Brand>> unfavoriteBrand(@Path("id") int id,@Path("cust_id") int cust_id);
+    Call<List<Brand>> unfavoriteBrand(@Path("id") int id,@Path("cust_id") int cust_id, @Header("Authorization") String auth);
 
     @GET("api/customers/{cust_id}/notifications/")
-    Call<List<AdCampaign>> getNotifications(@Path("cust_id") int cust_id);
+    Call<List<AdCampaign>> getNotifications(@Path("cust_id") int cust_id, @Header("Authorization") String auth);
 
     @POST("api/customers/{cust_id}/notifications/")
-    Call<List<AdCampaign>> createNotifications(@Path("cust_id") int cust_id, @Body HashMap<String, List> campaigns);
+    Call<List<AdCampaign>> createNotifications(@Path("cust_id") int cust_id, @Body HashMap<String, List> campaigns, @Header("Authorization") String auth);
 
     @GET("api/customers/{cust_id}/notifications/{id}/")
-    Call <List<AdCampaign>> deleteNotification(@Path("id") int id, @Path("cust_id") int cust_id);
+    Call <List<AdCampaign>> deleteNotification(@Path("id") int id, @Path("cust_id") int cust_id, @Header("Authorization") String auth);
 
 
 

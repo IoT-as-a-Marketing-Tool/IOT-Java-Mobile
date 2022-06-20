@@ -27,6 +27,7 @@ import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
+import com.example.iot_java_mobile.Domain.SessionManager;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
@@ -128,8 +129,9 @@ public class ProductFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                        startActivity(i);
+                        SessionManager sessionManager = new SessionManager(getContext());
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new HomeFragment(sessionManager)).commit();
+
 
                     }}
         );

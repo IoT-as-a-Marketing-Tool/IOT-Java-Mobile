@@ -21,6 +21,7 @@ import com.example.iot_java_mobile.Adaptor.NotificationAdapter;
 import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.Domain.Establishment;
+import com.example.iot_java_mobile.Domain.SessionManager;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
@@ -56,6 +57,8 @@ public class NotificationFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=  inflater.inflate(R.layout.fragment_notifications, container, false);
         notifications = new ArrayList<>();
+        SessionManager sessionManager = new SessionManager(getContext());
+        String token= "Bearer "+ sessionManager.getAuthToken();
 
         RecyclerView recyclerView = v.findViewById(R.id.notification_recycler_view);
         NotificationAdapter notificationAdapter = new NotificationAdapter(notifications);
@@ -64,7 +67,7 @@ public class NotificationFragment extends Fragment {
         recyclerView.setAdapter(notificationAdapter);
 
         APIInterface apiInterface = APIClient.getRetrofitClient();
-        apiInterface.getNotifications(MainActivity.custID).enqueue(new Callback<List<AdCampaign>>() {
+        apiInterface.getNotifications(MainActivity.custID, token).enqueue(new Callback<List<AdCampaign>>() {
             @Override
             public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {
                 if(response.isSuccessful() && response.body()!= null){
@@ -77,7 +80,7 @@ public class NotificationFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<AdCampaign>> call, Throwable t) {
-                Toast.makeText(getContext(), "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Sorry this is not working right now, Try again later ",Toast.LENGTH_SHORT).show();
             }
         });
         notificationAdapter.setOnItemClickListener(new NotificationAdapter.ClickListener() {
@@ -105,7 +108,7 @@ public class NotificationFragment extends Fragment {
 //                List<Integer> campaignIds = new ArrayList<>();
                 for(AdCampaign adCampaign: notifications){
                     int id = adCampaign.getId();
-                    apiInterface.deleteNotification(id, MainActivity.custID).enqueue(new Callback<List<AdCampaign>>() {
+                    apiInterface.deleteNotification(id, MainActivity.custID, token).enqueue(new Callback<List<AdCampaign>>() {
                         @Override
                         public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.BrandPage">
+    tools:context=".Fragments.BrandFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,14 +36,11 @@
 
         <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
             android:id="@+id/brand_image"
-            android:layout_width="match_parent"
+            android:layout_width="306dp"
             android:layout_height="286dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/arada"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/brand_fav_btn"
             app:siShape="@drawable/borderad"
@@ -51,30 +48,26 @@
 
         <TextView
             android:id="@+id/brand_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:fontFamily="@font/roboto_regular"
             android:text="Smooth Sundae"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textFontWeight="600"
             android:textSize="28sp"
+            android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="@+id/brand_image"
             app:layout_constraintTop_toBottomOf="@+id/brand_image" />
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_regular"
             android:text="Description"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textFontWeight="600"
             android:textSize="17sp"
@@ -83,9 +76,7 @@
 
         <TextView
             android:id="@+id/brand_description"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_regular"
@@ -98,11 +89,10 @@
             app:layout_constraintStart_toStartOf="@+id/brand_name"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/brand_product_list_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
@@ -110,9 +100,6 @@
             android:layout_marginBottom="10dp"
             app:layout_constraintStart_toStartOf="@+id/brand_image"
             app:layout_constraintTop_toBottomOf="@id/brand_description"
-            tools:listitem="@layout/brand_product_items">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
+            tools:listitem="@layout/brand_product_items"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

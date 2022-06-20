@@ -83,20 +83,14 @@
             android:layout_centerInParent="true"
             android:textSize="15sp"
             />
-        <include
-            android:id="@+id/checkbox_remember"
-            layout="@layout/checkbox_remember"
-            android:layout_width="fill_parent"
-            android:layout_marginTop="30dp"
-            android:layout_height="50dp"
-            android:layout_below="@id/login_password"/>
+
 
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_remember"
+            android:layout_below="@id/login_password"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"

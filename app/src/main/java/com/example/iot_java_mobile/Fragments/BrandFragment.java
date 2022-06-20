@@ -59,6 +59,7 @@ public class BrandFragment extends Fragment {
         Brand brand = (Brand) bundle.getSerializable(EXTRA_MESSAGE);
         productList = brand.getProducts();
         sessionManager = new SessionManager(getContext());
+        String token= "Bearer "+ sessionManager.getAuthToken();
 
 
         TextView brandNameTextView =v.findViewById(R.id.brand_name);
@@ -76,8 +77,9 @@ public class BrandFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                        startActivity(i);
+                        SessionManager sessionManager = new SessionManager(getContext());
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new HomeFragment(sessionManager)).commit();
+
                     }}
         );
         favBtn.setOnClickListener(
@@ -86,7 +88,7 @@ public class BrandFragment extends Fragment {
                     public void onClick(View view) {
                         if(isFavoritedBrand(brand)){
                             // unFavorite it
-                            Toast.makeText(getContext(), "UnFavoriting", Toast.LENGTH_LONG);
+//                            Toast.makeText(getContext(), "UnFavoriting", Toast.LENGTH_LONG);
                             Customer customer = null;
                             try {
                                 customer = sessionManager.getCustomerDetails();
@@ -100,7 +102,7 @@ public class BrandFragment extends Fragment {
                                 e.printStackTrace();
                             }
 
-                            apiInterface.unfavoriteBrand(brand.getId(), MainActivity.custID).enqueue(new Callback<List<Brand>>() {
+                            apiInterface.unfavoriteBrand(brand.getId(), MainActivity.custID, token).enqueue(new Callback<List<Brand>>() {
                                 @Override
                                 public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
                                     if(response.isSuccessful() && response.body()!= null) {
@@ -116,9 +118,9 @@ public class BrandFragment extends Fragment {
 
                         }else{
                             //favorite
-                            Toast.makeText(getContext(), "Favoriting", Toast.LENGTH_LONG);
+//                            Toast.makeText(getContext(), "Favoriting", Toast.LENGTH_LONG);
 
-                            apiInterface.favoriteBrand(brand.getId(), MainActivity.custID).enqueue(new Callback<List<Brand>>() {
+                            apiInterface.favoriteBrand(brand.getId(), MainActivity.custID, token).enqueue(new Callback<List<Brand>>() {
                                 @Override
                                 public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
                                     if(response.isSuccessful() && response.body()!= null) {
@@ -194,8 +196,8 @@ public class BrandFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<Product> call, Throwable t) {
-
-                        Toast.makeText(getContext(), "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Sorry this is not working right now, Try again later ",Toast.LENGTH_SHORT).show();
+                        Log.e("Don", t.getMessage());
                     }
                 });
 

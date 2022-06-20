@@ -63,7 +63,8 @@ public class AdEstablishmentsPage extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Product> call, Throwable t) {
-                Toast.makeText(AdEstablishmentsPage.this, "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Sorry this is not working right now, Try again later ",Toast.LENGTH_SHORT).show();
+                Log.e("Don", t.getMessage());
             }
         });
 

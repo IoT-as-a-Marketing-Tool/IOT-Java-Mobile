@@ -15,6 +15,7 @@ import com.example.iot_java_mobile.Adaptor.AdsAdapter;
 import com.example.iot_java_mobile.Domain.AdCampaign;
 import com.example.iot_java_mobile.Domain.EstProduct;
 import com.example.iot_java_mobile.Domain.Establishment;
+import com.example.iot_java_mobile.Domain.SessionManager;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
@@ -36,6 +37,8 @@ public class AdsPage extends AppCompatActivity {
         String EXTRA_MESSAGE = "GivingEstProducts";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ads_page);
+        SessionManager sessionManager = new SessionManager(this);
+        String token= "Bearer "+ sessionManager.getAuthToken();
 
         Intent intent = getIntent();
 //        List<EstProduct> estProductList = (List<EstProduct>) intent.getSerializableExtra(EXTRA_MESSAGE);
@@ -51,7 +54,7 @@ public class AdsPage extends AppCompatActivity {
             campaignIds = new ArrayList<>();
         }
         for(Integer i: campaignIds){
-            apiInterface.deleteNotification(i, MainActivity.custID).enqueue(
+            apiInterface.deleteNotification(i, MainActivity.custID, token).enqueue(
                     new Callback<List<AdCampaign>>() {
                         @Override
                         public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {

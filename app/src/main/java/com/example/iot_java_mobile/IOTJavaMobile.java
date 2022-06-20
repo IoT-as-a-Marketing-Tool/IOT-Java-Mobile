@@ -32,6 +32,7 @@ import com.example.iot_java_mobile.Domain.AdItem;
 import com.example.iot_java_mobile.Domain.EstProduct;
 import com.example.iot_java_mobile.Domain.Establishment;
 import com.example.iot_java_mobile.Domain.Product;
+import com.example.iot_java_mobile.Domain.SessionManager;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
 //import com.example.iot_java_mobile.Services.MyForegroundService;
@@ -75,12 +76,13 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
     List<AdCampaign> campaignList = null;
     List<Establishment> establishmentList = null;
     List<Integer> campaigns = new ArrayList<>();
-
+    String token;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onCreate() {
 
         super.onCreate();
+
 
         beaconManager = BeaconManager.getInstanceForApplication(this);
         Log.e(TAG, "setting up background monitoring in app onCreate");
@@ -88,11 +90,15 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         beaconManager.getBeaconParsers().clear();
         beaconManager.getBeaconParsers().add(new BeaconParser().
                 setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
+        SessionManager sessionManager = new SessionManager(this);
+        token= "Bearer "+ sessionManager.getAuthToken();
+
 
 
         Notification.Builder builder = new Notification.Builder(this);
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
         builder.setContentTitle("Scanning for Beacons");
+        builder.setContentText("Service is running background");
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
@@ -263,7 +269,7 @@ public class IOTJavaMobile extends Application implements MonitorNotifier {
         hashMap.put("campaigns", campaigns);
 
         APIInterface apiInterface = APIClient.getRetrofitClient();
-        apiInterface.createNotifications(MainActivity.custID,hashMap).enqueue(new Callback<List<AdCampaign>>() {
+        apiInterface.createNotifications(MainActivity.custID,hashMap, token).enqueue(new Callback<List<AdCampaign>>() {
             @Override
             public void onResponse(Call<List<AdCampaign>> call, Response<List<AdCampaign>> response) {
                 if(response.isSuccessful() && response.body()!= null){

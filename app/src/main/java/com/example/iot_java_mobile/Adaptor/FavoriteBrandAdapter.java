@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.iot_java_mobile.Activity.MainActivity;
 import com.example.iot_java_mobile.Domain.Brand;
 import com.example.iot_java_mobile.Domain.Establishment;
+import com.example.iot_java_mobile.Domain.SessionManager;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
@@ -29,14 +30,16 @@ import retrofit2.Response;
 
 public class FavoriteBrandAdapter extends RecyclerView.Adapter<FavoriteBrandAdapter.ViewHolder> {
     List<Brand> brandList;
+    SessionManager sessionManager;
 
-    public FavoriteBrandAdapter(List<Brand> brandList) {
+    public FavoriteBrandAdapter(List<Brand> brandList, SessionManager sessionManager) {
         this.brandList = brandList;
         if (this.brandList == null){
             this.brandList = new ArrayList<>();
         }
+        this.sessionManager = sessionManager;
     }
-    private static ClickListener clickListener;
+//    private static ClickListener clickListener;
     @NonNull
     @Override
     public FavoriteBrandAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,12 +53,13 @@ public class FavoriteBrandAdapter extends RecyclerView.Adapter<FavoriteBrandAdap
         holder.brandName.setText(brand.getName());
         holder.brandDescription.setText(brand.getDescription());
         Picasso.get().load(brand.getLogo()).into(holder.brandLogo);
+        String token= "Bearer "+ sessionManager.getAuthToken();
         holder.removeFavBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO: REMOVE BRAND
                 APIInterface apiInterface = APIClient.getRetrofitClient();
-                apiInterface.unfavoriteBrand(brand.getId(), MainActivity.custID).enqueue(new Callback < List < Brand >> () {
+                apiInterface.unfavoriteBrand(brand.getId(), MainActivity.custID,token).enqueue(new Callback < List < Brand >> () {
                     @Override
                     public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
                         if(response.isSuccessful() && response.body()!= null) {
@@ -82,7 +86,7 @@ public class FavoriteBrandAdapter extends RecyclerView.Adapter<FavoriteBrandAdap
         return brandList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         TextView brandName;
         TextView brandDescription;
         ImageView brandLogo;
@@ -95,18 +99,15 @@ public class FavoriteBrandAdapter extends RecyclerView.Adapter<FavoriteBrandAdap
             brandLogo = itemView.findViewById(R.id.fav_brand_logo);
             removeFavBtn = itemView.findViewById(R.id.remove_fav_brand);
             constraintLayout = itemView.findViewById(R.id.fav_brand_constraint_layout);
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
 
         }
-        @Override
-        public void onClick(View view) {
-            clickListener.onItemClick(getAdapterPosition(), view);
-        }
+
     }
-    public interface ClickListener {
-        void onItemClick(int position, View v);
-    }
-    public void setOnItemClickListener(FavoriteBrandAdapter.ClickListener clickListener) {
-        FavoriteBrandAdapter.clickListener = clickListener;
-    }
+//    public interface ClickListener {
+//        void onItemClick(int position, View v);
+//    }
+//    public void setOnItemClickListener(FavoriteBrandAdapter.ClickListener clickListener) {
+//        FavoriteBrandAdapter.clickListener = clickListener;
+//    }
 }

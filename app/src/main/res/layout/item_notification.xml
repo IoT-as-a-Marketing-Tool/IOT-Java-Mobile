@@ -58,7 +58,6 @@
         android:layout_width="256dp"
         android:layout_height="35dp"
         android:layout_marginStart="5dp"
-        android:drawableLeft="@drawable/ic_baseline_location_on_24"
         android:maxLines="2"
         android:text="Tap to view related Ad Information"
         android:textColor="#000000"

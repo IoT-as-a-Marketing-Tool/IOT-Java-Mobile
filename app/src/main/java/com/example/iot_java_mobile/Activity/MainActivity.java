@@ -40,6 +40,7 @@ import com.example.iot_java_mobile.Fragments.FavoritesFragment;
 import com.example.iot_java_mobile.Fragments.HomeFragment;
 import com.example.iot_java_mobile.Fragments.NotificationFragment;
 import com.example.iot_java_mobile.Fragments.SettingsFragment;
+import com.example.iot_java_mobile.IOTJavaMobile;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         verifyBluetooth();
         requestPermissions();
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
+//        new IOTJavaMobile();
 
 
 //        homeBrand = findViewById(R.id.homeBrand);
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                             longitude = location.getLongitude();
                             latitude = location.getLatitude();
                             Log.e("Don", "------ lat and long " + latitude + " " + longitude);
-                            Toast.makeText(MainActivity.this, "lat and long==  " + latitude + " " + longitude, Toast.LENGTH_LONG).show();
+                            //nToast.makeText(MainActivity.this, "lat and long==  " + latitude + " " + longitude, Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 //        fragmentTransaction.addToBackStack(null);//add the transaction to the back stack so the user can navigate back
 //// Commit the transaction
 //        fragmentTransaction.commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_view, homeFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, homeFragment).commit();
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -193,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        bottomNavigationView.setSelectedItemId(R.id.home_item);
 
 
     }

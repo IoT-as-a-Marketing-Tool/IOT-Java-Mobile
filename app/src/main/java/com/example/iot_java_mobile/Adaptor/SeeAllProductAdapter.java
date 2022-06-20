@@ -64,6 +64,7 @@ public class SeeAllProductAdapter extends RecyclerView.Adapter<SeeAllProductAdap
             productLogo = itemView.findViewById(R.id.product_item_image);
             productDesc = itemView.findViewById(R.id.product_item_details);
             productAdImage = itemView.findViewById(R.id.product_item_ad_image);
+            itemView.setOnClickListener(this);
 
 
         }

@@ -16,6 +16,7 @@ import com.example.iot_java_mobile.Activity.FavoritesPage;
 import com.example.iot_java_mobile.Activity.MainActivity;
 import com.example.iot_java_mobile.Adaptor.FavoriteBrandAdapter;
 import com.example.iot_java_mobile.Domain.Brand;
+import com.example.iot_java_mobile.Domain.SessionManager;
 import com.example.iot_java_mobile.R;
 import com.example.iot_java_mobile.Services.APIClient;
 import com.example.iot_java_mobile.Services.APIInterface;
@@ -45,14 +46,15 @@ public class FavoritesFragment extends Fragment {
         favoriteBrands = new ArrayList<>();
         APIInterface apiInterface = APIClient.getRetrofitClient();
         Log.e("Don", "onCreateView: "+ MainActivity.custID );
+        SessionManager sessionManager = new SessionManager(getContext());
 
-        FavoriteBrandAdapter favoriteBrandAdapter = new FavoriteBrandAdapter(favoriteBrands);
+        FavoriteBrandAdapter favoriteBrandAdapter = new FavoriteBrandAdapter(favoriteBrands, sessionManager);
         RecyclerView recyclerView = v.findViewById(R.id.favorited_brand_recycler_view);
         RecyclerView.LayoutManager layoutManagerProduct = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManagerProduct);
         recyclerView.setAdapter(favoriteBrandAdapter);
-
-        apiInterface.getFavoriteBrands(MainActivity.custID).enqueue(new Callback<List<Brand>>() {
+        String token= "Bearer "+ sessionManager.getAuthToken();
+        apiInterface.getFavoriteBrands(MainActivity.custID, token).enqueue(new Callback<List<Brand>>() {
             @Override
             public void onResponse(Call<List<Brand>> call, Response<List<Brand>> response) {
                 if(response.isSuccessful() && response.body()!= null){
@@ -67,7 +69,8 @@ public class FavoritesFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Brand>> call, Throwable t) {
-                Toast.makeText(getContext(), "Error " +t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Sorry this is not working right now, Try again later ",Toast.LENGTH_SHORT).show();
+                Log.e("Don", t.getMessage());
             }
         });
 
