@@ -83,7 +83,6 @@ public class CustomerSignUp extends AppCompatActivity{
                 String birthday= birthdate.getText().toString();
                 String country= ccp.getSelectedCountryEnglishName();
                 Profile profile = new Profile(gender,birthday,country);
-                Toast.makeText(CustomerSignUp.this,  profile.toString(),Toast.LENGTH_LONG).show();
 
                createProfile(profile);
             }
